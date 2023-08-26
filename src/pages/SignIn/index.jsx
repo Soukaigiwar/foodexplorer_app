@@ -1,5 +1,6 @@
 import { Container, Header, Form } from "./styles";
 import logo from "../../assets/poligon.svg";
+import { Input } from "../../components/input";
 
 export function SignIn() {
     return (
@@ -10,17 +11,21 @@ export function SignIn() {
             </Header>
             <Form>
                 <div>
-                <label htmlFor="text_email">Email</label>
-                <input
-                    type="email"
-                    placeholder="Exemplo: exemplo@exemplo.com.br"
+                    <Input
+                        id="text_email"
+                        label="Email"
+                        autoComplete="e-mail"
+                        placeholder="E-mail"
+                        type="email"
                     />
                 </div>
                 <div>
-                <label htmlFor="text_password">Senha</label>
-                <input
-                    type="password"
-                    placeholder="No mínimo 6 caracteres"
+                    <Input
+                        id="text_password"
+                        label="Senha"
+                        autoComplete="password"
+                        type="password"
+                        placeholder="No mínimo 6 caracteres"
                     />
                 </div>
                 <button>Entrar</button>
