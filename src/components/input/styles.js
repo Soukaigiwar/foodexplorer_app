@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../styles/media"
 
 export const Container = styled.div`
     width: 100%;
@@ -16,6 +17,10 @@ export const Container = styled.div`
         font-weight: 500;
         font-size: 1.6rem;
         line-height: 100%;
+
+        &:focus {
+            outline: none;
+        }
     };
 
     label {
@@ -23,4 +28,10 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.FG_400};
         margin-bottom: 0.8rem;
     };
+
+    @media (${devices.desktop}) {
+        input:focus {
+            outline: solid 1px ${({ theme }) => theme.COLORS.FG_100};
+        }
+    }
 `;

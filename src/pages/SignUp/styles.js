@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { devices } from "../../styles/media"
 
 export const Container = styled.div`
-    color: ${({ theme }) => theme.COLORS.FG_100};
     margin: 0 auto;
     margin-top: 15.8rem;
     display: flex;
@@ -11,6 +10,8 @@ export const Container = styled.div`
 
     width: 42.6rem;
     justify-items: start;
+
+    color: ${({ theme }) => theme.COLORS.FG_100};
 
     @media (${devices.desktop}) {
         display: grid;
@@ -47,20 +48,6 @@ export const Form = styled.form`
     width: 31.6rem;
     display: flex;
     flex-direction: column;
-
-    button {
-        margin-bottom: 4.4rem;
-        width: 100%;
-        height: 4.8rem;
-        background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-        border: none;
-        border-radius: 0.5rem;
-        color: ${({ theme }) => theme.COLORS.FG_100};
-        font-family: "Poppins", serif;
-        font-size: 1.4rem;
-        font-weight: 500;
-        line-height: 2.4rem;
-    }
 
     a {
         text-align: center;

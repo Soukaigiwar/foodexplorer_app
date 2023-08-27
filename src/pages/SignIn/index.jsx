@@ -1,6 +1,7 @@
 import { Container, Header, Form } from "./styles";
 import logo from "../../assets/poligon.svg";
-import { Input } from "../../components/input";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/button";
 
 export function SignIn() {
     return (
@@ -29,7 +30,7 @@ export function SignIn() {
                         placeholder="No mínimo 6 caracteres"
                     />
                 </div>
-                <button>Entrar</button>
+                <Button title="Entrar" />
                 <a href="/register">Criar uma conta</a>
             </Form>
         </Container>
