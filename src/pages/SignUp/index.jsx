@@ -10,10 +10,11 @@ export function SignUp() {
                 <h1>food explorer</h1>
             </Header>
             <Form>
+                <h2>Crie sua conta</h2>
                 <div>
                     <Input
                         id="text_name"
-                        label="Nome"
+                        label="Seu nome"
                         autoComplete="name"
                         placeholder="Exemplo: Maria da Silva"
                         type="text"

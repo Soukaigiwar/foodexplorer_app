@@ -10,6 +10,7 @@ export function SignIn() {
                 <h1>food explorer</h1>
             </Header>
             <Form>
+                <h2>Faça Login</h2>
                 <div>
                     <Input
                         id="text_email"
