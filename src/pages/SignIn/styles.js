@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { devices } from "../../styles/media"
+import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     display: flex;
@@ -18,7 +18,7 @@ export const Container = styled.div`
         grid-template-columns: 2fr 1fr;
         width: 100%;
         margin-top: 9.012rem;
-        padding: 9.012rem auto 10.8rem 15.3rem;
+        padding: 9rem auto 10.8rem 15.3rem;
     }
 `;
 
@@ -51,6 +51,7 @@ export const Form = styled.form`
     flex-direction: column;
 
     a {
+        margin-top: 3.2rem;
         text-align: center;
     }
 
@@ -64,6 +65,14 @@ export const Form = styled.form`
         border-radius: 1.6rem;
         width: 47.6rem;
         margin-right: 10.8rem;
+
+        label {
+            margin-bottom: .8rem;
+        }
+
+        input {
+            margin-bottom: 3.2rem;
+        }
 
         h2 {
             height: 6.87rem;

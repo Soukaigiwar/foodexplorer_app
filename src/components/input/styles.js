@@ -21,17 +21,25 @@ export const Container = styled.div`
         &:focus {
             outline: none;
         }
-    };
+    }
 
     label {
         font-size: 1.6rem;
         color: ${({ theme }) => theme.COLORS.FG_400};
         margin-bottom: 0.8rem;
-    };
+    }
 
     @media (${devices.desktop}) {
+        input {
+            margin-bottom: 0;
+        }
+
         input:focus {
             outline: solid 1px ${({ theme }) => theme.COLORS.FG_100};
+        }
+
+        label {
+            margin-bottom: 0;
         }
     }
 `;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-    margin-bottom: 4.4rem;
     width: 100%;
     height: 4.8rem;
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
@@ -12,4 +11,10 @@ export const Container = styled.button`
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 2.4rem;
+
+    > img {
+        width: 2.1rem;
+        height: 2.1rem;
+        margin-right: 0.5rem;
+    }
 `;

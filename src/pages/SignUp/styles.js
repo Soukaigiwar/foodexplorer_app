@@ -50,6 +50,7 @@ export const Form = styled.form`
     flex-direction: column;
 
     a {
+        margin-top: 3.2rem;
         text-align: center;
     }
 
@@ -63,7 +64,13 @@ export const Form = styled.form`
         border-radius: 1.6rem;
         width: 47.6rem;
         margin-right: 10.8rem;
-
+        
+        label {
+            margin-bottom: 0.8rem;
+        }
+        input {
+            margin-bottom: 3.2rem;
+        }
         h2 {
             height: 6.87rem;
             text-align: center;

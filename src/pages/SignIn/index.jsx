@@ -1,7 +1,7 @@
 import { Container, Header, Form } from "./styles";
 import logo from "../../assets/poligon.svg";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/button";
+import { Button } from "../../components/Button";
 
 export function SignIn() {
     return (
