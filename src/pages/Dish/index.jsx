@@ -5,7 +5,7 @@ import { Button } from "../../components/Button";
 import { Tag } from "../../components/Tag";
 import { Container } from "./styles";
 import { Footer } from "../../components/Footer";
-import ravanello_300 from "../../assets/ravanello_300.png"
+import ravanello_400 from "../../assets/ravanello_400.png"
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import orderBag from "../../assets/order_bag.svg";
@@ -17,7 +17,11 @@ export function Dish() {
             <BackTextButton />
             <div className="dish">
                 <div className="image">
-                    <img src={ravanello_300} alt="Imagem do prato escolhido." />
+                    <img src={ravanello_400} alt="Imagem do prato escolhido." />
+                    {/* <img 
+                            src={`${api.defaults.baseURL}/files/${dish.imgUrl}`} 
+                            alt="Imagem do prato escolhido." /> 
+                    */}
                 </div>
                 <div className="details">
                     <h2>Salada Ravanello</h2>

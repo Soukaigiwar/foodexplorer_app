@@ -59,6 +59,8 @@ export const Form = styled.form`
         display: none;
     }
 
+
+
     @media (${devices.desktop}) {
         background-color: ${({ theme }) => theme.COLORS.BG_700};
         padding: 6.4rem;
@@ -67,7 +69,7 @@ export const Form = styled.form`
         margin-right: 10.8rem;
 
         label {
-            margin-bottom: .8rem;
+            margin-bottom: 0.8rem;
         }
 
         input {

@@ -95,5 +95,6 @@ export const SignOut = styled.div`
             align-items: center;
             justify-content: center;
             margin-left: 3.2rem;
+            cursor: pointer;
     }
 `;

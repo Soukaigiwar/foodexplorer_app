@@ -3,8 +3,12 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
 .image {
-        margin: 1.6rem auto 1.6rem;
-        width: 26.4rem;
+    text-align: center;
+
+    img {
+            margin: 1.6rem auto 1.6rem;
+            width: 26.4rem;
+        }
 }
 
 .details {

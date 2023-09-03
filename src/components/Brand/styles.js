@@ -22,6 +22,6 @@ export const Container = styled.div`
     }
 
     @media (${devices.desktop}) {
-        min-width: 19.7rem;
+        min-width: 16.0rem;
     }
 `;

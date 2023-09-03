@@ -10,7 +10,7 @@ export const Container = styled.div`
         height: 4.8rem;
         padding: 1.2rem 1.4rem;
         margin-bottom: 3.2rem;
-        border-radius: .8rem;
+        border-radius: 0.8rem;
         border: none;
         background-color: ${({ theme }) => theme.COLORS.BG_900};
         color: ${({ theme }) => theme.COLORS.FG_500};
@@ -31,7 +31,7 @@ export const Container = styled.div`
 
     @media (${devices.desktop}) {
         input {
-            margin-bottom: 0;
+            
         }
 
         input:focus {
@@ -39,7 +39,7 @@ export const Container = styled.div`
         }
 
         label {
-            margin-bottom: 0;
+            
         }
     }
 `;

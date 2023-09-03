@@ -5,6 +5,7 @@ import { Button } from "../Button";
 import menuIcon from "../../assets/menu.svg";
 import orderBag from "../../assets/order_bag.svg";
 import signOut from "../../assets/sign_out.svg";
+import searchIcon from "../../assets/search_icon.svg"
 
 export function Header() {
     return (
@@ -15,6 +16,8 @@ export function Header() {
             <Brand />
             <Search>
                 <SearchInput
+                    icon={searchIcon}
+                    alt="Lupa"
                     placeholder="Busque por pratos ou ingredientes"
                 />
             </Search>

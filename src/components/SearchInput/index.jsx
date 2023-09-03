@@ -1,10 +1,9 @@
 import { Container } from "./styles";
-import searchIcon from "../../assets/search_icon.svg";
 
-export function SearchInput({ ...rest }) {
+export function SearchInput({ icon, alt, ...rest }) {
     return (
         <Container>
-            <img src={searchIcon} />
+            <img src={icon} alt={alt} />
             <input {...rest} />
         </Container>
     );
