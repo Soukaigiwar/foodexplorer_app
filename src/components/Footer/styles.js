@@ -23,6 +23,14 @@ export const Container = styled.div`
     @media (${devices.desktop}) {
         position: absolute;
         bottom: 0;
+
+        img {
+            margin-left: 12.3rem;
+        }
+
+        span {
+            margin-right: 12.3rem;
+        }
     }
 `;
 
