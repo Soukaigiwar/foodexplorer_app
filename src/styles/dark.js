@@ -19,8 +19,8 @@ export default {
         BG_900: "#0D1D25",
         BG_1000: "#192227",
 
-        GRADIENTS_100: "#",
-        GRADIENTS_200: "#",
+        GRADIENTS_100: "#00131C",
+        GRADIENTS_200: "#091E26",
 
         TOMATO_100: "#750310",
         TOMATO_200: "#92000E",

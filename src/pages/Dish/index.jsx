@@ -3,8 +3,9 @@ import { BackTextButton } from "../../components/BackTextButton";
 import { TextButton } from "../../components/TextButton";
 import { Button } from "../../components/Button";
 import { Tag } from "../../components/Tag";
-import { Container } from "./styles";
 import { Footer } from "../../components/Footer";
+
+import { Container } from "./styles";
 import ravanello_400 from "../../assets/ravanello_400.png"
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
