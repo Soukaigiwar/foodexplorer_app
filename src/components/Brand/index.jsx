@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import logo from "../../assets/poligon.svg"
+import logo from "../../assets/poligon.svg";
 
 export function Brand() {
     return (

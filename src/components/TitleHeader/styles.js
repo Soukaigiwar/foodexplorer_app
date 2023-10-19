@@ -2,14 +2,18 @@ import styled from "styled-components";
 import { devices } from "../../styles/media";
 
 export const Container = styled.div`
-    /* width: auto; */
+    width: auto;
+    display: flex;
+    /* flex-direction: row; */
     height: 12rem;
+
     position: relative;
     top: 0;
     margin: 4.4rem 1.6rem 6.2rem 3.6rem;
     border-radius: 3px;
     
     background: linear-gradient(180deg, ${({ theme }) => theme.COLORS.GRADIENTS_200} 0%, ${({ theme }) => theme.COLORS.GRADIENTS_100} 100%);
+
 
     > div {
         bottom: 0;
@@ -56,15 +60,16 @@ export const Container = styled.div`
     @media (${devices.desktop}) {
         margin: 16.4rem 12.4rem 6.2rem;
         height: 26rem;
+        display: flex;
         
         > div {
             bottom: 0;
             left: -5.4rem;
-            
+
             width: 19rem;
             height: 14.9rem;
             position: absolute;
-        
+            
             > img {
                 position: absolute;
                 top: -25.7rem;
@@ -75,29 +80,32 @@ export const Container = styled.div`
         }
 
         .text {
-        left: 62.2rem;
-        top: -3rem;
-        width: 42.2rem;
-        position: absolute;
 
-        > h2 {
-            font-family: Poppins;
-            font-size: 40px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 5.6rem;
-            color: ${({ theme }) => theme.COLORS.FG_300};
+            left: 62.2rem;
+            
+
+
+            top: -3rem;
+            width: 43rem;
+
+            > h2 {
+                font-family: Poppins;
+                font-size: 40px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 5.6rem;
+                color: ${({ theme }) => theme.COLORS.FG_300};
+            }
+            
+            > p {
+                width: 100%;
+                font-family: Roboto;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 1.6rem;
+                color: ${({ theme }) => theme.COLORS.FG_300};
+            }
         }
-        
-        > p {
-            width: 100%;
-            font-family: Roboto;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 1.6rem;
-            color: ${({ theme }) => theme.COLORS.FG_300};
-        }
-    }
     }
 `;
