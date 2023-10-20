@@ -11,6 +11,7 @@ export function Home() {
             <TitleHeader />
             <Carrousel title="Refeições" />
             <Carrousel title="Sobremesa" />
+            <Carrousel title="Bebidas" />
             <Footer />
         </Container>
     );
