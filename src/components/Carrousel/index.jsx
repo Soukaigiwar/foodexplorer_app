@@ -8,19 +8,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
-export function Carrousel() {
+export function Carrousel({title}) {
     return (
         <Container>
-            <h2>Refeições</h2>
+            <h2>{title}</h2>
             <Swiper
                 modules={[Navigation]}
                 slidesPerView={3.5}
                 spaceBetween={27}
                 loop={true}
                 navigation
-                
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper) => console.log(swiper)}
             >
                 <SwiperSlide className="slide_card"><Card /></SwiperSlide>
                 <SwiperSlide className="slide_card"><Card /></SwiperSlide>
