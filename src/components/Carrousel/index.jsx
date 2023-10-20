@@ -14,7 +14,7 @@ export function Carrousel() {
             <h2>Refeições</h2>
             <Swiper
                 modules={[Navigation]}
-                slidesPerView={4}
+                slidesPerView={3.5}
                 spaceBetween={27}
                 loop={true}
                 navigation

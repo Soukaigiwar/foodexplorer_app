@@ -3,10 +3,13 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     height: 462px;
+    width: 304px;
     padding: 24px;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    position: relative;
 
     border-radius: 8px;
     border: 1px solid #000204;
@@ -45,6 +48,35 @@ export const Container = styled.div`
         font-size: 32px;
         font-style: normal;
         font-weight: 400;
+        line-height: 160%;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 16px;
+        /* margin-top: 20px; */
+    }
+
+    .actions .button {
+        width: 92px;
+    }
+
+    .actions div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .actions div span {
+        color: var(--light-light-400, #C4C4CC);
+        font-family: Roboto;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
         line-height: 160%;
     }
 

@@ -21,8 +21,8 @@ export const Container = styled.div`
     }
 
     @media (${devices.desktop}) {
-        position: absolute;
-        bottom: 0;
+        /* position: absolute;
+        bottom: 0; */
 
         img {
             margin-left: 12.3rem;
