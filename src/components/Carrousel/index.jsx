@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { Container } from "./styles.js";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -10,46 +10,41 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
 export function Carrousel({ title }) {
-    let slidesQt;
-    let setNav;
+    const [navigationAvailable, setNavigationAvailable] = useState(false);
+    const [slidesInCarrousel, setSlidesInCarrousel] = useState(3.5);
+    const [spaceBetweenCards, setSpaceBetweenCards] = useState(27);
 
-    slidesQt = getWindowWidth() > 428 ? 3.5 : 1.5;
+    function handleWindowResize() {
+        if (window.innerWidth < 428) {
+            setNavigationAvailable(false);
+            setSlidesInCarrousel(1.9);
+            setSpaceBetweenCards(16);
+        } else {
+            setNavigationAvailable(true);
+            setSlidesInCarrousel(3.5);
+            setSpaceBetweenCards(27);
+        }
+    };
 
-    setNav = getWindowWidth() > 428 ? 'navigation' : '';
-
-    const [slides, setSlides] = useState(slidesQt);
-    const [navigationAvailable, setNavigationAvailable] = useState(setNav);
-    
-    function getWindowWidth() {
-        const { innerWidth } = window;
-        return innerWidth;
-    }
-
-    useEffect(() => {
-        function handleWindowResize() {
-            getWindowWidth() > 428 ? setSlides(3.5) : setSlides(1.5);
-            getWindowWidth() > 428 ? setNavigationAvailable("navigation") : setNavigationAvailable("");
-            console.log(slides, navigationAvailable);
-            return slides;
-        };
-
+    useLayoutEffect(() => {
+        handleWindowResize();
         window.addEventListener('resize', handleWindowResize);
 
         return () => {
             window.removeEventListener('resize', handleWindowResize);
         };
-    }, [getWindowWidth()]);
+    }, []);
 
     return (
         <Container>
             <h2>{title}</h2>
             <Swiper
                 modules={[Navigation]}
-                slidesPerView={slides}
-                spaceBetween={27}
+                slidesPerView={slidesInCarrousel}
+                spaceBetween={spaceBetweenCards}
                 loop={true}
-                navigation
-                
+                navigation={navigationAvailable}
+                // className={mobileOrDesktopView}
             >
                 <SwiperSlide className="slide_card"><Card /></SwiperSlide>
                 <SwiperSlide className="slide_card"><Card /></SwiperSlide>
