@@ -10,8 +10,8 @@ export function Card() {
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
-            <img src={dishImage} alt="" />
-            <h2>Spaguetti Gambe</h2>
+            <a href="#"><img src={dishImage} alt="" /></a>
+            <a href="#"><h2>Spaguetti Gambe</h2></a>
             <p>Massa fresca com camarões e pesto.</p>
             <h3>R$ 79,97</h3>
             <div className="actions">

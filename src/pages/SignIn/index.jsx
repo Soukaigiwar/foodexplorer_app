@@ -1,9 +1,22 @@
+import { useState } from "react";
+import { useAuth } from "../../hooks/auth"
+
 import { Container, Header, Form } from "./styles";
 import logo from "../../assets/poligon.svg";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
+
 export function SignIn() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const { signIn } = useAuth()
+
+    function handleSignIn() {
+        signIn({ email, password })
+    }
+
     return (
         <Container>
             <Header>
@@ -19,6 +32,8 @@ export function SignIn() {
                         autoComplete="e-mail"
                         placeholder="E-mail"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
                 <div>
@@ -28,9 +43,11 @@ export function SignIn() {
                         autoComplete="password"
                         type="password"
                         placeholder="No mínimo 6 caracteres"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <Button title="Entrar" />
+                <Button title="Entrar" onClick={handleSignIn}/>
                 <a href="/register">Criar uma conta</a>
             </Form>
         </Container>
