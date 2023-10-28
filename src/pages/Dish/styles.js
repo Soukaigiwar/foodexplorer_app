@@ -2,6 +2,17 @@ import styled from "styled-components";
 import { devices } from "../../styles/media";
 
 export const Container = styled.div`
+
+display: grid;
+grid-template-rows: 104px min-content 1fr 77px;
+grid-template-areas: 
+    "header"
+    "back_text_button"
+    "content"
+    "footer";
+
+height: 100vh;
+
 .image {
     text-align: center;
 
@@ -35,6 +46,11 @@ export const Container = styled.div`
         font-weight: 400;
         line-height: 2.27rem;
         color: ${({ theme }) => theme.COLORS.FG_300};
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
 
     > .tags {
@@ -117,4 +133,12 @@ export const Container = styled.div`
         }
     }
 }
+`;
+
+export const Content = styled.div`
+    grid-area: content;
+`;
+
+export const BackTextButton = styled.div`
+    grid-area: back_text_button;
 `;

@@ -7,7 +7,9 @@ export const Container = styled.div`
         /* border: 1px solid red; */
     }
 
+    
     display: flex;
+    /* grid-area: head; */
     align-items: center;
     justify-content: space-between;
 

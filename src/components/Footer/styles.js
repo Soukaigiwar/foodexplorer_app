@@ -3,12 +3,13 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     display: flex;
+    /* grid-area: foot; */
     align-items: center;
     justify-content: space-between;
 
     padding: 2.4rem;
     width: 100%;
-
+    bottom: 0;
 
 
     background-color: ${({ theme }) => theme.COLORS.BG_700};
@@ -21,9 +22,6 @@ export const Container = styled.div`
     }
 
     @media (${devices.desktop}) {
-        /* position: absolute;
-        bottom: 0; */
-
         img {
             margin-left: 12.3rem;
         }
