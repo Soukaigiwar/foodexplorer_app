@@ -9,9 +9,9 @@ export function Home() {
         <Container>
             <Header />
             <TitleHeader />
-            <Carrousel title="Refeições" />
-            <Carrousel title="Sobremesa" />
-            <Carrousel title="Bebidas" />
+            <Carrousel title="Refeições" category="Refeição" />
+            {/* <Carrousel title="Sobremesa" category="sobremesa"/>
+            <Carrousel title="Bebidas" category="bebidas"/> */}
             <Footer />
         </Container>
     );

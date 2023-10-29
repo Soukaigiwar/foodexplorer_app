@@ -6,14 +6,14 @@ import favorite from "../../assets/hearth.svg";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 
-export function Card() {
+export function Card({ data }) {
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
             <a href="#"><img src={dishImage} alt="" /></a>
-            <a href="#"><h2>Spaguetti Gambe</h2></a>
-            <p>Massa fresca com camarões e pesto.</p>
-            <h3>R$ 79,97</h3>
+            <a href="#"><h2>{data.title}</h2></a>
+            <p>{data.description}</p>
+            <h3>R$ {data.price}</h3>
             <div className="actions">
                 <div>
                     <TextButton icon={minus} alt="Diminuir quantidade." />
