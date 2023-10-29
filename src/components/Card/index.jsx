@@ -5,6 +5,7 @@ import { Button } from "../../components/Button";
 import favorite from "../../assets/hearth.svg";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
+import { handleZeros } from "../../utils/string.js";
 
 export function Card({ data }) {
     return (
@@ -13,7 +14,7 @@ export function Card({ data }) {
             <a href="#"><img src={dishImage} alt="" /></a>
             <a href="#"><h2>{data.title}</h2></a>
             <p>{data.description}</p>
-            <h3>R$ {data.price}</h3>
+            <h3>R$ {handleZeros(data.price)}</h3>
             <div className="actions">
                 <div>
                     <TextButton icon={minus} alt="Diminuir quantidade." />

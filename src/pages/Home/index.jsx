@@ -10,7 +10,7 @@ export function Home() {
             <Header />
             <TitleHeader />
             <Carrousel title="Refeições" category="refeição" />
-            <Carrousel title="Sobremesa" category="Sobremesa"/>
+            <Carrousel title="Sobremesas" category="Sobremesas"/>
             <Carrousel title="Bebidas" category="Bebidas"/>
             <Footer />
         </Container>

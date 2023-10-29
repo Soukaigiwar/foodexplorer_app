@@ -64,7 +64,6 @@ export function Carrousel({ title, category }) {
                 spaceBetween={spaceBetweenCards}
                 loop={true}
                 navigation={navigationAvailable}
-            // className={mobileOrDesktopView}
             >
                 {
                     dishes.map(dish => (
@@ -73,14 +72,6 @@ export function Carrousel({ title, category }) {
                         </SwiperSlide>
                     ))
                 }
-
-
-                {/* <SwiperSlide className="slide_card"><Card /></SwiperSlide>
-                <SwiperSlide className="slide_card"><Card /></SwiperSlide>
-                <SwiperSlide className="slide_card"><Card /></SwiperSlide>
-                <SwiperSlide className="slide_card"><Card /></SwiperSlide>
-                <SwiperSlide className="slide_card"><Card /></SwiperSlide>
-                <SwiperSlide className="slide_card"><Card /></SwiperSlide> */}
             </Swiper>
             <div className="shadow_layer"></div>
             <div className="carret_left"><img src={carretLeft} /></div>
