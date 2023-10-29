@@ -5,6 +5,7 @@ import { Navigation } from 'swiper/modules';
 import { Card } from "../Card";
 import carretLeft from "../../assets/carret_left.svg";
 import { api } from "../../services/api.js"
+import { handleString } from "../../utils/string.js";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -29,18 +30,18 @@ export function Carrousel({ title, category }) {
     };
 
     useEffect(() => {
-            async function fetchDishes() {
-                const response = await api.get("/dishes");
+        async function fetchDishes() {
+            const response = await api.get("/dishes");
 
-                const filtered_dishes = response.data.filter(dish => {
-                    
-                    if (dish.category === category) {
-                        return dish;
-                    }
-                });
+            const filtered_dishes = response.data.filter(dish => {
 
-                setDishes(filtered_dishes);
-            };
+                if (handleString(dish.category) === handleString(category)) {
+                    return dish;
+                }
+            });
+
+            setDishes(filtered_dishes);
+        };
 
         fetchDishes();
     }, []);
@@ -63,23 +64,17 @@ export function Carrousel({ title, category }) {
                 spaceBetween={spaceBetweenCards}
                 loop={true}
                 navigation={navigationAvailable}
-                // className={mobileOrDesktopView}
+            // className={mobileOrDesktopView}
             >
                 {
                     dishes.map(dish => (
                         <SwiperSlide className="slide_card" key={dish.id}>
-                            <Card data={dish}/>
+                            <Card data={dish} />
                         </SwiperSlide>
                     ))
-                    // dishes.map(dish => (
-                    //     console.log(dish)
-                    //     // <SwiperSlide className="slide_card">
-                    //     //     <Card data={dish} />
-                    //     // </SwiperSlide>
-                    // ))
                 }
-                
-                
+
+
                 {/* <SwiperSlide className="slide_card"><Card /></SwiperSlide>
                 <SwiperSlide className="slide_card"><Card /></SwiperSlide>
                 <SwiperSlide className="slide_card"><Card /></SwiperSlide>
