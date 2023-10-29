@@ -12,7 +12,7 @@ export function Card({ data }) {
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
             <a href="#"><img src={dishImage} alt="" /></a>
-            <a href="#"><h2>{data.title}</h2></a>
+            <a href="#"><h2>{data.title} &gt;</h2></a>
             <p>{data.description}</p>
             <h3>R$ {handleZeros(data.price)}</h3>
             <div className="actions">

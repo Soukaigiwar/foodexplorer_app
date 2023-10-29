@@ -12,8 +12,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
 export function Carrousel({ title, category }) {
+    const slides = (window.innerWidth <= 428) ? 1.9 : 3.5;
+
     const [navigationAvailable, setNavigationAvailable] = useState(false);
-    const [slidesInCarrousel, setSlidesInCarrousel] = useState(3.5);
+    const [slidesInCarrousel, setSlidesInCarrousel] = useState(slides);
     const [spaceBetweenCards, setSpaceBetweenCards] = useState(27);
     const [dishes, setDishes] = useState([]);
 

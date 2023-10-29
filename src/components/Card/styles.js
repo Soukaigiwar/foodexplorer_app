@@ -3,12 +3,13 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
 
-    height: 292px;
+    height: 32rem;
     width: 21rem;
     padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     gap: 12px;
     position: relative;
 
@@ -16,16 +17,16 @@ export const Container = styled.div`
     border: 1px solid #000204;
     background: #00070A;
 
-    > img {
-        width: 88px;
-        height: 88px;
+    > a img {
+        width: 8.8rem;
+        height: 8.8rem;
     }
 
-    >h2 {
+    >a h2 {
         color: #E1E1E6;
         text-align: center;
         font-family: Poppins;
-        font-size: 14px;
+        font-size: 1.4rem;
         font-style: normal;
         font-weight: 500;
         line-height: 24px;
@@ -40,7 +41,7 @@ export const Container = styled.div`
         text-align: center;
         
         font-family: Roboto;
-        font-size: 16px;
+        font-size: 1.6rem;
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
@@ -96,12 +97,12 @@ export const Container = styled.div`
         border: 1px solid #000204;
         background: #00070A;
 
-        > img {
+        > a img {
             width: 200px;
             height: 200px;
         }
 
-        >h2 {
+        > a h2 {
             color: #E1E1E6;
             text-align: center;
             font-family: Poppins;
@@ -111,7 +112,7 @@ export const Container = styled.div`
             line-height: 140%;
         }
 
-        > p {
+        > a p {
             color: var(--light-light-400, #C4C4CC);
             text-align: center;
             font-family: Roboto;
