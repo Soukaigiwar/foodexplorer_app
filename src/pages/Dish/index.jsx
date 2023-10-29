@@ -15,7 +15,7 @@ export function Dish() {
     return (
         <Container>
             <Header />
-            <BackTextButton />
+            <BackTextButton/>
             <Content>
                 <div className="dish">
                     <div className="image">

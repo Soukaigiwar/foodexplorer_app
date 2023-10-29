@@ -6,12 +6,20 @@ import favorite from "../../assets/hearth.svg";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import { handleZeros } from "../../utils/string.js";
+import { useNavigate } from "react-router-dom";
 
 export function Card({ data }) {
+    const navigate = useNavigate();
+
+    function handleDetails(id) {
+        navigate(`/dish?id=${id}`);
+    }
+    
+
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
-            <a href="#"><img src={dishImage} alt="" /></a>
+            <img src={dishImage} alt="" onClick={() => { handleDetails(data.id) }} />
             <a href="#"><h2>{data.title} &gt;</h2></a>
             <p>{data.description}</p>
             <h3>R$ {handleZeros(data.price)}</h3>

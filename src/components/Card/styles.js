@@ -17,7 +17,7 @@ export const Container = styled.div`
     border: 1px solid #000204;
     background: #00070A;
 
-    > a img {
+    > img {
         width: 8.8rem;
         height: 8.8rem;
     }
@@ -90,6 +90,7 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         gap: 15px;
         position: relative;
 
@@ -97,22 +98,24 @@ export const Container = styled.div`
         border: 1px solid #000204;
         background: #00070A;
 
-        > a img {
-            width: 200px;
-            height: 200px;
+        > img {
+            width: 176px;
+            height: 176px;
+            cursor: pointer;
         }
 
         > a h2 {
             color: #E1E1E6;
             text-align: center;
             font-family: Poppins;
-            font-size: 24px;
+            font-size: 2.4rem;
             font-style: normal;
             font-weight: 700;
             line-height: 140%;
         }
 
-        > a p {
+        > p {
+            display: unset;
             color: var(--light-light-400, #C4C4CC);
             text-align: center;
             font-family: Roboto;
