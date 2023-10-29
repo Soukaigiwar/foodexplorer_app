@@ -4,10 +4,12 @@ import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import menuIcon from "../../assets/menu.svg";
 import orderBag from "../../assets/order_bag.svg";
-import signOut from "../../assets/sign_out.svg";
-import searchIcon from "../../assets/search_icon.svg"
+import signOutIcon from "../../assets/sign_out.svg";
+import searchIcon from "../../assets/search_icon.svg";
+import { useAuth } from "../../hooks/auth";
 
 export function Header() {
+    const { signOut } = useAuth();
     return (
         <Container>
             <Menu>
@@ -33,10 +35,10 @@ export function Header() {
             </OrderButton>
             <SignOut>
                 <img
-                    src={signOut}
-                    alt="Ícone para exibir quantidade de itens no pedido."
+                    src={signOutIcon}
+                    alt="Ícone para sair da aplicação."
+                    onClick={signOut}
                 />
-                <span>0</span>
             </SignOut>
         </Container>
     )

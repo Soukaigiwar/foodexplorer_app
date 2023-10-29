@@ -6,10 +6,6 @@ export const AuthContext = createContext({})
 function AuthProvider({ children }) {
     const [data, setData] = useState({})
 
-    function sergio(){
-        return "Sergio Mello"
-    }
-
     async function signIn({ email, password }) {
         try {
             const response = await api.post("/sessions", { email, password })
@@ -83,8 +79,7 @@ function AuthProvider({ children }) {
             signIn,
             signOut,
             updateProfile,
-            user: data.user,
-            sergio
+            user: data.user
         }}
         >
             {children}

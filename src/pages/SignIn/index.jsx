@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../hooks/auth"
+import { useAuth } from "../../hooks/auth";
 
 import { Container, Header, Form } from "./styles";
 import logo from "../../assets/poligon.svg";
@@ -16,6 +16,13 @@ export function SignIn() {
     function handleSignIn() {
         signIn({ email, password })
     }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter" && !password)
+            document.getElementById('text_password').focus();
+
+        if (event.key === "Enter" && password) handleSignIn();
+      }
 
     return (
         <Container>
@@ -34,6 +41,7 @@ export function SignIn() {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        onKeyPress={handleKeyPress}
                     />
                 </div>
                 <div>
@@ -45,6 +53,7 @@ export function SignIn() {
                         placeholder="No mínimo 6 caracteres"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyPress={handleKeyPress}
                     />
                 </div>
                 <Button title="Entrar" onClick={handleSignIn}/>

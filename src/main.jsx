@@ -6,13 +6,17 @@ import GlobalStyles from "./styles/global";
 import dark from './styles/dark';
 import light from './styles/light';
 
+import { AuthProvider } from './hooks/auth'
+
 import { Routes } from "./routes";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={dark}>
       <GlobalStyles />
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
 );
