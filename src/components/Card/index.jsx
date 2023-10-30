@@ -7,27 +7,36 @@ import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import { handleZeros } from "../../utils/string.js";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function Card({ data }) {
     const navigate = useNavigate();
+    const [quantity, setQuantity] = useState(1);
 
     function handleDetails(id) {
         navigate(`/dish?id=${id}`);
-    }
-    
+    };
+
+    function handleQuantity(qt) {
+        if (quantity > 1)
+            setQuantity(prevState => prevState + qt);
+
+        if (quantity === 1 && qt > 0)
+            setQuantity(prevState => prevState + qt);
+    };
 
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
             <img src={dishImage} alt="" onClick={() => { handleDetails(data.id) }} />
-            <a href="#"><h2>{data.title} &gt;</h2></a>
-            <p>{data.description}</p>
-            <h3>R$ {handleZeros(data.price)}</h3>
+            <h2 onClick={() => { handleDetails(data.id) }}>{data.title} &gt;</h2>
+            <p onClick={() => { handleDetails(data.id) }}>{data.description}</p>
+            <h3 onClick={() => { handleDetails(data.id) }}>R$ {handleZeros(data.price)}</h3>
             <div className="actions">
                 <div>
-                    <TextButton icon={minus} alt="Diminuir quantidade." />
-                    <span>01</span>
-                    <TextButton icon={plus} alt="Aumentar quantidade." />
+                    <TextButton icon={minus} alt="Diminuir quantidade." onClick={() => { handleQuantity(-1) }} onMouseDown={() => { handleQuantity(-1) }} />
+                    <span>{quantity.toString().padStart(2, 0)}</span>
+                    <TextButton icon={plus} alt="Aumentar quantidade." onClick={() => { handleQuantity(1) }}/>
                 </div>
                 <Button className="button" icon={''} title="incluir" />
             </div>

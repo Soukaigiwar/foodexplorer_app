@@ -22,7 +22,7 @@ export const Container = styled.div`
         height: 8.8rem;
     }
 
-    >a h2 {
+    > h2 {
         color: #E1E1E6;
         text-align: center;
         font-family: Poppins;
@@ -104,7 +104,7 @@ export const Container = styled.div`
             cursor: pointer;
         }
 
-        > a h2 {
+        > h2 {
             color: #E1E1E6;
             text-align: center;
             font-family: Poppins;
@@ -112,6 +112,7 @@ export const Container = styled.div`
             font-style: normal;
             font-weight: 700;
             line-height: 140%;
+            cursor: pointer;
         }
 
         > p {
@@ -123,6 +124,7 @@ export const Container = styled.div`
             font-style: normal;
             font-weight: 400;
             line-height: 160%;
+            cursor: pointer;
         }
         
         > h3 {
@@ -134,6 +136,7 @@ export const Container = styled.div`
             font-style: normal;
             font-weight: 400;
             line-height: 160%;
+            cursor: pointer;
         }
 
         .actions {

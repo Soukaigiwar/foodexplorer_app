@@ -2,14 +2,7 @@ import styled from "styled-components";
 import { devices } from "../../styles/media"
 
 export const Container = styled.div`
-
-    *{
-        /* border: 1px solid red; */
-    }
-
-    
     display: flex;
-    /* grid-area: head; */
     align-items: center;
     justify-content: space-between;
 
@@ -34,7 +27,7 @@ export const Search = styled.div`
     }
 `;
 
-export const Menu = styled.div`
+export const MenuIcon = styled.div`
     @media (${devices.desktop}) {
         display: none;
     }
