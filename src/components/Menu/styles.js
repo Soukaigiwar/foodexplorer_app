@@ -97,7 +97,7 @@ export const Content = styled.div`
         border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_1000};
 
     }
-    div a {
+    div p {
         
         color: ${({ theme }) => theme.COLORS.FG_100};
         font-family: 'Poppins';

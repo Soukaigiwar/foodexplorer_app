@@ -2,10 +2,11 @@ import { Container, Header, Content } from "./styles";
 import { SearchInput } from "../SearchInput";
 import searchIcon from "../../assets/search_icon.svg";
 import closeIcon from "../../assets/close.svg";
-import { Footer } from "../Footer"
+import { Footer } from "../Footer";
+import { useAuth } from "../../hooks/auth";
 
 export function Menu({ toggleMenu, menuisvisible }) {
-    // console.log(menuisvisible)
+    const { signOut } = useAuth();
     return (
         <Container $menuisvisible={menuisvisible.toString()}>
             <Header>
@@ -22,7 +23,7 @@ export function Menu({ toggleMenu, menuisvisible }) {
                 placeholder="Busque por pratos ou ingredientes"
                 />
                 <div>
-                    <a href="#">Sair</a>
+                    <p onClick={signOut}>Sair</p>
                 </div>
             </Content>
             <Footer />
