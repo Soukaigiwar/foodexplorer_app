@@ -15,7 +15,9 @@ export const handleString = (str) => {
  * @returns eg.: 12.9 return: 12,90 | 5 return: 5,00 | 1.99 return: 1,99
  */
 export const handleZeros = (str) => {
-    str = Number(str);
+    if (typeof str !== 'number') {
+        str = Number(str);
+    }
     const formatedNumber = str.toFixed(2).toString().replace(".", ",");
 
     return formatedNumber;
