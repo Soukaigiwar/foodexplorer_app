@@ -17,12 +17,12 @@ export function SignIn() {
         signIn({ email, password })
     }
 
-    function handleKeyPress(event) {
-        if (event.key === "Enter" && !password)
+    function handleKeyDown(e) {
+        if (e.key === "Enter" && !password)
             document.getElementById('text_password').focus();
 
-        if (event.key === "Enter" && password) handleSignIn();
-      }
+        if (e.key === "Enter" && password) handleSignIn();
+    }
 
     return (
         <Container>
@@ -41,7 +41,7 @@ export function SignIn() {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        onKeyPress={handleKeyPress}
+                        onKeyDown={handleKeyDown}
                     />
                 </div>
                 <div>
@@ -53,10 +53,10 @@ export function SignIn() {
                         placeholder="No mínimo 6 caracteres"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        onKeyPress={handleKeyPress}
+                        onKeyDown={handleKeyDown}
                     />
                 </div>
-                <Button title="Entrar" onClick={handleSignIn}/>
+                <Button title="Entrar" onClick={handleSignIn} />
                 <a href="/register">Criar uma conta</a>
             </Form>
         </Container>

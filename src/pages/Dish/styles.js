@@ -93,6 +93,7 @@ height: 100vh;
         font-weight: 500;
         line-height: 1.6rem;
         cursor: pointer;
+        
     }
 }
 

@@ -15,9 +15,9 @@ export function SignUp() {
     const navigate = useNavigate()
 
     function handleSignUp() {
-        if (!name || !email || !password) return alert("Preencha todos os campos!")
+        if (!name || !email || !password)
+            return alert("Preencha todos os campos!");
 
-        
         api.post("/users", { name, email, password })
             .then(() => {
                 alert("Usuário cadastrado com sucesso.")
@@ -32,6 +32,16 @@ export function SignUp() {
                 }
             })
     };
+
+    function handleKeyDown(event) {
+        if (event.key === "Enter" && !email && !password)
+            document.getElementById('text_email').focus();
+        
+        if (event.key === "Enter" && email && !password)
+            document.getElementById('text_password').focus();
+
+        if (event.key === "Enter" && email && password) handleSignUp();
+    }
 
     return (
         <Container>
@@ -49,6 +59,7 @@ export function SignUp() {
                         placeholder="Exemplo: Maria da Silva"
                         type="text"
                         onChange={e => setName(e.target.value)}
+                        onKeyDown={handleKeyDown}
                     />
                 </div>
                 <div>
@@ -59,6 +70,7 @@ export function SignUp() {
                         placeholder="E-mail"
                         type="email"
                         onChange={e => setEmail(e.target.value)}
+                        onKeyDown={handleKeyDown}
                     />
                 </div>
                 <div>
@@ -69,9 +81,10 @@ export function SignUp() {
                         type="password"
                         placeholder="No mínimo 6 caracteres"
                         onChange={e => setPassword(e.target.value)}
+                        onKeyDown={handleKeyDown}
                     />
                 </div>
-                <Button title="Criar Conta" onClick={handleSignUp}/>
+                <Button title="Criar Conta" onClick={handleSignUp} />
                 <a href="/">Já tenho uma conta</a>
             </Form>
         </Container>

@@ -26,6 +26,8 @@ export function Card({ data }) {
     //         setQuantity(prevState => prevState + qt);
     // };
 
+    
+
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
@@ -39,7 +41,6 @@ export function Card({ data }) {
                         icon={minus}
                         alt="Diminuir quantidade."
                         onClick={() => { setQuantity(handleQuantity(quantity, -1)) }}
-                        onMouseDown={() => { setQuantity(handleQuantity(quantity, -1)) }}
                     />
                     <span>
                         {quantity.toString().padStart(2, 0)}
@@ -48,6 +49,7 @@ export function Card({ data }) {
                         icon={plus}
                         alt="Aumentar quantidade."
                         onClick={() => { setQuantity(handleQuantity(quantity, 1)) }}
+
                     />
                 </div>
                 <Button className="button" icon={''} title="incluir" />

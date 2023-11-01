@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { handleZeros } from "../../utils/string";
+import { handleQuantity } from "../../utils/item.js";
 
 export function Dish() {
     const params = useParams();
@@ -22,6 +23,17 @@ export function Dish() {
     const [data, setData] = useState({});
     const [ingredients, setIngredients] = useState([]);
     const [search, setSearch] = useState('');
+    const [quantity, setQuantity] = useState(1);
+
+
+    function handleKeyDown(e) {
+        
+        if (e.key === "+")
+            setQuantity(handleQuantity(quantity, 1));
+
+        if (e.key === "-" && quantity > 1)
+            setQuantity(handleQuantity(quantity, -1))
+    };
 
     useEffect(() => {
         async function fetchDish() {
@@ -71,13 +83,27 @@ export function Dish() {
                         </div>
                         <div className="actions">
                             <div>
-                                <TextButton icon={minus} alt="Diminuir quantidade." />
-                                <span>01</span>
-                                <TextButton icon={plus} alt="Aumentar quantidade." />
+                                <TextButton
+                                    tabIndex="0"
+                                    icon={minus}
+                                    alt="Diminuir quantidade."
+                                    onKeyDown={handleKeyDown}
+                                    onClick={() => { setQuantity(handleQuantity(quantity, -1)) }}
+                                />
+                                <span>
+                                    {quantity}
+                                </span>
+                                <TextButton
+                                    tabIndex="1"
+                                    icon={plus}
+                                    alt="Aumentar quantidade."
+                                    onKeyDown={handleKeyDown}
+                                    onClick={() => { setQuantity(handleQuantity(quantity, 1)) }}
+                                />
                             </div>
                             <Button
                                 icon={orderBag}
-                                title={`pedir ∙ R$ ${handleZeros(String(data.price))}`} />
+                                title={`pedir ∙ R$ ${handleZeros(String(data.price * quantity))}`} />
                         </div>
                     </div>
                 </div>
