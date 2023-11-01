@@ -14,7 +14,7 @@ export function Card({ data }) {
     const [quantity, setQuantity] = useState(1);
 
     function handleDetails(id) {
-        navigate(`/dish?id=${id}`);
+        navigate(`/dishes/${id}`);
     };
 
     function handleQuantity(qt) {

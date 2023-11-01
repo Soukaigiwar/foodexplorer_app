@@ -8,7 +8,7 @@ export const Container = styled.div`
     border-radius: 5px;
     background-color: ${({ theme }) => theme.COLORS.BG_1000};
 
-    span {
+    > div {
         text-align: center;
         font-family: "Poppins";
         font-size: 1.4rem;

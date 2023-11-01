@@ -18,7 +18,7 @@ export const Container = styled.div`
     "footer";
 
     transition: transform 0.5s ease-in-out;
-    transform: ${({ menuisvisible }) => (menuisvisible === "true" ? "translateX(0%)" : "translateX(100%)")};
+    transform: ${({ menuisvisible }) => (menuisvisible ? `translateX(0%)` : `translateX(100%)`)};
 
 
 
@@ -98,7 +98,7 @@ export const Content = styled.div`
 
     }
     div p {
-        
+        padding: 10px;
         color: ${({ theme }) => theme.COLORS.FG_100};
         font-family: 'Poppins';
         font-size: 24px;

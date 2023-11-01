@@ -11,11 +11,40 @@ import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import orderBag from "../../assets/order_bag.svg";
 
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { handleZeros } from "../../utils/string";
+
 export function Dish() {
+    const params = useParams();
+
+    const [data, setData] = useState({});
+    const [ingredients, setIngredients] = useState([]);
+    const [search, setSearch] = useState('');
+
+    useEffect(() => {
+        async function fetchDish() {
+
+            let response = await api.get(`/dishes/${params.id}`);
+
+            if (search) {
+                response = await api.get(`/dishes/${params.search}`);
+            }
+
+            const ingredient = (response.data.ingredients);
+
+            setData(response.data);
+            setIngredients(ingredient);
+        };
+
+        fetchDish();
+    }, [search]);
+
     return (
         <Container>
             <Header />
-            <BackTextButton/>
+            <BackTextButton />
             <Content>
                 <div className="dish">
                     <div className="image">
@@ -26,17 +55,19 @@ export function Dish() {
                     */}
                     </div>
                     <div className="details">
-                        <h2>Salada Ravanello</h2>
+                        <h2>{data.title}</h2>
 
-                        <p>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O pão naan dá um toque especial. </p>
+                        <p>{data.description}</p>
 
                         <div className="tags">
-                            <Tag title="alface" />
-                            <Tag title="cebola" />
-                            <Tag title="pão naan" />
-                            <Tag title="pepino" />
-                            <Tag title="rabanete" />
-                            <Tag title="tomate" />
+                            {
+                                ingredients.map(ingredient => (
+                                    <Tag
+                                        key={String(ingredient.id)}
+                                        title={ingredient.title}
+                                    />
+                                ))
+                            }
                         </div>
                         <div className="actions">
                             <div>
@@ -44,7 +75,9 @@ export function Dish() {
                                 <span>01</span>
                                 <TextButton icon={plus} alt="Aumentar quantidade." />
                             </div>
-                            <Button icon={orderBag} title="pedir ∙ R$ 25,00" />
+                            <Button
+                                icon={orderBag}
+                                title={`pedir ∙ R$ ${handleZeros(String(data.price))}`} />
                         </div>
                     </div>
                 </div>
