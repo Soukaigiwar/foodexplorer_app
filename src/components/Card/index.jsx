@@ -17,17 +17,7 @@ export function Card({ data }) {
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
     };
-
-    // function handleQuantity(qt) {
-    //     if (quantity > 1)
-    //         setQuantity(prevState => prevState + qt);
-
-    //     if (quantity === 1 && qt > 0)
-    //         setQuantity(prevState => prevState + qt);
-    // };
-
     
-
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>

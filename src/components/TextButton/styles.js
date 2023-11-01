@@ -13,4 +13,7 @@ export const Container = styled.div`
         cursor: pointer;
         color: ${({ theme }) => theme.COLORS.FG_300};
     }
+    &:focus {
+        outline: none;
+    }
 `;
