@@ -8,6 +8,7 @@ import plus from "../../assets/plus.svg";
 import { handleZeros } from "../../utils/string.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { handleQuantity } from "../../utils/item.js";
 
 export function Card({ data }) {
     const navigate = useNavigate();
@@ -17,13 +18,13 @@ export function Card({ data }) {
         navigate(`/dishes/${id}`);
     };
 
-    function handleQuantity(qt) {
-        if (quantity > 1)
-            setQuantity(prevState => prevState + qt);
+    // function handleQuantity(qt) {
+    //     if (quantity > 1)
+    //         setQuantity(prevState => prevState + qt);
 
-        if (quantity === 1 && qt > 0)
-            setQuantity(prevState => prevState + qt);
-    };
+    //     if (quantity === 1 && qt > 0)
+    //         setQuantity(prevState => prevState + qt);
+    // };
 
     return (
         <Container>
@@ -34,9 +35,20 @@ export function Card({ data }) {
             <h3 onClick={() => { handleDetails(data.id) }}>R$ {handleZeros(data.price)}</h3>
             <div className="actions">
                 <div>
-                    <TextButton icon={minus} alt="Diminuir quantidade." onClick={() => { handleQuantity(-1) }} onMouseDown={() => { handleQuantity(-1) }} />
-                    <span>{quantity.toString().padStart(2, 0)}</span>
-                    <TextButton icon={plus} alt="Aumentar quantidade." onClick={() => { handleQuantity(1) }}/>
+                    <TextButton
+                        icon={minus}
+                        alt="Diminuir quantidade."
+                        onClick={() => { setQuantity(handleQuantity(quantity, -1)) }}
+                        onMouseDown={() => { setQuantity(handleQuantity(quantity, -1)) }}
+                    />
+                    <span>
+                        {quantity.toString().padStart(2, 0)}
+                    </span>
+                    <TextButton
+                        icon={plus}
+                        alt="Aumentar quantidade."
+                        onClick={() => { setQuantity(handleQuantity(quantity, 1)) }}
+                    />
                 </div>
                 <Button className="button" icon={''} title="incluir" />
             </div>
