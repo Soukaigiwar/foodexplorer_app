@@ -28,10 +28,10 @@ export function Dish() {
 
     function handleKeyDown(e) {
         
-        if (e.key === "+")
+        if (e.key === "+" || e.key === "ArrowUp" || e.key === "ArrowRight")
             setQuantity(handleQuantity(quantity, 1));
 
-        if (e.key === "-" && quantity > 1)
+        if ((e.key === "-" || e.key === "ArrowDown" || e.key === "ArrowLeft") && quantity > 1)
             setQuantity(handleQuantity(quantity, -1))
     };
 

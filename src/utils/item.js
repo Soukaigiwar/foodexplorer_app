@@ -10,7 +10,7 @@ export const handleQuantity = (prev, qt) => {
 
         if (prev <= 0) {
             return 1;
-        }
+        };
 
         return prev;
     };
