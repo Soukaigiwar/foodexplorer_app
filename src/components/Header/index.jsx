@@ -1,13 +1,15 @@
-import { Container, MenuIcon, OrderBag, OrderButton, Search, SignOut } from "./styles";
+import { Container, MenuIcon, OrderButton, Search, SignOut } from "./styles";
 import { Brand } from "../Brand";
 import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
+import { Cart } from "../Cart";
 
 import menuIcon from "../../assets/menu.svg";
-import orderBag from "../../assets/order_bag.svg";
+import orderBagIcon from "../../assets/order_bag.svg";
 import signOutIcon from "../../assets/sign_out.svg";
 import searchIcon from "../../assets/search_icon.svg";
+
 import { useAuth } from "../../hooks/auth";
 import { useState } from "react";
 
@@ -37,15 +39,9 @@ export function Header() {
                     placeholder="Busque por pratos ou ingredientes"
                 />
             </Search>
-            <OrderBag>
-                <img
-                    src={orderBag}
-                    alt="Ícone para exibir quantidade de itens no pedido."
-                />
-                <span>0</span>
-            </OrderBag>
+            <Cart />
             <OrderButton>
-                <Button icon={orderBag} title="Pedidos (0)" />
+                <Button icon={orderBagIcon} title="Pedidos (0)" />
             </OrderButton>
             <SignOut>
                 <img

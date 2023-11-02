@@ -8,15 +8,28 @@ import plus from "../../assets/plus.svg";
 import { handleZeros } from "../../utils/string.js";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useCart } from "../../hooks/cart.jsx";
 import { handleQuantity } from "../../utils/item.js";
 
 export function Card({ data }) {
     const navigate = useNavigate();
+    const { addItemToCart } = useCart();
+
     const [quantity, setQuantity] = useState(1);
 
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
     };
+
+    function addItem() {
+        const item = {
+            id: data.id,
+            quantity
+        }
+
+        addItemToCart(item);
+    }
+    
     
     return (
         <Container>
@@ -42,7 +55,12 @@ export function Card({ data }) {
 
                     />
                 </div>
-                <Button className="button" icon={''} title="incluir" />
+                <Button
+                    className="button"
+                    icon={''}
+                    title="incluir"
+                    onClick={() => { addItem }}
+                />
             </div>
         </Container>
     );
