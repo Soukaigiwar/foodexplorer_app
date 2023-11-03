@@ -11,10 +11,12 @@ import signOutIcon from "../../assets/sign_out.svg";
 import searchIcon from "../../assets/search_icon.svg";
 
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart.jsx";
 import { useState } from "react";
 
 export function Header() {
     const { signOut } = useAuth();
+    const { getQuantity } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
 
     function toggleMenu() {
@@ -41,7 +43,9 @@ export function Header() {
             </Search>
             <Cart />
             <OrderButton>
-                <Button icon={orderBagIcon} title="Pedidos (0)" />
+                <Button
+                    icon={orderBagIcon}
+                    title={"Pedidos (" + getQuantity() + ")"} />
             </OrderButton>
             <SignOut>
                 <img

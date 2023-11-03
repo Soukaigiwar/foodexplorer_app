@@ -13,7 +13,7 @@ import { handleQuantity } from "../../utils/item.js";
 
 export function Card({ data }) {
     const navigate = useNavigate();
-    const { addItemToCart } = useCart();
+    const { addItemToCart, showItem } = useCart();
 
     const [quantity, setQuantity] = useState(1);
 
@@ -26,8 +26,10 @@ export function Card({ data }) {
             id: data.id,
             quantity
         }
+        //console.log("item", item);
 
         addItemToCart(item);
+        //console.log(showItem());
     }
     
     
@@ -59,7 +61,7 @@ export function Card({ data }) {
                     className="button"
                     icon={''}
                     title="incluir"
-                    onClick={() => { addItem }}
+                    onClick={addItem}
                 />
             </div>
         </Container>
