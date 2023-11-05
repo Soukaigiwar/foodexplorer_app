@@ -29,7 +29,7 @@ export function Card({ data }) {
         //console.log("item", item);
 
         addItemToCart(item);
-        //console.log(showItem());
+        // console.log(showItem());
     }
     
     

@@ -1,4 +1,4 @@
-import { Container, MenuIcon, OrderButton, Search, SignOut } from "./styles";
+import { Container, MenuIcon, OrderButton, Search, SignOut, OrderBag } from "./styles";
 import { Brand } from "../Brand";
 import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
@@ -16,7 +16,7 @@ import { useState } from "react";
 
 export function Header() {
     const { signOut } = useAuth();
-    const { getQuantity } = useCart();
+    const { getQuantity, showItem } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
 
     function toggleMenu() {
@@ -42,10 +42,19 @@ export function Header() {
                 />
             </Search>
             <Cart />
+            <OrderBag>
+                <span>{getQuantity()}</span>
+                <Button
+                    icon={orderBagIcon}
+                    onClick={() => { console.log(showItem()) }}
+                />
+            </OrderBag>
             <OrderButton>
                 <Button
                     icon={orderBagIcon}
-                    title={"Pedidos (" + getQuantity() + ")"} />
+                    title={"Pedidos (" + getQuantity() + ")"}
+                    onClick={() => { console.log(showItem()) }}
+                />
             </OrderButton>
             <SignOut>
                 <img

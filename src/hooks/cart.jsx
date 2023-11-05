@@ -4,6 +4,7 @@ export const CartContext = createContext({})
 
 function CartProvider({ children }) {
     const [newItem, setNewItem] = useState(null);
+    const [cart, setCart] = useState(null);
 
 
     async function handleCartCache() {
@@ -13,9 +14,18 @@ function CartProvider({ children }) {
     function getQuantity() {
         if (newItem === null) {
             return 0;
-        } 
-        
+        }
+
+        handleLocalStorage();
         return newItem.length;
+    }
+
+    function showItem() {
+        if (newItem === null) {
+            return 0;
+        }
+        
+        return newItem;
     }
 
 
@@ -31,7 +41,21 @@ function CartProvider({ children }) {
     }
     
 
-    function localSt() {
+    function handleLocalStorage() {
+    //     if (Array.isArray(newItem)) {
+    //         setCart(newItem.map(({ id, quantity }) => {
+    //             return {
+    //                 ...newItem,
+    //                 id, quantity
+    //             }
+    //         }))
+        
+    //         console.log(cart);
+    //         //localStorage
+    //             //.setItem("@foodexplorer:cart", cart);
+    //     };
+
+        return;
         localStorage
             .setItem("@foodexplorer:cart", JSON.stringify(item.id, item.quantity));
 
@@ -55,16 +79,19 @@ function CartProvider({ children }) {
         setData({});
     }
 
-    // useEffect(() => {
-    //     setData(prevState => [...prevState, newItem])
-    // }, [newItem])
+    useEffect(() => {
+        // if (Array.isArray(setCart)) {
+        //     setCart(prevState => [...prevState, newItem]);
+        // }
+    }, [])
 
     return (
         <CartContext.Provider value={{
             handleCartCache,
             addItemToCart,
             //resetCart,
-            getQuantity
+            getQuantity,
+            showItem
         }}
         >
             {children}

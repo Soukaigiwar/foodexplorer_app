@@ -35,20 +35,32 @@ export const MenuIcon = styled.div`
 
 export const OrderBag = styled.div`
     display: flex;
-    align-items: baseline;
+    align-items: center;
     position: relative;
+    width: 3.8rem;
+    height: 3.8rem;
+    padding-top: 1.5rem;
+
+    > button {
+        display: flex;
+        width: 3.2rem;
+        height: 3.2rem;
+        
+        /* align-items: center; */
+        background-color: unset;
+    }
 
     > span {
         position: absolute;
-        top: -50%;
-        right: -50%;
+        top: 0.1rem;
+        left: 30%;
         display: flex;
         justify-content: center;
         align-items: center;
 
         width: 2rem;
         height: 2rem;
-        padding: 1.2rem 1.2rem;
+        /* padding: 1.2rem 1.2rem; */
         border-radius: 25px;
 
         font-family: 'Poppins';
@@ -72,7 +84,7 @@ export const OrderButton = styled.div`
         @media (${devices.desktop}) {
             display: flex;
 
-            button {
+            > button {
                 width: 21.6rem;
                 display: flex;
                 align-items: center;
