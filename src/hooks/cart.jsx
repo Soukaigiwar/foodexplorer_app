@@ -1,102 +1,192 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const CartContext = createContext({})
 
 function CartProvider({ children }) {
-    const [newItem, setNewItem] = useState(null);
-    const [cart, setCart] = useState(null);
+    const [newItem, setNewItem] = useState([]);
+    //const [cart, setCart] = useState(null);
 
 
-    async function handleCartCache() {
-        const cart = localStorage.getItem("@foodexplorer:cart");
-    }
+    function readCartCache() {
+        const cartCache = localStorage.getItem("@foodexplorer:cart");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // todo: repair cache load and store
+
+
+
+
+
+
+
+
+
+
+        if (cartCache) {
+            //console.log(cartCache);
+            //console.log("string to cart: ", stringToCart(cartCache));
+            return cartCache;
+        };
+    };
 
     function getQuantity() {
-        if (newItem === null) {
+        if (newItem.length === 0) {
             return 0;
-        }
+        };
 
         handleLocalStorage();
         return newItem.length;
-    }
+    };
 
     function showItem() {
-        if (newItem === null) {
+        if (newItem.length === 0) {
             return 0;
-        }
-        
-        return newItem;
-    }
+        };
 
+        return newItem;
+    };
 
     function addItemToCart(item) {
         if (item && item.id && item.quantity) {
-            if (newItem === null) {
-                setNewItem([{id: item.id, quantity: item.quantity}]);
+            if (newItem.length === 0) {
+                setNewItem([{ id: item.id, quantity: item.quantity }]);
             } else {
-                setNewItem(prevItems => [...prevItems, {id: item.id, quantity: item.quantity}]);
-            }
-        }
+                setNewItem(prevItems =>
+                    [...prevItems, { id: item.id, quantity: item.quantity }]
+                );
+            };
+        };
+
         return;
     }
+
+    function cartToString() {
+        if (newItem) {
+            let result = "";
+            for (let i = 0; i < newItem.length; i++) {
+                for (let key in newItem[i]) {
+                    result += newItem[i][key] + ' ';
+                };
+            };
+            return result.trim();
+        };
+
+        return "";
+    };
+
+
+    function stringToCart(str) {
+        let array = str.split(' ');
+        let tempArray = [];
+        for (let i = 0; i < array.length; i += 2) {
+            let tempObject = {};
+
+            addItemToCart(
+                {
+                    id: parseInt(array[i]),
+                    quantity: parseInt(array[i + 1])
+                }
+            )
+
+
+
+
+
+            
+        }
+        
+    }
+
+    // function stringParaArray(str) {
+    //     let array = str.split(' ');
+    //     let arrayDeObjetos = [];
+    //     for (let i = 0; i < array.length; i += 2) {
+    //         let objeto = {};
+    //         objeto[array[i]] = parseInt(array[i + 1]);
+    //         arrayDeObjetos.push(objeto);
+    //     }
+    //     return arrayDeObjetos;
+    // }
+    
     
 
-    function handleLocalStorage() {
-    //     if (Array.isArray(newItem)) {
-    //         setCart(newItem.map(({ id, quantity }) => {
-    //             return {
-    //                 ...newItem,
-    //                 id, quantity
-    //             }
-    //         }))
+    // function stringToCart(str) {
+    //     let array = str.split(' ');
+    //     console.log(array.lenght);
+    //     let newArray = [];
+    //     for (let i = 0; i < array.length; i += 2) {
+    //         // if (newItem.length > 0) {
+    //         //     console.log('ja tinha item');
+    //         // }
+    //         addItemToCart({
+    //             id: parseInt(array[i]),
+    //             quantity: parseInt(array[i + 1])
+    //         });
+    //         // if (newItem ) {
+    //             // setNewItem(prevItems =>
+    //             //     [
+    //             //         ...prevItems,
+    //             //         {
+    //             //             id: parseInt(array[i]),
+    //             //             quantity: parseInt(array[i + 1])
+    //             //         }
+    //             //     ]);
+    //             // newArray.push( {
+    //             //     id: parseInt(array[i]),
+    //             //     quantity: parseInt(array[i + 1])
+    //             // });
+    //         // };
+            
+
+    //         // setNewItem(prevItems =>
+    //         //     [...prevItems, newArray]
+    //         // );
         
-    //         console.log(cart);
-    //         //localStorage
-    //             //.setItem("@foodexplorer:cart", cart);
-    //     };
+    //     }
+    // }
 
-        return;
-        localStorage
-            .setItem("@foodexplorer:cart", JSON.stringify(item.id, item.quantity));
-
+    function handleLocalStorage() {
         try {
-            localStorage
-                .setItem("@foodexplorer:cart", JSON.stringify(id, quantity));
-
-            setData({ cart });
-        } catch (error) {
+           localStorage.setItem("@foodexplorer:cart", cartToString());
+        } catch {
             if (error.response) {
                 alert(error.response.data.message);
             } else {
                 alert("Não foi possível incluir item no carrinho.");
             };
         };
-    };
+
+    return;
+};
 
 
-    async function resetCart() {
-        localStorage.removeItem(`@foodexplorer:cart`);
-        setData({});
-    }
+// async function resetCart() {
+//     localStorage.removeItem(`@foodexplorer:cart`);
+//     setData({});
+// }
 
-    useEffect(() => {
-        // if (Array.isArray(setCart)) {
-        //     setCart(prevState => [...prevState, newItem]);
-        // }
-    }, [])
-
-    return (
-        <CartContext.Provider value={{
-            handleCartCache,
-            addItemToCart,
-            //resetCart,
-            getQuantity,
-            showItem
-        }}
-        >
-            {children}
-        </CartContext.Provider>
-    )
+return (
+    <CartContext.Provider value={{
+        readCartCache,
+        handleLocalStorage,
+        addItemToCart,
+        //resetCart,
+        getQuantity,
+        showItem
+    }}
+    >
+        {children}
+    </CartContext.Provider>
+)
 }
 
 

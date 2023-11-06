@@ -13,9 +13,10 @@ import { handleQuantity } from "../../utils/item.js";
 
 export function Card({ data }) {
     const navigate = useNavigate();
-    const { addItemToCart, showItem } = useCart();
-
+    const { addItemToCart, handleLocalStorage, readCartCache } = useCart();
     const [quantity, setQuantity] = useState(1);
+
+    
 
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
@@ -29,6 +30,9 @@ export function Card({ data }) {
         //console.log("item", item);
 
         addItemToCart(item);
+
+        //handleLocalStorage();
+        
         // console.log(showItem());
     }
     

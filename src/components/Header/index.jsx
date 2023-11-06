@@ -16,8 +16,10 @@ import { useState } from "react";
 
 export function Header() {
     const { signOut } = useAuth();
-    const { getQuantity, showItem } = useCart();
+    const { getQuantity, showItem, readCartCache } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
+
+    console.log(readCartCache());
 
     function toggleMenu() {
         setmenuIsVisible(!menuIsVisible);
