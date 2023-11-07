@@ -13,8 +13,10 @@ import { handleQuantity } from "../../utils/item.js";
 
 export function Card({ data }) {
     const navigate = useNavigate();
-    const { addItemToCart, handleLocalStorage, readCartCache } = useCart();
+    const { addItemToCart, handleLocalStorage, readCartBrowserCache } = useCart();
     const [quantity, setQuantity] = useState(1);
+
+    
 
     
 
@@ -22,7 +24,9 @@ export function Card({ data }) {
         navigate(`/dishes/${id}`);
     };
 
-    function addItem() {
+    function addItem(event) {
+        event.preventDefault();
+
         const item = {
             id: data.id,
             quantity
@@ -65,7 +69,8 @@ export function Card({ data }) {
                     className="button"
                     icon={''}
                     title="incluir"
-                    onClick={addItem}
+                    onClick={ addItem }
+                    
                 />
             </div>
         </Container>

@@ -16,10 +16,14 @@ import { useState } from "react";
 
 export function Header() {
     const { signOut } = useAuth();
-    const { getQuantity, showItem, readCartCache } = useCart();
+    const { getQuantity, showItem, readCartBrowserCache } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
 
-    console.log(readCartCache());
+    if (!readCartBrowserCache()) {
+        console.log("vazio");
+    } else {
+        console.log(readCartBrowserCache());
+    }
 
     function toggleMenu() {
         setmenuIsVisible(!menuIsVisible);
