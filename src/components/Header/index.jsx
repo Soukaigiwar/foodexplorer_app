@@ -19,9 +19,13 @@ export function Header() {
     const { getQuantity, showItem } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
 
+    
+
     function toggleMenu() {
         setmenuIsVisible(!menuIsVisible);
     };
+
+    
 
     return (
         <Container>

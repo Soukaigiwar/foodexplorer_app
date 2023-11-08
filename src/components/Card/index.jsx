@@ -13,7 +13,7 @@ import { handleQuantity } from "../../utils/item.js";
 
 export function Card({ data }) {
     const navigate = useNavigate();
-    const { addItemToCart, handleLocalStorage, loadCartFromBrowserCache } = useCart();
+    const { addItemToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
 
     

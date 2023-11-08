@@ -1,19 +1,18 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 export const CartContext = createContext({})
 
 function CartProvider({ children }) {
-    const [newItem, setNewItem] = useState([loadCartFromBrowserCache()]);
+    const [newItem, setNewItem] = useState([]);
 
     function loadCartFromBrowserCache() {
         const cartCache = localStorage.getItem("@foodexplorer:cart");
-        
-        if (cartCache && cartCache !== "") {
-            stringToCart(cartCache);
+
+        if (cartCache) {
             return cartCache;
         };
 
-
+        return null;
     };
 
     function getQuantity() {
@@ -26,8 +25,7 @@ function CartProvider({ children }) {
     };
 
     function showItem() {
-        if (newItem.length === 0 || !newItem) {
-            console.log("aqui");
+        if (newItem.length === 0) {
             return 0;
         };
 
@@ -37,7 +35,8 @@ function CartProvider({ children }) {
     function addItemToCart(item) {
         if (item && item.id && item.quantity) {
             setNewItem(prevItems => {
-                const itemIndex = prevItems.findIndex(prev => prev.id === item.id);
+                const itemIndex = prevItems
+                    .findIndex(prev => prev.id === item.id);
 
                 if (itemIndex !== -1) {
                     return prevItems.map((prev, index) => {
@@ -59,7 +58,6 @@ function CartProvider({ children }) {
         return;
     };
 
-
     function cartToString() {
         if (newItem) {
             let result = "";
@@ -74,7 +72,6 @@ function CartProvider({ children }) {
         return "";
     };
 
-
     function stringToCart(str) {
         let array = str.split(' ');
 
@@ -84,9 +81,9 @@ function CartProvider({ children }) {
                     id: parseInt(array[i]),
                     quantity: parseInt(array[i + 1])
                 }
-            )
-        }
-    }
+            );
+        };
+    };
 
     function handleLocalStorage() {
         try {
@@ -108,19 +105,26 @@ function CartProvider({ children }) {
         setNewItem([]);
     }
 
+    useEffect(() => {
+        const cartCache = loadCartFromBrowserCache();
+
+        if (newItem.length < 1) {
+            if (cartCache && cartCache !== "") {
+                resetCart();
+                stringToCart(cartCache);
+            };
+        };
+    }, []);
+
     return (
         <CartContext.Provider value={{
-            loadCartFromBrowserCache,
-            handleLocalStorage,
             addItemToCart,
-            stringToCart,
             getQuantity,
             showItem
         }}
         >{children}</CartContext.Provider>
     );
 };
-
 
 
 function useCart() {
