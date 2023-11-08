@@ -3,39 +3,17 @@ import { createContext, useContext, useState } from "react";
 export const CartContext = createContext({})
 
 function CartProvider({ children }) {
-    const [newItem, setNewItem] = useState([]);
-    //const [cart, setCart] = useState(null);
+    const [newItem, setNewItem] = useState([loadCartFromBrowserCache()]);
 
-
-    function readCartBrowserCache() {
+    function loadCartFromBrowserCache() {
         const cartCache = localStorage.getItem("@foodexplorer:cart");
-
-
-
-
-
-
-
-
-
-
-
-        // todo: repair cache load and store
-
-
-
-
-
-
-
-
-
-
-        if (cartCache) {
-            //console.log(cartCache);
-            //console.log("string to cart: ", stringToCart(cartCache));
+        
+        if (cartCache && cartCache !== "") {
+            stringToCart(cartCache);
             return cartCache;
         };
+
+
     };
 
     function getQuantity() {
@@ -48,7 +26,8 @@ function CartProvider({ children }) {
     };
 
     function showItem() {
-        if (newItem.length === 0) {
+        if (newItem.length === 0 || !newItem) {
+            console.log("aqui");
             return 0;
         };
 
@@ -98,73 +77,16 @@ function CartProvider({ children }) {
 
     function stringToCart(str) {
         let array = str.split(' ');
-        let tempArray = [];
-        for (let i = 0; i < array.length; i += 2) {
-            let tempObject = {};
 
+        for (let i = 0; i < array.length; i += 2) {
             addItemToCart(
                 {
                     id: parseInt(array[i]),
                     quantity: parseInt(array[i + 1])
                 }
             )
-
-
-
-
-
-
         }
-
     }
-
-    // function stringParaArray(str) {
-    //     let array = str.split(' ');
-    //     let arrayDeObjetos = [];
-    //     for (let i = 0; i < array.length; i += 2) {
-    //         let objeto = {};
-    //         objeto[array[i]] = parseInt(array[i + 1]);
-    //         arrayDeObjetos.push(objeto);
-    //     }
-    //     return arrayDeObjetos;
-    // }
-
-
-
-    // function stringToCart(str) {
-    //     let array = str.split(' ');
-    //     console.log(array.lenght);
-    //     let newArray = [];
-    //     for (let i = 0; i < array.length; i += 2) {
-    //         // if (newItem.length > 0) {
-    //         //     console.log('ja tinha item');
-    //         // }
-    //         addItemToCart({
-    //             id: parseInt(array[i]),
-    //             quantity: parseInt(array[i + 1])
-    //         });
-    //         // if (newItem ) {
-    //             // setNewItem(prevItems =>
-    //             //     [
-    //             //         ...prevItems,
-    //             //         {
-    //             //             id: parseInt(array[i]),
-    //             //             quantity: parseInt(array[i + 1])
-    //             //         }
-    //             //     ]);
-    //             // newArray.push( {
-    //             //     id: parseInt(array[i]),
-    //             //     quantity: parseInt(array[i + 1])
-    //             // });
-    //         // };
-
-
-    //         // setNewItem(prevItems =>
-    //         //     [...prevItems, newArray]
-    //         // );
-
-    //     }
-    // }
 
     function handleLocalStorage() {
         try {
@@ -182,17 +104,16 @@ function CartProvider({ children }) {
 
 
 
-    // async function resetCart() {
-    //     localStorage.removeItem(`@foodexplorer:cart`);
-    //     setData({});
-    // }
+    async function resetCart() {
+        setNewItem([]);
+    }
 
     return (
         <CartContext.Provider value={{
-            readCartBrowserCache,
+            loadCartFromBrowserCache,
             handleLocalStorage,
             addItemToCart,
-            //resetCart,
+            stringToCart,
             getQuantity,
             showItem
         }}
