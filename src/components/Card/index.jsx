@@ -16,10 +16,6 @@ export function Card({ data }) {
     const { addItemToCart } = useCart();
     const [quantity, setQuantity] = useState(1);
 
-    
-
-    
-
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
     };
@@ -30,17 +26,11 @@ export function Card({ data }) {
         const item = {
             id: data.id,
             quantity
-        }
-        //console.log("item", item);
+        };
 
         addItemToCart(item);
+    };
 
-        //handleLocalStorage();
-        
-        // console.log(showItem());
-    }
-    
-    
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>

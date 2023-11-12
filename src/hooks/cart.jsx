@@ -1,12 +1,16 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { cartToString } from "../utils/string.js";
+import { useAuth } from "./auth.jsx";
 
 export const CartContext = createContext({})
 
 function CartProvider({ children }) {
+    const { user } = useAuth();
     const [newItem, setNewItem] = useState([]);
+    const [userId, setUserId] = useState(user ? user.id : null);
 
     function loadCartFromBrowserCache() {
-        const cartCache = localStorage.getItem("@foodexplorer:cart");
+        const cartCache = localStorage.getItem(`@foodexplorer:cart/${userId}`);
 
         if (cartCache) {
             return cartCache;
@@ -58,20 +62,6 @@ function CartProvider({ children }) {
         return;
     };
 
-    function cartToString() {
-        if (newItem) {
-            let result = "";
-            for (let i = 0; i < newItem.length; i++) {
-                for (let key in newItem[i]) {
-                    result += newItem[i][key] + ' ';
-                };
-            };
-            return result.trim();
-        };
-
-        return "";
-    };
-
     function stringToCart(str) {
         let array = str.split(' ');
 
@@ -87,7 +77,7 @@ function CartProvider({ children }) {
 
     function handleLocalStorage() {
         try {
-            localStorage.setItem("@foodexplorer:cart", cartToString());
+            localStorage.setItem(`@foodexplorer:cart/${user.id}`, cartToString(newItem));
         } catch {
             if (error.response) {
                 alert(error.response.data.message);
@@ -99,22 +89,22 @@ function CartProvider({ children }) {
         return;
     };
 
-
-
-    async function resetCart() {
-        setNewItem([]);
-    }
-
     useEffect(() => {
         const cartCache = loadCartFromBrowserCache();
 
         if (newItem.length < 1) {
             if (cartCache && cartCache !== "") {
-                resetCart();
+                setNewItem([]);
                 stringToCart(cartCache);
             };
         };
-    }, []);
+    }, [userId]);
+    
+    useEffect(() => {
+        if (user) {
+            setUserId(user.id);
+        }
+    }, [user]);
 
     return (
         <CartContext.Provider value={{
