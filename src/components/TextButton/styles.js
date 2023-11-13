@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
     span {
         display: flex;
-        justify-content: start;
-        align-items: center;
+        /* justify-content: start; */
+        /* align-items: center; */
         
         font-family: "Poppins";
         font-size: 2.4rem;

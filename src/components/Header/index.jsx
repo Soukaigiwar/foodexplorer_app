@@ -13,19 +13,18 @@ import searchIcon from "../../assets/search_icon.svg";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from "../../hooks/cart.jsx";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
     const { signOut } = useAuth();
     const { getQuantity, showItem } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
-
     
+    const navigate = useNavigate();
 
     function toggleMenu() {
         setmenuIsVisible(!menuIsVisible);
     };
-
-    
 
     return (
         <Container>
@@ -50,14 +49,14 @@ export function Header() {
                 <span>{getQuantity()}</span>
                 <Button
                     icon={orderBagIcon}
-                    onClick={() => { console.log(showItem()) }}
+                    onClick={() => { navigate("/order") }}
                 />
             </OrderBag>
             <OrderButton>
                 <Button
                     icon={orderBagIcon}
                     title={"Pedidos (" + getQuantity() + ")"}
-                    onClick={() => { console.log(showItem()) }}
+                    onClick={() => { navigate("/order") }}
                 />
             </OrderButton>
             <SignOut>
