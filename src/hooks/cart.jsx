@@ -5,16 +5,14 @@ import { useAuth } from "./auth.jsx";
 export const CartContext = createContext({})
 
 function CartProvider({ children }) {
-    const { user } = useAuth();
     const [newItem, setNewItem] = useState([]);
-    const [userId, setUserId] = useState(user ? user.id : null);
 
     function loadCartFromBrowserCache() {
-        const cartCache = localStorage.getItem(`@foodexplorer:cart/${userId}`);
+        const cartCache = localStorage.getItem("@foodexplorer:cart");
 
         if (cartCache) {
             return cartCache;
-        };
+        }
 
         return null;
     };
@@ -77,8 +75,8 @@ function CartProvider({ children }) {
 
     function handleLocalStorage() {
         try {
-            localStorage.setItem(`@foodexplorer:cart/${user.id}`, cartToString(newItem));
-        } catch {
+            localStorage.setItem("@foodexplorer:cart", cartToString(newItem));
+        } catch (error) {
             if (error.response) {
                 alert(error.response.data.message);
             } else {
@@ -92,19 +90,12 @@ function CartProvider({ children }) {
     useEffect(() => {
         const cartCache = loadCartFromBrowserCache();
 
-        if (newItem.length < 1) {
-            if (cartCache && cartCache !== "") {
-                setNewItem([]);
-                stringToCart(cartCache);
-            };
+        if (cartCache && cartCache !== "") {
+            setNewItem([]);
+            stringToCart(cartCache);
         };
-    }, [userId]);
-    
-    useEffect(() => {
-        if (user) {
-            setUserId(user.id);
-        }
-    }, [user]);
+
+    }, []);
 
     return (
         <CartContext.Provider value={{
@@ -116,11 +107,10 @@ function CartProvider({ children }) {
     );
 };
 
-
 function useCart() {
     const context = useContext(CartContext);
 
     return context;
-}
+};
 
 export { CartProvider, useCart };
