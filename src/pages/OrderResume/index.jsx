@@ -41,37 +41,44 @@ export function OrderResume() {
                             <div className="payment_pix_area">
                                 <img src={qrcode} alt="qrcode" />
                             </div>
-                            <div className="payment_credit_area">
-                                <div>
-                                    <div>
-                                        <label htmlFor="credit_card_number">Número do Cartão</label>
-                                        <Input
-                                            className="input_card_number"
-                                            type="number"
-                                            placeholder="0000 0000 0000 0000"
-                                        />
+                            <form>
+                                <fieldset>
+                                    <label htmlFor="credit_card_number">
+                                        Número do Cartão
+                                    </label>
+                                    <Input
+                                        className="input_wrapper"
+                                        type="number"
+                                        placeholder="0000 0000 0000 0000"
+                                    />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="fieldset_wrapper">
+                                        <div className="col-2">
+                                            <div className="input_wrapper">
+                                                <label htmlFor="credit_card_expire">Validade</label>
+                                                <Input
+                                                    type="date"
+                                                    placeholder="04/25"
+                                                    />
+                                            </div>
+                                            <div className="input_wrapper">
+                                                <label htmlFor="credit_card_cvc">CVC</label>
+                                                <Input
+                                                    type="number"
+                                                    placeholder="181"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label htmlFor="credit_card_expire">Validade</label>
-                                        <Input
-                                            className="input_expire_date"
-                                            type="date"
-                                            placeholder="04/25"
-                                        />
-                                        <label htmlFor="credit_card_cvc">CVC</label>
-
-                                        <Input
-                                            className="input_cvc"
-                                            type="number"
-                                            placeholder="181"
-                                        />
-                                    </div>
+                                </fieldset>
+                                <fieldset>
                                     <Button
                                         icon={orderIcon}
                                         title="Finalizar Pagamento"
                                     />
-                                </div>
-                            </div>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                 </div>

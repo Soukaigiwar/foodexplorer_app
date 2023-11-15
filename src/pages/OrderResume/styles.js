@@ -104,7 +104,6 @@ export const Content = styled.div`
             }
 
             > .payment_content {
-                /* padding: 4.7rem 13rem; */
                 
                 > .payment_pix_area img {
                     width: 25rem;
@@ -112,29 +111,33 @@ export const Content = styled.div`
                     display: none;
                 }
 
-                > .payment_credit_area {
+                > form {
                     padding: 5.9rem 9.1rem 4.8rem;
 
-                    > div {
-                        display: block;
-                        
-                        
-                        .input_card_number {
-                            width: 100%;
-                        }
-
-                        .input_expire_date {
-                            width: 16.6rem;
-                        }
-
-                        .input_cvc {
-                            width: 16.6rem;
-                        }
+                    fieldset {
+                        border: none;
                     }
+
+                    .fieldset_wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                    }
+
+                    fieldset legend {
+                        font-family: "Roboto";
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 100%;
+                    }
+
+                    .col-2 {
+                        display: flex;
+                        gap: 1.7rem;
                     }
                 }
             }
         }
     }
-
 `;
