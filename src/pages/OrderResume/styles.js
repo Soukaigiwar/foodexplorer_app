@@ -59,57 +59,81 @@ export const Content = styled.div`
         .payment_method {
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            justify-content: space-between;
             border-radius: 8px;
             border: 1px solid var(--light-light-600, #76797B);
-            
-            /* background-color: grey; */
+
             margin: 3.4rem auto 7.5rem;
 
             > div {
                 display: flex;
-                flex-direction: row;
             }
 
-            .pix {
+            .pix, .credit {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 1.2rem 1.4rem;
                 width: 50%;
-                height: 57rem;
+                height: 8.1rem;
                 background-color: ${({ theme }) => theme.COLORS.BG_800};
-                border-radius: 8px 0px 0px 0px;
+                border-bottom: 1px solid var(--light-light-600, #76797B);
                 
-                p {
+                > span {
                     color: ${({ theme }) => theme.COLORS.FG_300};
                 }
 
-                img {
+                > img {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding: 2rem;
-                    background-color: yellow;
-                    
-                    width: 15rem;
-                    height: 25rem;
+                    margin-right: 0.8rem;
+                    width: 2.4rem;
+                    height: 2.4rem;
                 }
             }
 
+            .pix {
+                border-right: 1px solid var(--light-light-600, #76797B);
+                border-radius: 8px 0px 0px 0px;
+            }
+
             .credit {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 1.2rem 1.4rem;
-                width: 50%;
-                height: 5.7rem;
-                background-color:${({ theme }) => theme.COLORS.BG_500};
-                color: ${({ theme }) => theme.COLORS.FG_300};
+                background-color: ${({ theme }) => theme.COLORS.BG_500};
                 border-radius: 0px 8px 0px 0px;
             }
 
-            
+            > .payment_content {
+                /* padding: 4.7rem 13rem; */
+                
+                > .payment_pix_area img {
+                    width: 25rem;
+                    height: 25rem;
+                    display: none;
+                }
+
+                > .payment_credit_area {
+                    padding: 5.9rem 9.1rem 4.8rem;
+
+                    > div {
+                        display: block;
+                        
+                        
+                        .input_card_number {
+                            width: 100%;
+                        }
+
+                        .input_expire_date {
+                            width: 16.6rem;
+                        }
+
+                        .input_cvc {
+                            width: 16.6rem;
+                        }
+                    }
+                    }
+                }
+            }
         }
     }
 
