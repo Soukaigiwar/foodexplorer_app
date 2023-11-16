@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 4.8rem;
     background-color: ${({ theme }) => theme.COLORS.TOMATO_100};

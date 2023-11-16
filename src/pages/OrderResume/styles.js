@@ -49,12 +49,15 @@ export const Content = styled.div`
     }
 
     .payment_area {
+
         grid-area: payment_area;
         
         color: ${({ theme }) => theme.COLORS.FG_300};
         align-items: center;
+        justify-content: center;
         width: 53rem;
         height: 36.4rem;
+        margin-right: 19.6rem;
 
         .payment_method {
             display: flex;
@@ -78,6 +81,7 @@ export const Content = styled.div`
                 height: 8.1rem;
                 background-color: ${({ theme }) => theme.COLORS.BG_800};
                 border-bottom: 1px solid var(--light-light-600, #76797B);
+                cursor: pointer;
                 
                 > span {
                     color: ${({ theme }) => theme.COLORS.FG_300};
@@ -104,19 +108,21 @@ export const Content = styled.div`
             }
 
             > .payment_content {
-                
-                > .payment_pix_area img {
-                    width: 25rem;
-                    height: 25rem;
+                .payment_pix_area {
                     display: none;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 4.7rem 13rem;
+
+                    img {
+                        width: 25rem;
+                        height: 25rem;
+                    }
                 }
 
                 > form {
+                    display: none;
                     padding: 5.9rem 9.1rem 4.8rem;
-
-                    fieldset {
-                        border: none;
-                    }
 
                     .fieldset_wrapper {
                         display: flex;
@@ -124,7 +130,8 @@ export const Content = styled.div`
                         gap: 24px;
                     }
 
-                    fieldset legend {
+                    fieldset {
+                        border: none;
                         font-family: "Roboto";
                         font-size: 16px;
                         font-style: normal;
@@ -136,6 +143,59 @@ export const Content = styled.div`
                         display: flex;
                         gap: 1.7rem;
                     }
+
+                    .input_validate,
+                    .input_cvc {
+                        width: 16.6rem;
+                    }
+
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    input[type="date"]::-webkit-calendar-picker-indicator {
+                        display: none;
+                        -webkit-appearance: none;
+                    }
+                }
+
+                .waiting_payment_area,
+                .payment_done_area,
+                .delivery_done_area {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 5.9rem auto;
+                    opacity: 0.4;
+
+                    img {
+                        width: 12.8rem;
+                        height: 12.8rem;
+                    }
+
+                    > p {
+                        font-family: "Roboto";
+                        font-size: 2.4rem;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: normal;
+                        margin-top: 3.7rem;
+                    }
+                }
+
+                .waiting_payment_area {
+                    display: none;
+                }
+
+                .payment_done_area {
+                    display: none;
+                }
+                
+                .delivery_done_area {
+                    display: flex;
                 }
             }
         }

@@ -6,6 +6,8 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import qrcode from "../../assets/qrcode.svg";
 import pixIcon from "../../assets/pix_icon.svg";
+import clockIcon from "../../assets/clock.svg";
+import forkIcon from "../../assets/fork.svg";
 import creditIcon from "../../assets/credit_icon.svg";
 import orderIcon from "../../assets/order_bag.svg";
 
@@ -60,6 +62,7 @@ export function OrderResume() {
                                                 <Input
                                                     type="date"
                                                     placeholder="04/25"
+                                                    className="input_validate"
                                                     />
                                             </div>
                                             <div className="input_wrapper">
@@ -67,6 +70,7 @@ export function OrderResume() {
                                                 <Input
                                                     type="number"
                                                     placeholder="181"
+                                                    className="input_cvc"
                                                 />
                                             </div>
                                         </div>
@@ -79,6 +83,18 @@ export function OrderResume() {
                                     />
                                 </fieldset>
                             </form>
+                            <div className="waiting_payment_area">
+                                <img src={clockIcon} alt="relógio" />
+                                <p>Aguardando pagamento no caixa</p>
+                            </div>
+                            <div className="payment_done_area">
+                                <img src={clockIcon} alt="relógio" />
+                                <p>Pagamento aprovado!</p>
+                            </div>
+                            <div className="delivery_done_area">
+                                <img src={forkIcon} alt="relógio" />
+                                <p>Pedido entregue!</p>
+                            </div>
                         </div>
                     </div>
                 </div>
