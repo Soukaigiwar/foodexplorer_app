@@ -24,28 +24,56 @@ export const Content = styled.div`
     grid-template-areas: "item_list payment_area";
     margin-top: 3.4rem;
 
+    .title, h2 {
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+        color: ${({ theme }) => theme.COLORS.FG_300};
+    }
+
+    .title {
+        grid-area: item_list;
+        margin-left: 12.3rem;
+    }
+
     .item_list {
         grid-area: item_list;
         display: flex;
         flex-direction: column;
-        /* background-color: darkgray; */
         margin-left: 12.3rem;
+        margin-top: 7.2rem;
+        
+        padding-bottom: 1.6rem;
         width: 44.4rem;
-        height: 56rem;
-        
-        h2 {
-            color: ${({ theme }) => theme.COLORS.FG_300};
+        height: 40rem;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 0.8rem;
         }
-        
-        h3 {
-            margin: 1.6rem ;
-            font-family: "Poppins";
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 160%;
-            color: ${({ theme }) => theme.COLORS.FG_300};
+    
+        &::-webkit-scrollbar-track {
+            background: ${({ theme }) => theme.COLORS.BG_800};
         }
+
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: 9999px;
+            background-color: ${({ theme }) => theme.COLORS.FG_500};
+        }
+    }
+    
+    .total {
+        margin-left: 12.3rem;
+        margin-top: -11.6rem;
+        font-family: "Poppins";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 160%;
+        color: ${({ theme }) => theme.COLORS.FG_300};
     }
 
     .payment_area {

@@ -18,7 +18,7 @@ import orderIcon from "../../assets/order_bag.svg";
 export function OrderResume() {
 
     const [paymentMethod, setPaymentMethod] = useState('pix');
-    const [paymentStatus, setPaymentStatus] = useState('delivered');
+    const [paymentStatus, setPaymentStatus] = useState('pay');
 
 
 
@@ -27,14 +27,17 @@ export function OrderResume() {
             <StyleSheetManager shouldForwardProp={isPropValid}>
                 <Header />
                 <Content method={paymentMethod} status={paymentStatus}>
+                    <div className="title">Meu Pedido</div>
                     <div className="item_list">
-                        <h2>Meu Pedido</h2>
                         <OrderCard />
                         <OrderCard />
                         <OrderCard />
                         <OrderCard />
-                        <h3>Total: R$ 103,88</h3>
+                        <OrderCard />
+                        <OrderCard />
+                        <OrderCard />
                     </div>
+                        <h3 className="total">Total: R$ 103,88</h3>
                     <div className="payment_area">
                         <h2>Pagamento</h2>
                         <div className="payment_method" method={paymentMethod}>
