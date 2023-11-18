@@ -1,4 +1,5 @@
 import { Container, Content } from "./styles";
+import { useState } from "react";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderCard } from "../../components/OrderCard";
@@ -13,11 +14,15 @@ import orderIcon from "../../assets/order_bag.svg";
 
 
 export function OrderResume() {
+    const [paymentMethod, setPaymentMethod] = useState('pix');
+    const [paymentStatus, setPaymentStatus] = useState('delivered');
+
+    
 
     return (
         <Container>
             <Header />
-            <Content>
+            <Content method={paymentMethod} status={paymentStatus}>
                 <div className="item_list">
                     <h2>Meu Pedido</h2>
                     <OrderCard />
@@ -28,17 +33,29 @@ export function OrderResume() {
                 </div>
                 <div className="payment_area">
                     <h2>Pagamento</h2>
-                    <div className="payment_method">
-                        <div>
-                            <div className="pix">
-                                <img src={pixIcon} alt="Logo pagamento Pix" />
-                                <span>pix</span>
+                    <div className="payment_method" method={paymentMethod} status={paymentStatus}>
+                            <div>
+                                <div
+                                className={`pix`}
+                                onClick={() => {
+                                    setPaymentMethod('pix')
+                                }
+                                }
+                                >
+                                    <img src={pixIcon} alt="Logo pagamento Pix" />
+                                    <span>pix</span>
+                                </div>
+                                <div
+                                    className={`credit`}
+                                onClick={() => {
+                                    setPaymentMethod('credit')
+                                }
+                                }
+                                >
+                                    <img src={creditIcon} alt="Logo pagamento Crédito" />
+                                    <span>cartão</span>
+                                </div>
                             </div>
-                            <div className="credit">
-                                <img src={creditIcon} alt="Logo pagamento Crédito" />
-                                <span>cartão</span>
-                            </div>
-                        </div>
                         <div className="payment_content">
                             <div className="payment_pix_area">
                                 <img src={qrcode} alt="qrcode" />
@@ -63,7 +80,7 @@ export function OrderResume() {
                                                     type="date"
                                                     placeholder="04/25"
                                                     className="input_validate"
-                                                    />
+                                                />
                                             </div>
                                             <div className="input_wrapper">
                                                 <label htmlFor="credit_card_cvc">CVC</label>

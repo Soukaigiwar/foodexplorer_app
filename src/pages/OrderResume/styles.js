@@ -49,9 +49,8 @@ export const Content = styled.div`
     }
 
     .payment_area {
-
         grid-area: payment_area;
-        
+
         color: ${({ theme }) => theme.COLORS.FG_300};
         align-items: center;
         justify-content: center;
@@ -60,11 +59,10 @@ export const Content = styled.div`
         margin-right: 19.6rem;
 
         .payment_method {
-            display: flex;
             flex-direction: column;
             justify-content: space-between;
             border-radius: 8px;
-            border: 1px solid var(--light-light-600, #76797B);
+            border: 1px solid ${({ theme }) => theme.COLORS.FG_600};
 
             margin: 3.4rem auto 7.5rem;
 
@@ -73,21 +71,22 @@ export const Content = styled.div`
             }
 
             .pix, .credit {
-                display: flex;
+                display: ${({ status }) => status === 'pay' ? 'flex' : 'none'};
                 justify-content: center;
                 align-items: center;
                 padding: 1.2rem 1.4rem;
                 width: 50%;
                 height: 8.1rem;
-                background-color: ${({ theme }) => theme.COLORS.BG_800};
                 border-bottom: 1px solid var(--light-light-600, #76797B);
+                background-color: ${({ theme }) => theme.COLORS.BG_800};
                 cursor: pointer;
-                
+
                 > span {
                     color: ${({ theme }) => theme.COLORS.FG_300};
                 }
 
                 > img {
+                    /* icone do metodo de pagamento */
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -98,18 +97,22 @@ export const Content = styled.div`
             }
 
             .pix {
-                border-right: 1px solid var(--light-light-600, #76797B);
+                /* aba do pix */
+                border-right: 1px solid ${({ theme }) => theme.COLORS.FG_600};
                 border-radius: 8px 0px 0px 0px;
+                background-color: ${({ method, theme }) => method === 'pix' ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
             }
 
             .credit {
-                background-color: ${({ theme }) => theme.COLORS.BG_500};
+                /* aba do credito */
                 border-radius: 0px 8px 0px 0px;
+                background-color: ${({ method, theme }) => method === 'credit' ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
             }
 
             > .payment_content {
+                display: flex;
                 .payment_pix_area {
-                    display: none;
+                    display: ${({ status, method }) => (status === 'pay' & method === 'pix' ) ? 'flex' : 'none'};
                     justify-content: center;
                     align-items: center;
                     padding: 4.7rem 13rem;
@@ -121,7 +124,7 @@ export const Content = styled.div`
                 }
 
                 > form {
-                    display: none;
+                    display: ${({ method }) => method === 'credit' ? 'block' : 'none'};
                     padding: 5.9rem 9.1rem 4.8rem;
 
                     .fieldset_wrapper {
@@ -187,15 +190,15 @@ export const Content = styled.div`
                 }
 
                 .waiting_payment_area {
-                    display: none;
+                    display: ${({ status }) => status === 'waiting' ? 'flex' : 'none'};
                 }
 
                 .payment_done_area {
-                    display: none;
+                    display: ${({ status }) => status === 'done' ? 'flex' : 'none'};
                 }
                 
                 .delivery_done_area {
-                    display: flex;
+                    display: ${({ status }) => status === 'delivered' ? 'flex' : 'none'};
                 }
             }
         }
