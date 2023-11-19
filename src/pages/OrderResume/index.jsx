@@ -1,7 +1,9 @@
 import { Container, Content } from "./styles";
 import { StyleSheetManager } from 'styled-components';
+import { api } from "../../services/api.js";
+import { handleZeros } from "../../utils/string";
 import isPropValid from '@emotion/is-prop-valid';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderCard } from "../../components/OrderCard";
@@ -16,11 +18,20 @@ import orderIcon from "../../assets/order_bag.svg";
 
 
 export function OrderResume() {
-
+    const [items, setItems] = useState([]);
+    const [total, setTotal] = useState();
     const [paymentMethod, setPaymentMethod] = useState('pix');
     const [paymentStatus, setPaymentStatus] = useState('pay');
 
+    useEffect(() => {
+        async function fetchItems() {
+            const response = await api.get(`/dishes/`);
+            setTotal(response.data.reduce((sum, dish) => sum + dish.price, 0));
+            setItems(response.data);
+        };
 
+        fetchItems();
+    }, []);
 
     return (
         <Container>
@@ -29,15 +40,16 @@ export function OrderResume() {
                 <Content method={paymentMethod} status={paymentStatus}>
                     <div className="title">Meu Pedido</div>
                     <div className="item_list">
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
-                        <OrderCard />
+                        {
+                            items.map(item => (
+                                <OrderCard
+                                    key={String(item.id)}
+                                    data={item}
+                                />
+                            ))
+                        }
                     </div>
-                        <h3 className="total">Total: R$ 103,88</h3>
+                    <h3 className="total">Total: R$ {handleZeros(total)}</h3>
                     <div className="payment_area">
                         <h2>Pagamento</h2>
                         <div className="payment_method" method={paymentMethod}>
