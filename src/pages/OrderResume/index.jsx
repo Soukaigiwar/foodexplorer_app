@@ -16,6 +16,9 @@ import forkIcon from "../../assets/fork.svg";
 import creditIcon from "../../assets/credit_icon.svg";
 import orderIcon from "../../assets/order_bag.svg";
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 export function OrderResume() {
     const [items, setItems] = useState([]);
@@ -23,11 +26,27 @@ export function OrderResume() {
     const [paymentMethod, setPaymentMethod] = useState('pix');
     const [paymentStatus, setPaymentStatus] = useState('pay');
 
+    const [startDate, setStartDate] = useState(new Date());
+
+    function handlePayment() {
+        const [cardNumber, setCardNumber] = useState('');
+        const [cardExpireDate, setCardExpireData] = useState('');
+        const [cardCvc, setCardCvc] = useState('');
+    }
+
     useEffect(() => {
         async function fetchItems() {
-            const response = await api.get(`/dishes/`);
-            setTotal(response.data.reduce((sum, dish) => sum + dish.price, 0));
+            const response = await api.get(`/orders/last`);
+
+            if (!response.data) {
+                setTotal(0);
+                return;
+            }
+
+            setTotal(response.data.reduce((sum, dish) => sum + (dish.price * dish.quantity), 0));
             setItems(response.data);
+            // status: pay, waiting, done, delivered
+            setPaymentStatus(response.data[0].status);
         };
 
         fetchItems();
@@ -41,9 +60,9 @@ export function OrderResume() {
                     <div className="title">Meu Pedido</div>
                     <div className="item_list">
                         {
-                            items.map(item => (
+                            items.map((item, index) => (
                                 <OrderCard
-                                    key={String(item.id)}
+                                    key={String(index)}
                                     data={item}
                                 />
                             ))
@@ -95,11 +114,18 @@ export function OrderResume() {
                                             <div className="col-2">
                                                 <div className="input_wrapper">
                                                     <label htmlFor="credit_card_expire">Validade</label>
-                                                    <Input
+                                                    <DatePicker
+                                                        selected={startDate}
+                                                        onChange={(date) => setStartDate(date)}
+                                                        showMonthYearPicker
+                                                        dateFormat="MM/yyyy"
+                                                        className="input_validate"
+                                                    />
+                                                    {/* <Input
                                                         type="date"
                                                         placeholder="04/25"
                                                         className="input_validate"
-                                                    />
+                                                    /> */}
                                                 </div>
                                                 <div className="input_wrapper">
                                                     <label htmlFor="credit_card_cvc">CVC</label>

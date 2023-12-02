@@ -175,7 +175,22 @@ export const Content = styled.div`
                         gap: 1.7rem;
                     }
 
-                    .input_validate,
+                    .input_validate {
+                        width: 16.6rem;
+                        height: 4.8rem;
+                        font-family: "Roboto";
+                        font-size: 16px;
+                        /* font-style: normal;
+                        font-weight: 400;
+                        line-height: 100%; */
+                        border: none;
+                        border-radius: 0.8rem;
+                        margin-top: 8px;
+                        background-color: ${({ theme }) => theme.COLORS.BG_900};
+                        color: ${({ theme }) => theme.COLORS.FG_600};
+                        padding: 1.2rem 1.4rem;
+                    }
+
                     .input_cvc {
                         width: 16.6rem;
                     }

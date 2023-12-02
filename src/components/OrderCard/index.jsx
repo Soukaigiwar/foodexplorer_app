@@ -8,7 +8,7 @@ export function OrderCard({ data, ...rest }) {
         <Container {...rest}>
             <img src={dishImage} alt="Imagem do Prato" />
             <div>
-                <p>1 x {data.title}<span>R$ {handleZeros(data.price)}</span></p>
+                <p>{data.quantity} x {data.title}<span>R$ {handleZeros(data.quantity * data.price)}</span></p>
                 <TextButton
                     title="Excluir"
                 />
