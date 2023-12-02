@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Header() {
     const { signOut } = useAuth();
-    const { getQuantity, showItem } = useCart();
+    const { getQuantity } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
     
     const navigate = useNavigate();

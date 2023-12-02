@@ -15,9 +15,9 @@ import clockIcon from "../../assets/clock.svg";
 import forkIcon from "../../assets/fork.svg";
 import creditIcon from "../../assets/credit_icon.svg";
 import orderIcon from "../../assets/order_bag.svg";
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useCart } from "../../hooks/cart"
 
 
 export function OrderResume() {
@@ -25,17 +25,63 @@ export function OrderResume() {
     const [total, setTotal] = useState();
     const [paymentMethod, setPaymentMethod] = useState('pix');
     const [paymentStatus, setPaymentStatus] = useState('pay');
+    const [cardNumber, setCardNumber] = useState('');
+    const [cardExpireDate, setCardExpireDate] = useState(new Date());
+    const [cardCvcNumber, setCardCvcNumber] = useState('');
+    const { loadCartFromBrowserCache } = useCart();
 
-    const [startDate, setStartDate] = useState(new Date());
+    console.log(loadCartFromBrowserCache());
+    const [cache, setCache] = useState(null);
 
-    function handlePayment() {
-        const [cardNumber, setCardNumber] = useState('');
-        const [cardExpireDate, setCardExpireData] = useState('');
-        const [cardCvc, setCardCvc] = useState('');
+    const handlePayment = () => {
+        if (!cardNumber) return alert("Preencha o número do Cartão de Crédito.");
+        if (!cardCvcNumber) return alert("Preencha o código CVC do Cartão de Crédito.");
+
+        const payData = {
+            cardNumber,
+            cardExpireDate,
+            cardCvcNumber
+        };
+        console.log(payData);
+
+        payWithCard();
+    };
+
+    const payWithCard = async () => {
+        await api.post("/", [
+                {
+                    "dish_id": 88,
+                    "price": 28.9,
+                    "quantity": 1
+                },
+                {
+                    "dish_id": 76,
+                    "price": 3.9,
+                    "quantity": 2
+                }
+        ]);
     }
+
+    const handleCardNumber = (e) => {
+        if (e.target.value.length <= 16) {
+            setCardNumber(e.target.value);
+        };
+    };
+
+    const handleCvc = (e) => {
+        if (e.target.value.length <= 3) {
+          setCardCvcNumber(e.target.value);
+        };
+    };
 
     useEffect(() => {
         async function fetchItems() {
+            const cacheData = await loadCartFromBrowserCache();
+            setCache(cacheData);
+
+            if (cache) {
+                console.log("tem");
+            }
             const response = await api.get(`/orders/last`);
 
             if (!response.data) {
@@ -50,7 +96,7 @@ export function OrderResume() {
         };
 
         fetchItems();
-    }, []);
+    }, [loadCartFromBrowserCache]);
 
     return (
         <Container>
@@ -103,10 +149,12 @@ export function OrderResume() {
                                         <label htmlFor="credit_card_number">
                                             Número do Cartão
                                         </label>
+                                        
                                         <Input
-                                            className="input_wrapper"
-                                            type="number"
+                                            id={"20"}
                                             placeholder="0000 0000 0000 0000"
+                                            maxLength={16}
+                                            onChange={handleCardNumber}
                                         />
                                     </fieldset>
                                     <fieldset>
@@ -115,24 +163,21 @@ export function OrderResume() {
                                                 <div className="input_wrapper">
                                                     <label htmlFor="credit_card_expire">Validade</label>
                                                     <DatePicker
-                                                        selected={startDate}
-                                                        onChange={(date) => setStartDate(date)}
+                                                        selected={cardExpireDate}
                                                         showMonthYearPicker
                                                         dateFormat="MM/yyyy"
                                                         className="input_validate"
+                                                        onChange={(date) => setCardExpireDate(date)}
                                                     />
-                                                    {/* <Input
-                                                        type="date"
-                                                        placeholder="04/25"
-                                                        className="input_validate"
-                                                    /> */}
                                                 </div>
                                                 <div className="input_wrapper">
                                                     <label htmlFor="credit_card_cvc">CVC</label>
                                                     <Input
-                                                        type="number"
-                                                        placeholder="181"
+                                                        type="text"
+                                                        placeholder="CVC"
                                                         className="input_cvc"
+                                                        maxLength={3}
+                                                        onChange={handleCvc}
                                                     />
                                                 </div>
                                             </div>
@@ -142,6 +187,7 @@ export function OrderResume() {
                                         <Button
                                             icon={orderIcon}
                                             title="Finalizar Pagamento"
+                                            onClick={handlePayment}
                                         />
                                     </fieldset>
                                 </form>
