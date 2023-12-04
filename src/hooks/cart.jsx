@@ -5,15 +5,17 @@ export const CartContext = createContext({})
 
 function CartProvider({ children }) {
     const [newItem, setNewItem] = useState([]);
+    const [cart, setCart] = useState([]);
 
     function loadCartFromBrowserCache() {
-        const cartCache = localStorage.getItem("@foodexplorer:cart");
+        const cartCache = JSON.parse(localStorage.getItem("@foodexplorer:cart"));
 
-        if (cartCache) {
-            return JSON.parse(cartCache);
-        };
+        if (!cartCache)
+            return null;
+            
+        console.log(cartCache);
+        return cartCache;
 
-        return null;
     };
 
     function getQuantity() {
@@ -64,21 +66,14 @@ function CartProvider({ children }) {
         return;
     };
 
-    function cacheToCart(str) {
-        let array = str.split(' ');
-
-        for (let i = 0; i < array.length; i += 2) {
-            addItemToCart(
-                {
-                    id: parseInt(array[i]),
-                    quantity: parseInt(array[i + 1])
-                }
-            );
-        };
+    function cacheToCart(items) {
+        items.map((item) => {
+            setCart([...items, item]);
+            setNewItem(...items, item);
+        });
     };
 
     function handleLocalStorage() {
-        console.log("newItem:", newItem);
         try {
             localStorage.setItem("@foodexplorer:cart", JSON.stringify(newItem));
         } catch (error) {
@@ -97,9 +92,9 @@ function CartProvider({ children }) {
         const cartCache = loadCartFromBrowserCache();
 
         if (cartCache && cartCache !== "") {
-            console.log("aqui");
             setNewItem([]);
-            //stringToCart(cartCache);
+            setCart([]);
+            cacheToCart([cartCache]);
         };
 
     }, []);
