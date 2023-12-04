@@ -1,19 +1,20 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from '../services/api'
 
 export const AuthContext = createContext({})
 
 function AuthProvider({ children }) {
-    const [data, setData] = useState({})
-
+    const [data, setData] = useState({});
+    
     async function signIn({ email, password }) {
         try {
             const response = await api.post("/sessions", { email, password })
             const { user, token } = response.data
-
+            
             localStorage.setItem("@foodexplorer:user", JSON.stringify(user))
             localStorage.setItem("@foodexplorer:token", token)
-
+            
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`
             setData({ user, token })
         } catch (error) {
@@ -26,10 +27,10 @@ function AuthProvider({ children }) {
     }
 
     function signOut() {
-        localStorage.removeItem("@foodexplorer:token")
-        localStorage.removeItem("@foodexplorer:user")
+        localStorage.removeItem("@foodexplorer:token");
+        localStorage.removeItem("@foodexplorer:user");
         
-        setData({})
+        setData({});
     }
 
     async function updateProfile({ user, avatarFile }) {

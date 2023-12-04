@@ -30,7 +30,6 @@ export function OrderResume() {
     const [cardCvcNumber, setCardCvcNumber] = useState('');
     const { loadCartFromBrowserCache } = useCart();
 
-    console.log(loadCartFromBrowserCache());
     const [cache, setCache] = useState(null);
 
     const handlePayment = () => {
@@ -42,7 +41,6 @@ export function OrderResume() {
             cardExpireDate,
             cardCvcNumber
         };
-        console.log(payData);
 
         payWithCard();
     };

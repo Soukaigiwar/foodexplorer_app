@@ -24,9 +24,15 @@ export function Card({ data }) {
         event.preventDefault();
 
         const item = {
-            id: data.id,
-            quantity
+            dish_id: data.id,
+            title: data.title,
+            price: data.price,
+            quantity,
+            image_title: data.image_title,
+            image_filename: data.image_filename,
         };
+
+        console.log("cart > item:", item);
 
         addItemToCart(item);
     };

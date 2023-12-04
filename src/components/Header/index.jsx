@@ -26,6 +26,11 @@ export function Header() {
         setmenuIsVisible(!menuIsVisible);
     };
 
+    function handleSignOut() {
+        signOut();
+        navigate(`/`);
+    }
+
     return (
         <Container>
             <MenuIcon>
@@ -34,7 +39,7 @@ export function Header() {
                     <Menu menuisvisible={menuIsVisible} toggleMenu={toggleMenu}/>
                 )}
             </MenuIcon>
-            <Brand />
+            <Brand onClick={() => { navigate("/") }} />
             <Search>
                 <SearchInput
                     id="search"
@@ -63,7 +68,7 @@ export function Header() {
                 <img
                     src={signOutIcon}
                     alt="Ícone para sair da aplicação."
-                    onClick={signOut}
+                    onClick={handleSignOut}
                 />
             </SignOut>
         </Container>

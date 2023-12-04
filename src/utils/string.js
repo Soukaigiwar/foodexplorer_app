@@ -16,29 +16,32 @@ export const handleString = (str) => {
  */
 export const handleZeros = (str) => {
     if (typeof str !== 'number') {
-        str = Number(str);
-    }
+        str = parseFloat(str);
+    };
+    
     const formatedNumber = str.toFixed(2).toString().replace(".", ",");
 
     return formatedNumber;
 };
 
-/**
- * 
- * @param {array} items 
- * @returns {string} A string where each id and quantity are separated by a space.
- */
+// /**
+//  * 
+//  * @param {array} items 
+//  * @returns {string} A string where each id and quantity are separated by a space.
+//  */
 
-export const cartToString = (items) => {
-    if (items) {
-        let result = "";
-        for (let i = 0; i < items.length; i++) {
-            for (let key in items[i]) {
-                result += items[i][key] + ' ';
-            };
-        };
-        return result.trim();
-    };
+// export const cartToString = (items) => {
+    
+//     if (items) {
+//         let result = "";
+//         for (let i = 0; i < items.length; i++) {
+//             for (let key in items[i]) {
+//                 result += items[i][key] + ' ';
+//             };
+//         };
+        
+//         return result.trim();
+//     };
 
-    return "";
-};
+//     return "";
+// };

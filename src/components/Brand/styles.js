@@ -6,6 +6,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     width: 28.7rem;
+    cursor: pointer;
 
     img {
         margin-right: 0.8rem;

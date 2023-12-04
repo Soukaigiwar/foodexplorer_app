@@ -28,7 +28,7 @@ export function SignUp() {
                     alert(error.response.data.message)
                 } else {
                     alert("Não foi possível cadastrar.")
-                    console.log(error);
+
                 }
             })
     };

@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { cartToString } from "../utils/string.js";
 import { useAuth } from "./auth.jsx";
 
 export const CartContext = createContext({})
@@ -11,8 +10,8 @@ function CartProvider({ children }) {
         const cartCache = localStorage.getItem("@foodexplorer:cart");
 
         if (cartCache) {
-            return cartCache;
-        }
+            return JSON.parse(cartCache);
+        };
 
         return null;
     };
@@ -35,17 +34,22 @@ function CartProvider({ children }) {
     };
 
     function addItemToCart(item) {
-        if (item && item.id && item.quantity) {
+        if (item && item.dish_id && item.quantity) {
             setNewItem(prevItems => {
                 const itemIndex = prevItems
-                    .findIndex(prev => prev.id === item.id);
+                    .findIndex(prev => prev.dish_id === item.dish_id);
 
                 if (itemIndex !== -1) {
                     return prevItems.map((prev, index) => {
                         if (index === itemIndex) {
                             return {
                                 ...prev,
-                                quantity: prev.quantity + item.quantity
+                                dish_id: item.dish_id,
+                                title: item.title,
+                                price: item.price,
+                                quantity: prev.quantity + item.quantity,
+                                image_title: item.image_title,
+                                image_filename: item.image_filename
                             };
                         } else {
                             return prev;
@@ -60,7 +64,7 @@ function CartProvider({ children }) {
         return;
     };
 
-    function stringToCart(str) {
+    function cacheToCart(str) {
         let array = str.split(' ');
 
         for (let i = 0; i < array.length; i += 2) {
@@ -74,10 +78,12 @@ function CartProvider({ children }) {
     };
 
     function handleLocalStorage() {
+        console.log("newItem:", newItem);
         try {
-            localStorage.setItem("@foodexplorer:cart", cartToString(newItem));
+            localStorage.setItem("@foodexplorer:cart", JSON.stringify(newItem));
         } catch (error) {
             if (error.response) {
+                console.log(error.response.data.message);
                 alert(error.response.data.message);
             } else {
                 alert("Não foi possível incluir item no carrinho.");
@@ -91,8 +97,9 @@ function CartProvider({ children }) {
         const cartCache = loadCartFromBrowserCache();
 
         if (cartCache && cartCache !== "") {
+            console.log("aqui");
             setNewItem([]);
-            stringToCart(cartCache);
+            //stringToCart(cartCache);
         };
 
     }, []);
