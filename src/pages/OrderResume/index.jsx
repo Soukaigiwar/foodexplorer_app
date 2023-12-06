@@ -17,33 +17,36 @@ import creditIcon from "../../assets/credit_icon.svg";
 import orderIcon from "../../assets/order_bag.svg";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useCart } from "../../hooks/cart"
+import { useCart } from "../../hooks/cart";
+import { useNavigate } from "react-router-dom";
 
 
 export function OrderResume() {
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState();
     const [paymentMethod, setPaymentMethod] = useState('pix');
-    const [paymentStatus, setPaymentStatus] = useState('waiting');
+    const [paymentStatus, setPaymentStatus] = useState('processing');
     const [cardNumber, setCardNumber] = useState('');
     const [cardExpireDate, setCardExpireDate] = useState(new Date());
     const [cardCvcNumber, setCardCvcNumber] = useState('');
     const { loadCartFromBrowserCache, addItemToCart } = useCart();
+    const navigate = useNavigate();
 
     const handlePayment = async () => {
         if (!cardNumber) return alert("Preencha o número do Cartão de Crédito.");
         if (!cardCvcNumber) return alert("Preencha o código CVC do Cartão de Crédito.");
 
-        await payWithCard();
+        setPaymentStatus("paid");
     };
 
     const payWithCard = async () => {
+
         const itemsWithPaidStatus = items.map(item => ({
             ...item,
             status: "paid"
         }));
-        await api.post("/orders", itemsWithPaidStatus);
 
+        await api.post("/orders", itemsWithPaidStatus);
         localStorage.removeItem("@foodexplorer:cart");
     };
 
@@ -58,6 +61,17 @@ export function OrderResume() {
             setCardCvcNumber(e.target.value);
         };
     };
+
+    const handleNavigationToHome = () => {
+        //navigate("/");
+    }
+
+    useEffect(() => {
+        console.log(paymentStatus);
+        payWithCard();
+        handleNavigationToHome();
+    }, [paymentStatus]);
+    
 
     useEffect(() => {
         async function fetchItems() {
