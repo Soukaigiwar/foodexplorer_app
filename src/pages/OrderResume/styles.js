@@ -24,13 +24,17 @@ export const Content = styled.div`
     grid-template-areas: "item_list payment_area";
     margin-top: 3.4rem;
 
-    .title, h2 {
+    .title, h2, h3 {
         font-family: Poppins;
         font-size: 32px;
         font-style: normal;
         font-weight: 500;
         line-height: 140%;
         color: ${({ theme }) => theme.COLORS.FG_300};
+    }
+
+    h3 {
+        font-size: 1.8rem;
     }
 
     .title {
@@ -99,7 +103,7 @@ export const Content = styled.div`
             }
 
             .pix, .credit {
-                display: ${({ status }) => status === 'pay' ? 'flex' : 'none'};
+                display: ${({ status }) => status === 'processing' ? 'flex' : 'none'};
                 justify-content: center;
                 align-items: center;
                 padding: 1.2rem 1.4rem;
@@ -140,7 +144,7 @@ export const Content = styled.div`
             > .payment_content {
                 display: flex;
                 .payment_pix_area {
-                    display: ${({ status, method }) => (status === 'pay' & method === 'pix' ) ? 'flex' : 'none'};
+                    display: ${({ status, method }) => (status === 'processing' & method === 'pix' ) ? 'flex' : 'none'};
                     justify-content: center;
                     align-items: center;
                     padding: 4.7rem 13rem;
@@ -233,11 +237,11 @@ export const Content = styled.div`
                 }
 
                 .waiting_payment_area {
-                    display: ${({ status }) => status === 'waiting' ? 'flex' : 'none'};
+                    display: ${({ status }) => status === 'pending' ? 'flex' : 'none'};
                 }
 
                 .payment_done_area {
-                    display: ${({ status }) => status === 'done' ? 'flex' : 'none'};
+                    display: ${({ status }) => status === 'paid' ? 'flex' : 'none'};
                 }
                 
                 .delivery_done_area {

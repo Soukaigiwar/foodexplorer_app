@@ -4,6 +4,7 @@ import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
 import { Cart } from "../Cart";
+import { api } from "../../services/api.js";
 
 import menuIcon from "../../assets/menu.svg";
 import orderBagIcon from "../../assets/order_bag.svg";
@@ -25,6 +26,11 @@ export function Header() {
     function toggleMenu() {
         setmenuIsVisible(!menuIsVisible);
     };
+
+    function handleOrder() {
+
+        navigate("/order");
+    }
 
     function handleSignOut() {
         signOut();
@@ -61,7 +67,7 @@ export function Header() {
                 <Button
                     icon={orderBagIcon}
                     title={"Pedidos (" + getQuantity() + ")"}
-                    onClick={() => { navigate("/order") }}
+                    onClick={handleOrder}
                 />
             </OrderButton>
             <SignOut>

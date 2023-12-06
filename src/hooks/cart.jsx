@@ -5,17 +5,14 @@ export const CartContext = createContext({})
 
 function CartProvider({ children }) {
     const [newItem, setNewItem] = useState([]);
-    const [cart, setCart] = useState([]);
 
     function loadCartFromBrowserCache() {
         const cartCache = JSON.parse(localStorage.getItem("@foodexplorer:cart"));
 
         if (!cartCache)
             return null;
-            
-        console.log(cartCache);
-        return cartCache;
 
+        return cartCache;
     };
 
     function getQuantity() {
@@ -68,7 +65,6 @@ function CartProvider({ children }) {
 
     function cacheToCart(items) {
         items.map((item) => {
-            setCart([...items, item]);
             setNewItem(...items, item);
         });
     };
@@ -93,7 +89,6 @@ function CartProvider({ children }) {
 
         if (cartCache && cartCache !== "") {
             setNewItem([]);
-            setCart([]);
             cacheToCart([cartCache]);
         };
 
