@@ -10,15 +10,18 @@ import { AuthProvider } from './hooks/auth'
 
 import { Routes } from "./routes";
 import { CartProvider } from './hooks/cart';
+import { CacheProvider } from './hooks/cache';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={dark}>
       <GlobalStyles />
       <AuthProvider>
-        <CartProvider>
-          <Routes />
-        </CartProvider>
+        <CacheProvider>
+          <CartProvider>
+            <Routes />
+          </CartProvider>
+        </CacheProvider>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,

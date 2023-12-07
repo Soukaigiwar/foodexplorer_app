@@ -11,14 +11,6 @@ export const Container = styled.div`
     "footer";
 `;
 
-// export const ItemList = styled.div`
-//     grid-area: resume;
-// `;
-
-// export const PaymentArea = styled.div`
-//     grid-area: payment;
-// `;
-
 export const Content = styled.div`
     display: grid;
     grid-template-areas: "item_list payment_area";
@@ -82,10 +74,7 @@ export const Content = styled.div`
 
     .payment_area {
         grid-area: payment_area;
-
         color: ${({ theme }) => theme.COLORS.FG_300};
-        align-items: center;
-        justify-content: center;
         width: 53rem;
         height: 36.4rem;
         margin-right: 19.6rem;
@@ -103,7 +92,7 @@ export const Content = styled.div`
             }
 
             .pix, .credit {
-                display: ${({ status }) => status === 'processing' ? 'flex' : 'none'};
+                display: flex;
                 justify-content: center;
                 align-items: center;
                 padding: 1.2rem 1.4rem;
@@ -143,12 +132,14 @@ export const Content = styled.div`
 
             > .payment_content {
                 display: flex;
+                justify-content: center;
+
                 .payment_pix_area {
-                    display: ${({ status, method }) => (status === 'processing' & method === 'pix' ) ? 'flex' : 'none'};
+                    display: flex;
                     justify-content: center;
                     align-items: center;
                     padding: 4.7rem 13rem;
-
+                    
                     img {
                         width: 25rem;
                         height: 25rem;
@@ -156,7 +147,7 @@ export const Content = styled.div`
                 }
 
                 > form {
-                    display: ${({ method }) => method === 'credit' ? 'block' : 'none'};
+                    display: block};
                     padding: 5.9rem 9.1rem 4.8rem;
 
                     .fieldset_wrapper {
@@ -184,9 +175,6 @@ export const Content = styled.div`
                         height: 4.8rem;
                         font-family: "Roboto";
                         font-size: 16px;
-                        /* font-style: normal;
-                        font-weight: 400;
-                        line-height: 100%; */
                         border: none;
                         border-radius: 0.8rem;
                         margin-top: 8px;
@@ -236,7 +224,7 @@ export const Content = styled.div`
                     }
                 }
 
-                .waiting_payment_area {
+                /* .waiting_payment_area {
                     display: ${({ status }) => status === 'pending' ? 'flex' : 'none'};
                 }
 
@@ -246,8 +234,7 @@ export const Content = styled.div`
                 
                 .delivery_done_area {
                     display: ${({ status }) => status === 'delivered' ? 'flex' : 'none'};
-                }
+                } */
             }
         }
-    }
 `;

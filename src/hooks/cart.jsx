@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useAuth } from "./auth.jsx";
 
 export const CartContext = createContext({})
 
@@ -99,7 +98,7 @@ function CartProvider({ children }) {
             loadCartFromBrowserCache,
             addItemToCart,
             getQuantity,
-            showItem
+            showItem,
         }}
         >{children}</CartContext.Provider>
     );
