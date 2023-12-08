@@ -7,12 +7,12 @@ export function Cart() {
     // const { } = useCart();
 
     return (
-            <Container>
-                 {/* <img */}
-                     {/* src={orderBagIcon} */}
-                     {/* alt="Ícone para exibir quantidade de itens no pedido." */}
-                 {/* /> */}
-                 {/* <span>0</span> */}
-            </Container>
-    )
-};
+        <Container>
+            {/* <img */}
+            {/* src={orderBagIcon} */}
+            {/* alt="Ícone para exibir quantidade de itens no pedido." */}
+            {/* /> */}
+            {/* <span>0</span> */}
+        </Container>
+    );
+}

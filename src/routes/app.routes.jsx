@@ -11,5 +11,5 @@ export function AppRoutes() {
             <Route path="/dishes/:id" element={<Dish />} />
             <Route path="/order" element={<OrderResume />} />
         </Routes>
-    )
+    );
 }

@@ -18,7 +18,7 @@ export function Card({ data }) {
 
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
-    };
+    }
 
     function addItem(event) {
         event.preventDefault();
@@ -35,21 +35,21 @@ export function Card({ data }) {
         console.log("cart > item:", item);
 
         addItemToCart(item);
-    };
+    }
 
     return (
         <Container>
             <div className="favorite"><img src={favorite} alt="" /></div>
-            <img src={dishImage} alt="" onClick={() => { handleDetails(data.id) }} />
-            <h2 onClick={() => { handleDetails(data.id) }}>{data.title} &gt;</h2>
-            <p onClick={() => { handleDetails(data.id) }}>{data.description}</p>
-            <h3 onClick={() => { handleDetails(data.id) }}>R$ {handleZeros(data.price)}</h3>
+            <img src={dishImage} alt="" onClick={() => { handleDetails(data.id); }} />
+            <h2 onClick={() => { handleDetails(data.id); }}>{data.title} &gt;</h2>
+            <p onClick={() => { handleDetails(data.id); }}>{data.description}</p>
+            <h3 onClick={() => { handleDetails(data.id); }}>R$ {handleZeros(data.price)}</h3>
             <div className="actions">
                 <div>
                     <TextButton
                         icon={minus}
                         alt="Diminuir quantidade."
-                        onClick={() => { setQuantity(handleQuantity(quantity, -1)) }}
+                        onClick={() => { setQuantity(handleQuantity(quantity, -1)); }}
                     />
                     <span>
                         {quantity.toString().padStart(2, 0)}
@@ -57,13 +57,13 @@ export function Card({ data }) {
                     <TextButton
                         icon={plus}
                         alt="Aumentar quantidade."
-                        onClick={() => { setQuantity(handleQuantity(quantity, 1)) }}
+                        onClick={() => { setQuantity(handleQuantity(quantity, 1)); }}
 
                     />
                 </div>
                 <Button
                     className="button"
-                    icon={''}
+                    icon={""}
                     title="incluir"
                     onClick={ addItem }
                     
@@ -71,4 +71,4 @@ export function Card({ data }) {
             </div>
         </Container>
     );
-};
+}

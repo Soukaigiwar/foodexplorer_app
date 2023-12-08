@@ -121,13 +121,13 @@ export const Content = styled.div`
                 /* aba do pix */
                 border-right: 1px solid ${({ theme }) => theme.COLORS.FG_600};
                 border-radius: 8px 0px 0px 0px;
-                background-color: ${({ method, theme }) => method === 'pix' ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
+                background-color: ${({ method, theme }) => method === "pix" ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
             }
 
             .credit {
                 /* aba do credito */
                 border-radius: 0px 8px 0px 0px;
-                background-color: ${({ method, theme }) => method === 'credit' ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
+                background-color: ${({ method, theme }) => method === "credit" ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
             }
 
             > .payment_content {
@@ -225,15 +225,15 @@ export const Content = styled.div`
                 }
 
                 /* .waiting_payment_area {
-                    display: ${({ status }) => status === 'pending' ? 'flex' : 'none'};
+                    display: ${({ status }) => status === "pending" ? "flex" : "none"};
                 }
 
                 .payment_done_area {
-                    display: ${({ status }) => status === 'paid' ? 'flex' : 'none'};
+                    display: ${({ status }) => status === "paid" ? "flex" : "none"};
                 }
                 
                 .delivery_done_area {
-                    display: ${({ status }) => status === 'delivered' ? 'flex' : 'none'};
+                    display: ${({ status }) => status === "delivered" ? "flex" : "none"};
                 } */
             }
         }

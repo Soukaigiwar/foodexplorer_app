@@ -1,8 +1,8 @@
 import { Container, Content } from "./styles";
-import { StyleSheetManager } from 'styled-components';
+import { StyleSheetManager } from "styled-components";
 import { api } from "../../services/api.js";
 import { handleZeros } from "../../utils/string";
-import isPropValid from '@emotion/is-prop-valid';
+import isPropValid from "@emotion/is-prop-valid";
 import { useState, useEffect } from "react";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
@@ -15,25 +15,25 @@ import clockIcon from "../../assets/clock.svg";
 import forkIcon from "../../assets/fork.svg";
 import creditIcon from "../../assets/credit_icon.svg";
 import orderIcon from "../../assets/order_bag.svg";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useCart } from "../../hooks/cart";
-import { useCache } from '../../hooks/cache';
-import { useNavigate } from "react-router-dom";
+import { useCache } from "../../hooks/cache";
+// import { useNavigate } from "react-router-dom";
 
 
 export function OrderResume() {
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState();
-    const [paymentMethod, setPaymentMethod] = useState('pix');
-    const [paymentStatus, setPaymentStatus] = useState('processing');
+    const [paymentMethod, setPaymentMethod] = useState("pix");
+    const [paymentStatus, setPaymentStatus] = useState("processing");
     const [orderInclued, setOrderInclued] = useState(false);
-    const [cardNumber, setCardNumber] = useState('');
+    const [cardNumber, setCardNumber] = useState("");
     const [cardExpireDate, setCardExpireDate] = useState(new Date());
-    const [cardCvcNumber, setCardCvcNumber] = useState('');
+    const [cardCvcNumber, setCardCvcNumber] = useState("");
     const { loadCartFromBrowserCache, addItemToCart } = useCart();
     const { cache, clearCache } = useCache();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handlePayment = async (method = "pix") => {
         console.log("handle payment entrou");
@@ -46,7 +46,7 @@ export function OrderResume() {
             if (!cardNumber) return alert("Preencha o número do Cartão de Crédito.");
             if (!cardCvcNumber) return alert("Preencha o código CVC do Cartão de Crédito.");
             await payWithCard();
-        };
+        }
         
         localStorage.setItem("@foodexplorer:status", "pending");
         clearCache();
@@ -66,7 +66,7 @@ export function OrderResume() {
         
         
         await api.post("/orders", itemsWithPendingStatus);
-    }
+    };
 
     const payWithCard = async () => {
 
@@ -77,7 +77,7 @@ export function OrderResume() {
 
         setItems([]);
         setTotal();
-        setCart(itemsWithPaidStatus);
+        // setCart(itemsWithPaidStatus);
         setOrderInclued(true);
         setPaymentStatus("paid");
 
@@ -88,18 +88,18 @@ export function OrderResume() {
     const handleCardNumber = (e) => {
         if (e.target.value.length <= 16) {
             setCardNumber(e.target.value);
-        };
+        }
     };
 
     const handleCvc = (e) => {
         if (e.target.value.length <= 3) {
             setCardCvcNumber(e.target.value);
-        };
+        }
     };
 
-    const handleNavigationToHome = () => {
-        navigate("/");
-    }
+    // const handleNavigationToHome = () => {
+    //     navigate("/");
+    // }
 
     useEffect(() => {
         console.log("cache", cache);
@@ -112,7 +112,7 @@ export function OrderResume() {
             console.log("orderInclued:", orderInclued);
             console.log("payment status:", paymentStatus);
             setPaymentStatus("processing");
-        };
+        }
     }, [orderInclued]);
 
 
@@ -120,7 +120,7 @@ export function OrderResume() {
         async function fetchItems() {
             const cacheData = await loadCartFromBrowserCache();
 
-            const response = await api.get(`/orders/last`);
+            const response = await api.get("/orders/last");
 
             console.log(response);
 
@@ -148,9 +148,9 @@ export function OrderResume() {
 
                 for (let item of response.data) {
                     addItemToCart(item);
-                };
-            };
-        };
+                }
+            }
+        }
 
         fetchItems();
     }, [loadCartFromBrowserCache]);
@@ -192,9 +192,9 @@ export function OrderResume() {
                                     <div className="payment_method" method={paymentMethod}>
                                         <div>
                                             <div
-                                                className={`pix`}
+                                                className={"pix"}
                                                 onClick={() => {
-                                                    setPaymentMethod('pix')
+                                                    setPaymentMethod("pix");
                                                 }
                                                 }
                                             >
@@ -202,9 +202,9 @@ export function OrderResume() {
                                                 <span>pix</span>
                                             </div>
                                             <div
-                                                className={`credit`}
+                                                className={"credit"}
                                                 onClick={() => {
-                                                    setPaymentMethod('credit')
+                                                    setPaymentMethod("credit");
                                                 }
                                                 }
                                             >
@@ -216,7 +216,7 @@ export function OrderResume() {
 
                                             {paymentMethod === "pix" && (
                                                 <div className="payment_pix_area">
-                                                    <img src={qrcode} alt="qrcode" onClick={() => { handlePayment('pix') }}/>
+                                                    <img src={qrcode} alt="qrcode" onClick={() => { handlePayment("pix"); }}/>
                                                 </div>
                                             )}
 
@@ -270,21 +270,21 @@ export function OrderResume() {
                                                 </form>
                                             )}
 
-                                            {paymentStatus === 'paid' && (
+                                            {paymentStatus === "paid" && (
                                                 <div className="payment_done_area">
                                                     <img src={clockIcon} alt="relógio" />
                                                     <p>Pagamento aprovado!</p>
                                                 </div>
                                             )}
 
-                                            {paymentStatus === 'pending' && (
+                                            {paymentStatus === "pending" && (
                                                 <div className="waiting_payment_area">
                                                     <img src={clockIcon} alt="relógio" />
                                                     <p>Aguardando pagamento no caixa</p>
                                                 </div>
                                             )}
 
-                                            {paymentStatus === 'delivered' && (
+                                            {paymentStatus === "delivered" && (
                                                 <div className="delivery_done_area">
                                                     <img src={forkIcon} alt="relógio" />
                                                     <p>Pedido entregue!</p>
@@ -304,4 +304,4 @@ export function OrderResume() {
             </StyleSheetManager>
         </Container>
     );
-};
+}

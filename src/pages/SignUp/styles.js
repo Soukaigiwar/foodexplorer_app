@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { devices } from "../../styles/media"
+import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     margin: 0 auto;

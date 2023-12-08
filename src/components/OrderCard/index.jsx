@@ -15,4 +15,4 @@ export function OrderCard({ data, ...rest }) {
             </div>
         </Container>
     );
-};
+}

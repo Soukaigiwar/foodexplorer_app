@@ -7,4 +7,4 @@ export function SearchInput({ icon, alt, ...rest }) {
             <input {...rest} />
         </Container>
     );
-};
+}

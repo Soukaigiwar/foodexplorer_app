@@ -8,4 +8,4 @@ export function Button({ title, icon: Icon, ...rest }) {
             {title}
         </Container>
     );
-};
+}

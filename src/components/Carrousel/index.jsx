@@ -1,15 +1,15 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from "react";
 import { Container } from "./styles.js";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
 import { Card } from "../Card";
 import carretLeft from "../../assets/carret_left.svg";
-import { api } from "../../services/api.js"
+import { api } from "../../services/api.js";
 import { handleString } from "../../utils/string.js";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 export function Carrousel({ title, category }) {
     const slides = (window.innerWidth <= 428) ? 1.9 : 3.5;
@@ -29,7 +29,7 @@ export function Carrousel({ title, category }) {
             setSlidesInCarrousel(3.5);
             setSpaceBetweenCards(27);
         }
-    };
+    }
 
     useEffect(() => {
         async function fetchDishes() {
@@ -43,17 +43,17 @@ export function Carrousel({ title, category }) {
             });
 
             setDishes(filtered_dishes);
-        };
+        }
 
         fetchDishes();
     }, []);
 
     useLayoutEffect(() => {
         handleWindowResize();
-        window.addEventListener('resize', handleWindowResize);
+        window.addEventListener("resize", handleWindowResize);
 
         return () => {
-            window.removeEventListener('resize', handleWindowResize);
+            window.removeEventListener("resize", handleWindowResize);
         };
     }, []);
 
@@ -80,4 +80,4 @@ export function Carrousel({ title, category }) {
             <div className="carret_right"><img src={carretLeft} /></div>
         </Container>
     );
-};
+}

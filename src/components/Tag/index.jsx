@@ -8,5 +8,5 @@ export function Tag({ title, ...rest }) {
                 {title.toLowerCase()}
             </div>
         </Container>
-    )
-};
+    );
+}

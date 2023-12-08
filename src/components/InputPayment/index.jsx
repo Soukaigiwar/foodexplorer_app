@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import { Container } from "./styles";
-import { usePaymentInputs } from 'react-payment-inputs';
+import { usePaymentInputs } from "react-payment-inputs";
 
 export function InputPayment({ label, id, ...rest }) {
     const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } = usePaymentInputs();
@@ -14,4 +16,4 @@ export function InputPayment({ label, id, ...rest }) {
             )}
         </Container>
     );
-};
+}

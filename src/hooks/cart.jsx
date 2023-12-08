@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-export const CartContext = createContext({})
+export const CartContext = createContext({});
 
 function CartProvider({ children }) {
     const [newItem, setNewItem] = useState([]);
@@ -12,24 +12,24 @@ function CartProvider({ children }) {
             return null;
 
         return cartCache;
-    };
+    }
 
     function getQuantity() {
         if (newItem.length === 0) {
             return 0;
-        };
+        }
 
         handleLocalStorage();
         return newItem.length;
-    };
+    }
 
     function showItem() {
         if (newItem.length === 0) {
             return 0;
-        };
+        }
 
         return newItem;
-    };
+    }
 
     function addItemToCart(item) {
         if (item && item.dish_id && item.quantity) {
@@ -51,22 +51,22 @@ function CartProvider({ children }) {
                             };
                         } else {
                             return prev;
-                        };
+                        }
                     });
                 } else {
                     return [...prevItems, item];
-                };
+                }
             });
-        };
+        }
 
         return;
-    };
+    }
 
     function cacheToCart(items) {
         items.map((item) => {
             setNewItem(...items, item);
         });
-    };
+    }
 
     function handleLocalStorage() {
         try {
@@ -77,11 +77,11 @@ function CartProvider({ children }) {
                 alert(error.response.data.message);
             } else {
                 alert("Não foi possível incluir item no carrinho.");
-            };
-        };
+            }
+        }
 
         return;
-    };
+    }
 
     useEffect(() => {
         const cartCache = loadCartFromBrowserCache();
@@ -89,7 +89,7 @@ function CartProvider({ children }) {
         if (cartCache && cartCache !== "") {
             setNewItem([]);
             cacheToCart([cartCache]);
-        };
+        }
 
     }, []);
 
@@ -102,12 +102,12 @@ function CartProvider({ children }) {
         }}
         >{children}</CartContext.Provider>
     );
-};
+}
 
 function useCart() {
     const context = useContext(CartContext);
 
     return context;
-};
+}
 
 export { CartProvider, useCart };

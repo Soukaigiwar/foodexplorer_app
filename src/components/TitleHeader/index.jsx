@@ -14,4 +14,4 @@ export function TitleHeader() {
             </div>
         </Container>
     );
-};
+}

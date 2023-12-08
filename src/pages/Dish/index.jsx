@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Header } from "../../components/Header";
 import { BackTextButton } from "../../components/BackTextButton";
 import { TextButton } from "../../components/TextButton";
@@ -6,7 +7,7 @@ import { Tag } from "../../components/Tag";
 import { Footer } from "../../components/Footer";
 
 import { Container, Content } from "./styles";
-import ravanello_400 from "../../assets/ravanello_400.png"
+import ravanello_400 from "../../assets/ravanello_400.png";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import orderBag from "../../assets/order_bag.svg";
@@ -22,7 +23,7 @@ export function Dish() {
 
     const [data, setData] = useState({});
     const [ingredients, setIngredients] = useState([]);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
     const [quantity, setQuantity] = useState(1);
 
 
@@ -32,8 +33,8 @@ export function Dish() {
             setQuantity(handleQuantity(quantity, 1));
 
         if ((e.key === "-" || e.key === "ArrowDown" || e.key === "ArrowLeft") && quantity > 1)
-            setQuantity(handleQuantity(quantity, -1))
-    };
+            setQuantity(handleQuantity(quantity, -1));
+    }
 
     useEffect(() => {
         async function fetchDish() {
@@ -48,7 +49,7 @@ export function Dish() {
 
             setData(response.data);
             setIngredients(ingredient);
-        };
+        }
 
         fetchDish();
     }, [search]);
@@ -88,7 +89,7 @@ export function Dish() {
                                     icon={minus}
                                     alt="Diminuir quantidade."
                                     onKeyDown={handleKeyDown}
-                                    onClick={() => { setQuantity(handleQuantity(quantity, -1)) }}
+                                    onClick={() => { setQuantity(handleQuantity(quantity, -1)); }}
                                 />
                                 <span>
                                     {quantity}
@@ -98,7 +99,7 @@ export function Dish() {
                                     icon={plus}
                                     alt="Aumentar quantidade."
                                     onKeyDown={handleKeyDown}
-                                    onClick={() => { setQuantity(handleQuantity(quantity, 1)) }}
+                                    onClick={() => { setQuantity(handleQuantity(quantity, 1)); }}
                                 />
                             </div>
                             <Button
@@ -110,5 +111,5 @@ export function Dish() {
             </Content>
             <Footer />
         </Container>
-    )
+    );
 }

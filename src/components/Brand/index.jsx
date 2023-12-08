@@ -7,8 +7,8 @@ export function Brand() {
 
     return (
         <Container onClick={() => navigate("/")}>
-                <img src={logo} alt="logomarca do food explorer" />
-                <h1>food explorer</h1>
+            <img src={logo} alt="logomarca do food explorer" />
+            <h1>food explorer</h1>
         </Container>
     );
-};
+}

@@ -1,5 +1,5 @@
 import { Container, BwBrand } from "./styles";
-import logo from "../../assets/poligon_grey.svg"
+import logo from "../../assets/poligon_grey.svg";
 
 export function Footer() {
     return (
@@ -10,5 +10,5 @@ export function Footer() {
             </BwBrand>
             <span>© 2023 - Todos os direitos reservados.</span>
         </Container>
-    )
-};
+    );
+}

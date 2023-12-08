@@ -7,4 +7,4 @@ export function Input({ label, id, ...rest }) {
             <input id={id} {...rest} />
         </Container>
     );
-};
+}

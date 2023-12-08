@@ -17,10 +17,10 @@ export function Menu({ toggleMenu, menuisvisible }) {
             </Header>
             <Content>
                 <SearchInput
-                id="search_in_menu"
-                icon={searchIcon}
-                alt="Lupa"
-                placeholder="Busque por pratos ou ingredientes"
+                    id="search_in_menu"
+                    icon={searchIcon}
+                    alt="Lupa"
+                    placeholder="Busque por pratos ou ingredientes"
                 />
                 <div>
                     <p onClick={signOut}>Sair</p>
@@ -29,5 +29,5 @@ export function Menu({ toggleMenu, menuisvisible }) {
             <Footer />
         </Container>
 
-    )
-};
+    );
+}

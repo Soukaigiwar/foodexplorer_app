@@ -8,18 +8,18 @@ import { Button } from "../../components/Button";
 
 
 export function SignIn() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const { signIn } = useAuth()
+    const { signIn } = useAuth();
 
     function handleSignIn() {
-        signIn({ email, password })
+        signIn({ email, password });
     }
 
     function handleKeyDown(e) {
         if (e.key === "Enter" && !password)
-            document.getElementById('text_password').focus();
+            document.getElementById("text_password").focus();
 
         if (e.key === "Enter" && password) handleSignIn();
     }
@@ -61,4 +61,4 @@ export function SignIn() {
             </Form>
         </Container>
     );
-};
+}

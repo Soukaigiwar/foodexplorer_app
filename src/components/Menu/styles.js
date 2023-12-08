@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { devices } from "../../styles/media";
 
 export const Container = styled.div`
@@ -18,7 +18,7 @@ export const Container = styled.div`
     "footer";
 
     transition: transform 0.5s ease-in-out;
-    transform: ${({ menuisvisible }) => (menuisvisible ? `translateX(0%)` : `translateX(100%)`)};
+    transform: ${({ menuisvisible }) => (menuisvisible ? "translateX(0%)" : "translateX(100%)")};
 
 
 
@@ -26,7 +26,7 @@ export const Container = styled.div`
     display: grid;
 
     }
-`
+`;
 
 export const Header = styled.div`
   grid-area: header;
@@ -62,7 +62,7 @@ export const Header = styled.div`
       color: white;
     }
   }
-`
+`;
 
 export const Content = styled.div`
     grid-area: content;
@@ -107,7 +107,7 @@ export const Content = styled.div`
         line-height: 140%;
 ;
     }
-`
+`;
 
 // export const Nav = styled.nav`
 //   margin-top: 36px;

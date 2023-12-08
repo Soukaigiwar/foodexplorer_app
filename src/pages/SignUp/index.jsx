@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { api } from "../../services/api"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 import { Container, Header, Form } from "./styles";
 import { Input } from "../../components/Input";
@@ -8,11 +8,11 @@ import { Button } from "../../components/Button";
 import logo from "../../assets/poligon.svg";
 
 export function SignUp() {
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     function handleSignUp() {
         if (!name || !email || !password)
@@ -20,25 +20,25 @@ export function SignUp() {
 
         api.post("/users", { name, email, password })
             .then(() => {
-                alert("Usuário cadastrado com sucesso.")
-                navigate("/")
+                alert("Usuário cadastrado com sucesso.");
+                navigate("/");
             })
             .catch(error => {
                 if (error.response) {
-                    alert(error.response.data.message)
+                    alert(error.response.data.message);
                 } else {
-                    alert("Não foi possível cadastrar.")
+                    alert("Não foi possível cadastrar.");
 
                 }
-            })
-    };
+            });
+    }
 
     function handleKeyDown(event) {
         if (event.key === "Enter" && !email && !password)
-            document.getElementById('text_email').focus();
+            document.getElementById("text_email").focus();
         
         if (event.key === "Enter" && email && !password)
-            document.getElementById('text_password').focus();
+            document.getElementById("text_password").focus();
 
         if (event.key === "Enter" && email && password) handleSignUp();
     }
@@ -89,4 +89,4 @@ export function SignUp() {
             </Form>
         </Container>
     );
-};
+}

@@ -4,7 +4,7 @@ import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
 import { Cart } from "../Cart";
-import { api } from "../../services/api.js";
+// import { api } from "../../services/api.js";
 
 import menuIcon from "../../assets/menu.svg";
 import orderBagIcon from "../../assets/order_bag.svg";
@@ -25,7 +25,7 @@ export function Header() {
 
     function toggleMenu() {
         setmenuIsVisible(!menuIsVisible);
-    };
+    }
 
     function handleOrder() {
 
@@ -34,7 +34,7 @@ export function Header() {
 
     function handleSignOut() {
         signOut();
-        navigate(`/`);
+        navigate("/");
     }
 
     return (
@@ -45,7 +45,7 @@ export function Header() {
                     <Menu menuisvisible={menuIsVisible} toggleMenu={toggleMenu}/>
                 )}
             </MenuIcon>
-            <Brand onClick={() => { navigate("/") }} />
+            <Brand onClick={() => { navigate("/"); }} />
             <Search>
                 <SearchInput
                     id="search"
@@ -60,7 +60,7 @@ export function Header() {
                 <span>{getQuantity()}</span>
                 <Button
                     icon={orderBagIcon}
-                    onClick={() => { navigate("/order") }}
+                    onClick={() => { navigate("/order"); }}
                 />
             </OrderBag>
             <OrderButton>
@@ -78,5 +78,5 @@ export function Header() {
                 />
             </SignOut>
         </Container>
-    )
-};
+    );
+}
