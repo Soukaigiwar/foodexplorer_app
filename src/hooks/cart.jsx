@@ -32,7 +32,13 @@ function CartProvider({ children }) {
     }
 
     function addItemToCart(item) {
+        const hasItemAndProcessingOrder = localStorage.getItem("@foodexplorer:status");
+        if (hasItemAndProcessingOrder && hasItemAndProcessingOrder !== "processing") {
+            clearCart();
+        }
+
         if (item && item.dish_id && item.quantity) {
+            localStorage.setItem("@foodexplorer:status", "processing");
             setNewItem(prevItems => {
                 const itemIndex = prevItems
                     .findIndex(prev => prev.dish_id === item.dish_id);
@@ -62,6 +68,10 @@ function CartProvider({ children }) {
         return;
     }
 
+    function clearCart() {
+        setNewItem([]);
+    }
+
     function cacheToCart(items) {
         items.map((item) => {
             setNewItem(...items, item);
@@ -85,6 +95,10 @@ function CartProvider({ children }) {
 
     useEffect(() => {
         const cartCache = loadCartFromBrowserCache();
+        const statusCache = localStorage.getItem("@foodexplorer:status");
+        if (!statusCache) {
+            // localStorage.setItem("@foodexplorer:status", "processing");
+        }
 
         if (cartCache && cartCache !== "") {
             setNewItem([]);
