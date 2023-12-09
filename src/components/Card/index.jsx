@@ -66,7 +66,6 @@ export function Card({ data }) {
                     icon={""}
                     title="incluir"
                     onClick={ addItem }
-                    
                 />
             </div>
         </Container>

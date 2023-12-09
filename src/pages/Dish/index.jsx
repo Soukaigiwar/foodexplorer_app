@@ -17,9 +17,11 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { handleZeros } from "../../utils/string";
 import { handleQuantity } from "../../utils/item.js";
+import { useCart } from "../../hooks/cart.jsx";
 
 export function Dish() {
     const params = useParams();
+    const { addItemToCart } = useCart();
 
     const [data, setData] = useState({});
     const [ingredients, setIngredients] = useState([]);
@@ -34,6 +36,23 @@ export function Dish() {
 
         if ((e.key === "-" || e.key === "ArrowDown" || e.key === "ArrowLeft") && quantity > 1)
             setQuantity(handleQuantity(quantity, -1));
+    }
+
+    function addItem(event) {
+        event.preventDefault();
+
+        const item = {
+            dish_id: data.id,
+            title: data.title,
+            price: data.price,
+            quantity,
+            image_title: data.image_title,
+            image_filename: data.image_filename,
+        };
+
+        console.log("cart > item:", item);
+
+        addItemToCart(item);
     }
 
     useEffect(() => {
@@ -104,7 +123,9 @@ export function Dish() {
                             </div>
                             <Button
                                 icon={orderBag}
-                                title={`pedir ∙ R$ ${handleZeros(String(data.price * quantity))}`} />
+                                title={`pedir ∙ R$ ${handleZeros(String(data.price * quantity))}`}
+                                onClick={ addItem }
+                            />
                         </div>
                     </div>
                 </div>

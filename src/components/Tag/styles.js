@@ -7,6 +7,7 @@ export const Container = styled.div`
     padding: 0.4rem 0.8rem;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.COLORS.BG_1000};
+    cursor: default;
 
     > div {
         text-align: center;
