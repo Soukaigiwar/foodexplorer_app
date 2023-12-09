@@ -12,10 +12,7 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
-    // 'react-refresh/only-export-components': [
-    //   'warn',
-    //   { allowConstantExport: false },
-    // ],
+    "react-hooks/exhaustive-deps": "off",
     "indent": ["error", 4],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],

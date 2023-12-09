@@ -34,13 +34,11 @@ export function OrderResume() {
     const handlePayment = async (method = "pix") => {
         if (method && method === "pix") {
             await payWithPix();
-            console.log(paymentStatus);
         } else {
             if (!cardNumber) return alert("Preencha o número do Cartão de Crédito.");
             if (!cardCvcNumber)
                 return alert("Preencha o código CVC do Cartão de Crédito.");
             await payWithCard();
-            console.log(paymentStatus);
         }
 
         console.log(paymentStatus);
@@ -159,7 +157,7 @@ export function OrderResume() {
         }
 
         newStatus();
-    }, );
+    }, []);
 
     return (
         <Container>
@@ -170,7 +168,7 @@ export function OrderResume() {
                     <div className="item_list">
                         {items && items.length > 0 ? (
                             items.map((item, index) => (
-                                <OrderCard key={String(index)} data={item} />
+                                <OrderCard key={String(index)} data={item} paymentStatus={paymentStatus} />
                             ))
                         ) : (
                             <h3>Carrinho vazio.</h3>
@@ -209,16 +207,16 @@ export function OrderResume() {
                                 </div>
                                 <div className="payment_content">
                                     {paymentMethod === "pix" &&
-                                            paymentStatus === "processing" &&
-                                            (<div className="payment_pix_area">
-                                                <img
-                                                    src={qrcode}
-                                                    alt="qrcode"
-                                                    onClick={() => {
-                                                        handlePayment("pix");
-                                                    }}
-                                                />
-                                            </div>)
+                                        paymentStatus === "processing" &&
+                                        (<div className="payment_pix_area">
+                                            <img
+                                                src={qrcode}
+                                                alt="qrcode"
+                                                onClick={() => {
+                                                    handlePayment("pix");
+                                                }}
+                                            />
+                                        </div>)
                                     }
 
                                     {paymentMethod === "credit" &&

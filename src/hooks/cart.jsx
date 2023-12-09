@@ -72,6 +72,11 @@ function CartProvider({ children }) {
         setNewItem([]);
     }
 
+    function deleteItem(dish_id) {
+        console.log(newItem);
+        setNewItem(newItem.filter(item => item.dish_id !== dish_id));
+    }
+
     function cacheToCart(items) {
         items.map((item) => {
             setNewItem(...items, item);
@@ -111,6 +116,7 @@ function CartProvider({ children }) {
         <CartContext.Provider value={{
             loadCartFromBrowserCache,
             addItemToCart,
+            deleteItem,
             getQuantity,
             showItem,
         }}

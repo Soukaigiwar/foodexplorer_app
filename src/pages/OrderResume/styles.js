@@ -216,25 +216,13 @@ export const Content = styled.div`
 
                     > p {
                         font-family: "Roboto";
-                        font-size: 2.4rem;
+                        font-size: 2.3rem;
                         font-style: normal;
                         font-weight: 700;
                         line-height: normal;
                         margin-top: 3.7rem;
                     }
                 }
-
-                /* .waiting_payment_area {
-                    display: ${({ status }) => status === "pending" ? "flex" : "none"};
-                }
-
-                .payment_done_area {
-                    display: ${({ status }) => status === "paid" ? "flex" : "none"};
-                }
-                
-                .delivery_done_area {
-                    display: ${({ status }) => status === "delivered" ? "flex" : "none"};
-                } */
             }
         }
 `;
