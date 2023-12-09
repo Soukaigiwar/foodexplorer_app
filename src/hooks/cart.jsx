@@ -6,16 +6,23 @@ function CartProvider({ children }) {
     const [newItem, setNewItem] = useState([]);
 
     function loadCartFromBrowserCache() {
-        const cartCache = JSON.parse(localStorage.getItem("@foodexplorer:cart"));
+        let cartCache = localStorage.getItem("@foodexplorer:cart");
 
-        if (!cartCache)
-            return null;
+        if (cartCache) {
+            cartCache = JSON.parse(cartCache);
+
+            if (cartCache.length > 0) {
+                return cartCache;
+            } else { 
+                console.log("Não há itens no carrinho.");
+            }
+        }
 
         return cartCache;
     }
 
     function getQuantity() {
-        if (newItem.length === 0) {
+        if (handleLocalStorage() && newItem && newItem.length === 0) {
             return 0;
         }
 
@@ -73,7 +80,14 @@ function CartProvider({ children }) {
     }
 
     function deleteItem(dish_id) {
-        console.log(newItem);
+        console.log(newItem.length);
+        if (newItem.length === 1) {
+            setNewItem([]);
+            localStorage.removeItem("@foodexplorer:cart");
+
+            return;
+        }
+
         setNewItem(newItem.filter(item => item.dish_id !== dish_id));
     }
 
