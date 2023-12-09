@@ -33,8 +33,8 @@ export function Header() {
     }
 
     function handleSignOut() {
-        signOut();
         navigate("/");
+        signOut();
     }
 
     return (

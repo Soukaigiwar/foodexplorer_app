@@ -20,14 +20,20 @@ export function Carrousel({ title, category }) {
     const [dishes, setDishes] = useState([]);
 
     function handleWindowResize() {
-        if (window.innerWidth < 428) {
+        const width = window.innerWidth;
+        
+        setNavigationAvailable(false);
+        setSlidesInCarrousel(width / 225);
+        setSpaceBetweenCards(16);
+        
+
+        if (width < 429) {
             setNavigationAvailable(false);
-            setSlidesInCarrousel(1.9);
-            setSpaceBetweenCards(16);
-        } else {
+        } else if (width > 768) {
+            
             setNavigationAvailable(true);
-            setSlidesInCarrousel(3.5);
-            setSpaceBetweenCards(27);
+            setSlidesInCarrousel(width / 390);
+            setSpaceBetweenCards(20);
         }
     }
 

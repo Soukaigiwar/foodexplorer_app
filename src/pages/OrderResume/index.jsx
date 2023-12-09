@@ -159,6 +159,10 @@ export function OrderResume() {
         newStatus();
     }, []);
 
+    const proxima = () => {
+        console.log("proxima tela");
+    };
+
     return (
         <Container>
             <StyleSheetManager shouldForwardProp={isPropValid}>
@@ -179,6 +183,15 @@ export function OrderResume() {
                     ) : (
                         ""
                     )}
+
+                    {total ? (
+                        <div className="next_button">
+                            <Button
+                                title="Avançar"
+                                onClick={proxima}
+                            />
+                        </div>
+                    ) : ("")}
 
                     {items && items.length > 0 && (
                         <div className="payment_area">

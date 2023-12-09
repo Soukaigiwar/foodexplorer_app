@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container, Price } from "./styles";
 import dishImage from "../../assets/ravanello_200.png";
 import { TextButton } from "../TextButton";
 import { handleZeros } from "../../utils/string";
@@ -17,7 +17,7 @@ export function OrderCard({ data, paymentStatus, ...rest }) {
             <div>
                 <p>
                     {data.quantity} x {data.title}
-                    <span>R$ {handleZeros(data.quantity * data.price)}</span>
+                    <Price>R$ {handleZeros(data.quantity * data.price)}</Price>
                 </p>
                 {paymentStatus === "processing" &&
                     <TextButton
