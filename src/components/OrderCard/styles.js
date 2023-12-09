@@ -31,7 +31,7 @@ export const Container = styled.div`
         font-family: "Poppins", sans-serif;
         font-size: 2rem;
         padding: 1.6rem 0;
-        gap: 3.4rem;
+        gap: 1.3rem;
 
         > img {
             width: 7.7rem;
