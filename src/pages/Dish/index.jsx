@@ -50,8 +50,6 @@ export function Dish() {
             image_filename: data.image_filename,
         };
 
-        console.log("cart > item:", item);
-
         addItemToCart(item);
     }
 

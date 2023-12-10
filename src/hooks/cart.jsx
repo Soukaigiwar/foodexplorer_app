@@ -80,7 +80,6 @@ function CartProvider({ children }) {
     }
 
     function deleteItem(dish_id) {
-        console.log(newItem.length);
         if (newItem.length === 1) {
             setNewItem([]);
             localStorage.removeItem("@foodexplorer:cart");

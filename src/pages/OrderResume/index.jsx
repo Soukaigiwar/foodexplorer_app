@@ -41,7 +41,6 @@ export function OrderResume() {
             await payWithCard();
         }
 
-        console.log(paymentStatus);
         handleNavigationToHome();
     };
 
@@ -101,10 +100,7 @@ export function OrderResume() {
 
             const response = await api.get("/orders/last");
 
-            console.log("statusCache:", statusCache);
-
             if (cacheData) {
-                console.log("tem cache do navegador");
                 setTotal(
                     cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
                 );
@@ -112,13 +108,9 @@ export function OrderResume() {
                 setItems(cacheData);
             }
 
-            if (
-                (cacheData &&
-          response.data &&
-          response.data[0].status === "processing") ||
-        (cacheData && !response.data)
-            ) {
-                console.log("tem cache do navegador e status processing ou nenhum bd");
+            if ((cacheData && response.data &&
+                    response.data[0].status === "processing") ||
+                    (cacheData && !response.data)) {
                 setTotal(
                     cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
                 );
@@ -126,12 +118,8 @@ export function OrderResume() {
                 setItems(cacheData);
             }
 
-            if (
-                !cacheData &&
-        response.data &&
-        response.data[0].status === "processing"
-            ) {
-                console.log("sem cache navegador e bd status processing");
+            if (!cacheData && response.data &&
+                    response.data[0].status === "processing") {
                 setTotal(
                     response.data.reduce(
                         (sum, dish) => sum + dish.price * dish.quantity,
@@ -139,7 +127,6 @@ export function OrderResume() {
                     )
                 );
                 setPaymentStatus(statusCache);
-                //setOrderInclued(true);
                 setItems(response.data);
 
                 for (let item of response.data) {
@@ -150,14 +137,6 @@ export function OrderResume() {
 
         fetchItems();
     }, [addItemToCart, loadCartFromBrowserCache]);
-
-    // useEffect(() => {
-    //     function newStatus() {
-    //         console.log(paymentStatus);
-    //     }
-
-    //     newStatus();
-    // }, []);
 
     const proxima = () => {
         console.log("proxima tela");

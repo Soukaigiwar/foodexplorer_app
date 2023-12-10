@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import styled from "styled-components";
 import { devices } from "../../styles/media";
 
@@ -198,14 +199,17 @@ export const Content = styled.div`
                         border-right: 1px solid ${({ theme }) => theme.COLORS.FG_600};
                         border-radius: 8px 0px 0px 0px;
                         background-color: ${({ method, theme }) =>
-                            method === "pix" ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
+        method === "pix" ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
                     }
 
                     /* aba do credito */
                     .credit {
                         border-radius: 0px 8px 0px 0px;
-                        background-color: ${({ method, theme }) =>
-                            method === "credit" ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
+                        background-color:
+                            ${({ method, theme }) => method === "credit"
+                                ? theme.COLORS.BG_800
+                                : theme.COLORS.BG_400
+                            };
                     }
 
                     > .payment_content {
