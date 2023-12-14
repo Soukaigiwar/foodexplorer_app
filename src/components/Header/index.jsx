@@ -4,7 +4,6 @@ import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
 import { Cart } from "../Cart";
-// import { api } from "../../services/api.js";
 
 import menuIcon from "../../assets/menu.svg";
 import orderBagIcon from "../../assets/order_bag.svg";
@@ -18,9 +17,10 @@ import { useNavigate } from "react-router-dom";
 
 export function Header() {
     const { signOut } = useAuth();
+    
     const { getQuantity } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
-    
+
     const navigate = useNavigate();
 
     function toggleMenu() {

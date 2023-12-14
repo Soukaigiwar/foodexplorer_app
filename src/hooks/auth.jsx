@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 
 export const AuthContext = createContext({});
@@ -10,13 +9,22 @@ function AuthProvider({ children }) {
     async function signIn({ email, password }) {
         try {
             const response = await api.post("/sessions", { email, password });
-            const { user, token } = response.data;
-            
-            localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+            const { user, role, token } = response.data;
+
+            localStorage.setItem("@foodexplorer:user", JSON.stringify(
+                {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    avatar: user.avatar
+                }
+            ));
+
             localStorage.setItem("@foodexplorer:token", token);
-            
+
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-            setData({ user, token });
+
+            setData({ user, role, token });
         } catch (error) {
             if (error.response) {
                 alert(error.response.data.message);
@@ -64,6 +72,7 @@ function AuthProvider({ children }) {
     useEffect(() => {
         const token = localStorage.getItem("@foodexplorer:token");
         const user = localStorage.getItem("@foodexplorer:user");
+        
 
         if (token) {
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -80,7 +89,8 @@ function AuthProvider({ children }) {
             signIn,
             signOut,
             updateProfile,
-            user: data.user
+            user: data.user,
+            role: data.role
         }}
         >
             {children}

@@ -4,8 +4,9 @@ import { devices } from "../../styles/media";
 export const Container = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     width: 28.7rem;
+    flex-wrap: nowrap;
     cursor: pointer;
 
     img {
@@ -20,7 +21,21 @@ export const Container = styled.div`
         font-weight: 700;
         line-height: normal;
         color: ${({ theme }) => theme.COLORS.FG_100};
+        position: relative;
+
+        > span {
+            font-family: "Roboto";
+            font-size: 1.2rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 160%;
+            position: absolute;
+            top: 2rem;
+            right: 0;
+            color: ${({ theme }) => theme.COLORS.CAKE_200};
+        }
     }
+
 
     @media (${devices.desktop}) {
         min-width: 16.0rem;
