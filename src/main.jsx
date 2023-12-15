@@ -7,6 +7,7 @@ import dark from "./styles/dark";
 // import light from "./styles/light";
 
 import { AuthProvider } from "./hooks/auth";
+import { RoleProvider } from "./hooks/role";
 
 import { Routes } from "./routes";
 import { CartProvider } from "./hooks/cart";
@@ -17,9 +18,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <ThemeProvider theme={dark}>
             <GlobalStyles />
             <AuthProvider>
-                <CartProvider>
-                    <Routes />
-                </CartProvider>
+                <RoleProvider>
+                    <CartProvider>
+                        <Routes />
+                    </CartProvider>
+                </RoleProvider>
             </AuthProvider>
         </ThemeProvider>
     </React.StrictMode>,

@@ -9,17 +9,16 @@ import menuIcon from "../../assets/menu.svg";
 import orderBagIcon from "../../assets/order_bag.svg";
 import signOutIcon from "../../assets/sign_out.svg";
 import searchIcon from "../../assets/search_icon.svg";
-
-import { useAuth } from "../../hooks/auth";
+import { useAuth } from "../../hooks/auth.jsx";
 import { useCart } from "../../hooks/cart.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function Header() {
-    const { signOut } = useAuth();
-    
-    const { getQuantity } = useCart();
     const [menuIsVisible, setmenuIsVisible] = useState(false);
+
+    const { signOut } = useAuth();
+    const { getQuantity } = useCart();
 
     const navigate = useNavigate();
 

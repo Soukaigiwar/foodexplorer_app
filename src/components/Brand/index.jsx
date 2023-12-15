@@ -1,26 +1,31 @@
 import { Container } from "./styles";
-import { useState, useEffect } from "react";
 import logo from "../../assets/poligon.svg";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/auth";
+import { useRole } from "../../hooks/role";
+import { useState, useEffect } from "react";
 
 export function Brand() {
-    const [isAdmin, setIsAdmin] = useState(false);
-    const navigate = useNavigate();
-    const { role } = useAuth();
+    const [isAdminRole, setIsAdminRole] = useState(false);
+    const { isAdmin } = useRole();
 
+    const navigate = useNavigate();
+    
     useEffect(() => {
-        setIsAdmin(() => {
-            if (role && role === "admin") return true;
-        });
+        const checkIfUserRoleIsAdmin = async () => {
+            const result = await isAdmin();
+            setIsAdminRole(result);
+        };
+    
+        checkIfUserRoleIsAdmin();
     }, []);
+
 
     return (
         <Container onClick={() => navigate("/")}>
             <img src={logo} alt="logomarca do food explorer" />
             <h1>
                 food explorer
-                {isAdmin &&
+                {isAdminRole &&
                     <span>admin</span>
                 }
             </h1>

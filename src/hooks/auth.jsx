@@ -5,7 +5,7 @@ export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
     const [data, setData] = useState({});
-    
+
     async function signIn({ email, password }) {
         try {
             const response = await api.post("/sessions", { email, password });
@@ -32,6 +32,8 @@ function AuthProvider({ children }) {
                 alert("Não foi possível entrar.");
             }
         }
+
+        return;
     }
 
     function signOut() {
@@ -72,7 +74,6 @@ function AuthProvider({ children }) {
     useEffect(() => {
         const token = localStorage.getItem("@foodexplorer:token");
         const user = localStorage.getItem("@foodexplorer:user");
-        
 
         if (token) {
             api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -89,8 +90,8 @@ function AuthProvider({ children }) {
             signIn,
             signOut,
             updateProfile,
-            user: data.user,
-            role: data.role
+            // isAdmin,
+            user: data.user
         }}
         >
             {children}
