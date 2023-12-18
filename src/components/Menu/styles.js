@@ -51,6 +51,7 @@ export const Header = styled.div`
     img {
         color: white;
         width: 18px;
+        cursor: pointer;
     }
     p {
         font-family: 'Roboto';
@@ -105,7 +106,7 @@ export const Content = styled.div`
         font-style: normal;
         font-weight: 300;
         line-height: 140%;
-;
+        cursor: pointer;
     }
 `;
 
