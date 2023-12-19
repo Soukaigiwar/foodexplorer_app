@@ -42,6 +42,7 @@ export const Content = styled.div`
             font-size: 2rem;
             font-style: normal;
             font-weight: 500;
+            color: ${({ theme }) => theme.COLORS.FG_300};
         }
 
         .total {
