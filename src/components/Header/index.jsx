@@ -3,7 +3,6 @@ import { Brand } from "../Brand";
 import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
-import { Cart } from "../Cart";
 
 import menuIcon from "../../assets/menu.svg";
 import orderBagIcon from "../../assets/order_bag.svg";
@@ -54,7 +53,7 @@ export function Header() {
                     placeholder="Busque por pratos ou ingredientes"
                 />
             </Search>
-            <Cart />
+            
             <OrderBag>
                 <span>{getQuantity()}</span>
                 <Button

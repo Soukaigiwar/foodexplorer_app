@@ -28,6 +28,8 @@ export function OrderResume() {
     const [cardNumber, setCardNumber] = useState("");
     const [cardExpireDate, setCardExpireDate] = useState(new Date());
     const [cardCvcNumber, setCardCvcNumber] = useState("");
+    const [paymentScreenVisible, setPaymentScreenVisible] = useState(true);
+    const [listAreaVisible, setListAreaVisible] = useState(true);
     const { loadCartFromBrowserCache, addItemToCart } = useCart();
     const navigate = useNavigate();
 
@@ -86,6 +88,11 @@ export function OrderResume() {
         navigate("/");
     };
 
+    const togglePaymentScreen = () => {
+        setPaymentScreenVisible(true);
+        setListAreaVisible(!listAreaVisible);
+    };
+
     useEffect(() => {
         async function fetchItems() {
             const cacheData = await loadCartFromBrowserCache();
@@ -138,71 +145,72 @@ export function OrderResume() {
         fetchItems();
     }, [addItemToCart, loadCartFromBrowserCache]);
 
-    const proxima = () => {
-        console.log("proxima tela");
-    };
-
     return (
         <Container>
             <StyleSheetManager shouldForwardProp={isPropValid}>
                 <Header />
                 <Content method={paymentMethod} status={paymentStatus}>
-                    <div className="left_side">
-                        <div className="title">Meu Pedido</div>
-                        <div className="item_list">
-                            {items && items.length > 0 ? (
-                                items.map((item, index) => (
-                                    <OrderCard key={String(index)} data={item} paymentStatus={paymentStatus} />
-                                ))
-                            ) : (
-                                <h3>Carrinho vazio.</h3>
+                    {listAreaVisible && (
+                        <div className="item_list_area">
+                            <div className="title">Meu Pedido</div>
+                            <div className="item_list">
+                                {items && items.length > 0 ? (
+                                    items.map((item, index) => (
+                                        <OrderCard key={String(index)} data={item} paymentStatus={paymentStatus} />
+                                    ))
+                                ) : (
+                                    <h3>Carrinho vazio.</h3>
+                                )}
+                            </div>
+
+                            {total && (
+                                <div className="total">
+                                    <h3>Total: R$ {handleZeros(total)}</h3>
+                                </div>
                             )}
-                        </div>
+                    
 
-                        {total && (
-                            <div className="total">
-                                <h3>Total: R$ {handleZeros(total)}</h3>
-                            </div>
-                        )}
-
-                        {items && items.length > 0 && (
-                            <div className="next_button">
-                                <Button
-                                    title="Avançar"
-                                    onClick={proxima}
-                                />
-                            </div>
-                        )}
-                        
-                    </div>
-                    <div className="right_side">
-                        {items && items.length > 0 && (
-                            <div className="payment_area">
-                                <h2>Pagamento</h2>
-
-                                <div className="payment_method" method={paymentMethod}>
-                                    <div>
-                                        <div
-                                            className={"pix"}
-                                            onClick={() => {
-                                                setPaymentMethod("pix");
-                                            }}
-                                        >
-                                            <img src={pixIcon} alt="Logo pagamento Pix" />
-                                            <span>pix</span>
-                                        </div>
-                                        <div
-                                            className={"credit"}
-                                            onClick={() => {
-                                                setPaymentMethod("credit");
-                                            }}
-                                        >
-                                            <img src={creditIcon} alt="Logo pagamento Crédito" />
-                                            <span>cartão</span>
-                                        </div>
+                            {items && items.length > 0 && (
+                                paymentScreenVisible && (
+                                    <div className="next_button">
+                                        <Button
+                                            title="Avançar"
+                                            onClick={togglePaymentScreen}
+                                        />
                                     </div>
-                                    <div className="payment_content">
-                                        {paymentMethod === "pix" &&
+                                )
+                            )}
+                        
+                        </div>
+                    )}
+                    {paymentScreenVisible && (
+                        <div className="payment_method_area">
+                            {items && items.length > 0 && (
+                                <div className="payment_area">
+                                    <h2>Pagamento</h2>
+                                    <div className="payment_method" method={paymentMethod}>
+                                        <div>
+                                            <div
+                                                className={"pix"}
+                                                onClick={() => {
+                                                    setPaymentMethod("pix");
+                                                }}
+                                            >
+                                                <img src={pixIcon} alt="Logo pagamento Pix" />
+                                                <span>pix</span>
+                                            </div>
+                                            <div
+                                                className={"credit"}
+                                                onClick={() => {
+                                                    setPaymentMethod("credit");
+                                                }}
+                                            >
+                                                <img src={creditIcon} alt="Logo pagamento Crédito" />
+                                                <span>cartão</span>
+                                            </div>
+                                        </div>
+                                        <div className="payment_content">
+                                            {paymentMethod === "pix" &&
                                         paymentStatus === "processing" &&
                                         (<div className="payment_pix_area">
                                             <img
@@ -213,9 +221,9 @@ export function OrderResume() {
                                                 }}
                                             />
                                         </div>)
-                                        }
+                                            }
 
-                                        {paymentMethod === "credit" &&
+                                            {paymentMethod === "credit" &&
                                             paymentStatus === "processing" &&
                                             (<form>
                                                 <fieldset>
@@ -266,33 +274,34 @@ export function OrderResume() {
                                                     />
                                                 </fieldset>
                                             </form>)
-                                        }
+                                            }
 
-                                        {paymentStatus === "paid" && (
-                                            <div className="payment_done_area">
-                                                <img src={clockIcon} alt="relógio" />
-                                                <p>Pagamento aprovado!</p>
-                                            </div>
-                                        )}
+                                            {paymentStatus === "paid" && (
+                                                <div className="payment_done_area">
+                                                    <img src={clockIcon} alt="relógio" />
+                                                    <p>Pagamento aprovado!</p>
+                                                </div>
+                                            )}
 
-                                        {paymentStatus === "pending" && (
-                                            <div className="waiting_payment_area">
-                                                <img src={clockIcon} alt="relógio" />
-                                                <p>Aguardando pagamento no caixa</p>
-                                            </div>
-                                        )}
+                                            {paymentStatus === "pending" && (
+                                                <div className="waiting_payment_area">
+                                                    <img src={clockIcon} alt="relógio" />
+                                                    <p>Aguardando pagamento no caixa</p>
+                                                </div>
+                                            )}
 
-                                        {paymentStatus === "delivered" && (
-                                            <div className="delivery_done_area">
-                                                <img src={forkIcon} alt="relógio" />
-                                                <p>Pedido entregue!</p>
-                                            </div>
-                                        )}
+                                            {paymentStatus === "delivered" && (
+                                                <div className="delivery_done_area">
+                                                    <img src={forkIcon} alt="relógio" />
+                                                    <p>Pedido entregue!</p>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
+                    )}
                 </Content>
                 <Footer />
             </StyleSheetManager>

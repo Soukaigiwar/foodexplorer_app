@@ -4,7 +4,7 @@ import { devices } from "../../styles/media";
 export const Container = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     width: 28.7rem;
     flex-wrap: nowrap;
     cursor: pointer;
