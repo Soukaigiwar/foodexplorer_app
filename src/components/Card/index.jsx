@@ -53,40 +53,44 @@ export function Card({ data }) {
     return (
         <Container>
             <div className="favorite">
-                <img
-                    src={isAdminRole ?
-                        edit : favorite
-                    } alt=""
-                />
+                {isAdminRole ? (
+                    <a href="admin_edit">
+                        <img src={edit} alt="" />
+                    </a>
+                ) : (
+                    <img src={favorite} alt="" />
+                )}
             </div>
             <img src={dishImage} alt="" onClick={() => { handleDetails(data.id); }} />
             <h2 onClick={() => { handleDetails(data.id); }}>{data.title} &gt;</h2>
             <p onClick={() => { handleDetails(data.id); }}>{data.description}</p>
             <h3 onClick={() => { handleDetails(data.id); }}>R$ {handleZeros(data.price)}</h3>
-            <div className="actions">
-                <div>
-                    <TextButton
-                        icon={minus}
-                        alt="Diminuir quantidade."
-                        onClick={() => { setQuantity(handleQuantity(quantity, -1)); }}
-                    />
-                    <span>
-                        {quantity.toString().padStart(2, 0)}
-                    </span>
-                    <TextButton
-                        icon={plus}
-                        alt="Aumentar quantidade."
-                        onClick={() => { setQuantity(handleQuantity(quantity, 1)); }}
+            {!isAdminRole && (
+                <div className="actions">
+                    <div>
+                        <TextButton
+                            icon={minus}
+                            alt="Diminuir quantidade."
+                            onClick={() => { setQuantity(handleQuantity(quantity, -1)); }}
+                        />
+                        <span>
+                            {quantity.toString().padStart(2, 0)}
+                        </span>
+                        <TextButton
+                            icon={plus}
+                            alt="Aumentar quantidade."
+                            onClick={() => { setQuantity(handleQuantity(quantity, 1)); }}
 
+                        />
+                    </div>
+                    <Button
+                        className="button"
+                        icon={""}
+                        title="incluir"
+                        onClick={addItem}
                     />
                 </div>
-                <Button
-                    className="button"
-                    icon={""}
-                    title="incluir"
-                    onClick={ addItem }
-                />
-            </div>
+            )}
         </Container>
     );
 }
