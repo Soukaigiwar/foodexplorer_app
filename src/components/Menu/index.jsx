@@ -32,6 +32,9 @@ export function Menu({ toggleMenu, menuisvisible }) {
                 />
                 <div>
                     <p onClick={() => { handleSignOut(); }}>
+                        Novo Prato
+                    </p>
+                    <p onClick={() => { handleSignOut(); }}>
                         Sair
                     </p>
                 </div>

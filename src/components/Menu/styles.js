@@ -20,8 +20,6 @@ export const Container = styled.div`
     transition: transform 0.5s ease-in-out;
     transform: ${({ menuisvisible }) => (menuisvisible ? "translateX(0%)" : "translateX(100%)")};
 
-
-
     @media (${devices.desktop}) {
     display: grid;
 
@@ -59,8 +57,7 @@ export const Header = styled.div`
         font-weight: 400;
         font-size: 2.11rem;
         line-height: 25px;
-
-      color: white;
+        color: white;
     }
   }
 `;
@@ -95,10 +92,10 @@ export const Content = styled.div`
         margin-top: 3.2rem;
         height: 5.4rem;
         width: 100%;
-        border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_1000};
-
+        
     }
     div p {
+        border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_1000};
         padding: 10px;
         color: ${({ theme }) => theme.COLORS.FG_100};
         font-family: 'Poppins';
@@ -109,43 +106,3 @@ export const Content = styled.div`
         cursor: pointer;
     }
 `;
-
-// export const Nav = styled.nav`
-//   margin-top: 36px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   gap: 10px;
-
-//   > button {
-//     font-family: 'Poppins';
-//     font-style: normal;
-//     font-weight: 300;
-//     font-size: 24px;
-//     line-height: 140%;
-
-//     padding: 10px;
-//     width: 100%;
-//     border-bottom: 1px solid ${({ theme }) => theme.COLORS.BG_1000};
-
-//     color: ${({ theme }) => theme.COLORS.FG_300};
-
-//     background: none;
-//     border: none;
-//     text-align: left;
-//   }
-// `
-
-// export const NavLink = styled(Link)`
-//   font-family: 'Poppins';
-//   font-style: normal;
-//   font-weight: 300;
-//   font-size: 24px;
-//   line-height: 140%;
-
-//   padding: 10px;
-//   width: 100%;
-//   border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
-
-//   color: ${({ theme }) => theme.COLORS.LIGHT_300};
-// `
