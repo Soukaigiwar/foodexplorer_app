@@ -68,13 +68,6 @@ export function Header() {
                     placeholder="Busque por pratos ou ingredientes"
                 />
             </Search>
-            {/* <OrderBag>
-                <span>{getQuantity()}</span>
-                <Button
-                    icon={orderBagIcon}
-                    onClick={() => { navigate("/order"); }}
-                />
-            </OrderBag> */}
             {isAdminRole ? (
                 <OrderButton>
                     <Button
@@ -83,13 +76,22 @@ export function Header() {
                     />
                 </OrderButton>
             ) : (
-                <OrderButton>
-                    <Button
-                        icon={orderBagIcon}
-                        title={"Pedidos (" + getQuantity() + ")"}
-                        onClick={handleOrder}
-                    />
-                </OrderButton>
+                <>
+                    <OrderBag>
+                        <span>{getQuantity()}</span>
+                        <Button
+                            icon={orderBagIcon}
+                            onClick={() => { navigate("/order"); }}
+                        />
+                    </OrderBag>
+                    <OrderButton>
+                        <Button
+                            icon={orderBagIcon}
+                            title={"Pedidos (" + getQuantity() + ")"}
+                            onClick={handleOrder}
+                        />
+                    </OrderButton>
+                </>
             )}
             <SignOut>
                 <img
