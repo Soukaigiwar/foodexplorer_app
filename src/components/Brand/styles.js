@@ -5,7 +5,8 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28.7rem;
+    /* width: 28.7rem; */
+    /* width: 100%; */
     flex-wrap: nowrap;
     cursor: pointer;
 
@@ -29,9 +30,7 @@ export const Container = styled.div`
             font-style: normal;
             font-weight: 400;
             line-height: 160%;
-            position: absolute;
-            top: 2rem;
-            right: 0;
+            margin-left: 0.8rem;
             color: ${({ theme }) => theme.COLORS.CAKE_200};
         }
     }
@@ -39,5 +38,15 @@ export const Container = styled.div`
 
     @media (${devices.desktop}) {
         min-width: 16.0rem;
+
+        h1 {
+            position: unset;
+
+            > span {
+                position: absolute;
+                top: 2rem;
+                right: 0;
+            }
+        }
     }
 `;
