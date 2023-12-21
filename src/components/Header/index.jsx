@@ -10,12 +10,15 @@ import signOutIcon from "../../assets/sign_out.svg";
 import searchIcon from "../../assets/search_icon.svg";
 import { useAuth } from "../../hooks/auth.jsx";
 import { useCart } from "../../hooks/cart.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRole } from "../../hooks/role";
 
 export function Header() {
     const [menuIsVisible, setmenuIsVisible] = useState(false);
+    const [isAdminRole, setIsAdminRole] = useState(false);
 
+    const { isAdmin } = useRole();
     const { signOut } = useAuth();
     const { getQuantity } = useCart();
 
@@ -26,7 +29,6 @@ export function Header() {
     }
 
     function handleOrder() {
-
         navigate("/order");
     }
 
@@ -34,6 +36,19 @@ export function Header() {
         navigate("/");
         signOut();
     }
+
+    function handleAddNewDish() {
+        navigate("/add_new_dish");
+    }
+
+    useEffect(() => {
+        const checkIfUserRoleIsAdmin = async () => {
+            const result = await isAdmin();
+            setIsAdminRole(result);
+        };
+    
+        checkIfUserRoleIsAdmin();
+    }, []);
 
     return (
         <Container>
@@ -53,21 +68,29 @@ export function Header() {
                     placeholder="Busque por pratos ou ingredientes"
                 />
             </Search>
-            
-            <OrderBag>
+            {/* <OrderBag>
                 <span>{getQuantity()}</span>
                 <Button
                     icon={orderBagIcon}
                     onClick={() => { navigate("/order"); }}
                 />
-            </OrderBag>
-            <OrderButton>
-                <Button
-                    icon={orderBagIcon}
-                    title={"Pedidos (" + getQuantity() + ")"}
-                    onClick={handleOrder}
-                />
-            </OrderButton>
+            </OrderBag> */}
+            {isAdminRole ? (
+                <OrderButton>
+                    <Button
+                        title={"Novo Prato"}
+                        onClick={handleAddNewDish}
+                    />
+                </OrderButton>
+            ) : (
+                <OrderButton>
+                    <Button
+                        icon={orderBagIcon}
+                        title={"Pedidos (" + getQuantity() + ")"}
+                        onClick={handleOrder}
+                    />
+                </OrderButton>
+            )}
             <SignOut>
                 <img
                     src={signOutIcon}
