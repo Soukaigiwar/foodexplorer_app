@@ -5,15 +5,32 @@ import closeIcon from "../../assets/close.svg";
 import { Footer } from "../Footer";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useRole } from "../../hooks/role";
 
 export function Menu({ toggleMenu, menuisvisible }) {
     const { signOut } = useAuth();
     const navigate = useNavigate();
+    const { isAdmin } = useRole();
+    const [isAdminRole, setIsAdminRole] = useState(false);
 
     const handleSignOut = () => {
         navigate("/");
         signOut();
     };
+
+    const handleAddNewDish = () => {
+        navigate("/add_new_dish");
+    };
+
+    useEffect(() => {
+        const checkIfUserRoleIsAdmin = async () => {
+            const result = await isAdmin();
+            setIsAdminRole(result);
+        };
+    
+        checkIfUserRoleIsAdmin();
+    }, []);
 
     return (
         <Container $menuisvisible={menuisvisible.toString()}>
@@ -31,12 +48,20 @@ export function Menu({ toggleMenu, menuisvisible }) {
                     placeholder="Busque por pratos ou ingredientes"
                 />
                 <div>
-                    <p onClick={() => { handleSignOut(); }}>
-                        Novo Prato
-                    </p>
-                    <p onClick={() => { handleSignOut(); }}>
-                        Sair
-                    </p>
+                    {isAdminRole ? (
+                        <>
+                            <p onClick={() => { handleAddNewDish(); }}>
+                                Novo Prato
+                            </p>
+                            <p onClick={() => { handleSignOut(); }}>
+                                Sair
+                            </p>
+                        </>
+                    ) : (
+                        <p onClick={() => { handleSignOut(); }}>
+                            Sair
+                        </p>
+                    )}
                 </div>
             </Content>
             <Footer />

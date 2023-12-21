@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { devices } from "../../styles/media";
 
 export const Container = styled.div`
-    /* border: solid 1px red; */
     width: 25rem;
 
     span {
