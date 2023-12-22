@@ -4,11 +4,31 @@ import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 import { Input } from "../../components/Input";
 import { InputFile } from "../../components/InputFile";
+import { InputSelect } from "../../components/InputSelect";
 import upload from "../../assets/upload.svg";
+import downArrow from "../../assets/down_arrow.svg";
 
 import { Container, Form } from "./styles";
 
 export function NewDish() {
+    const options = [
+        {
+            id: 1,
+            value: "refeicoes",
+            label: "Refeições"
+        },
+        {
+            id: 2,
+            value: "sobremesas",
+            label: "Sobremesas"
+        },
+        {
+            id: 3,
+            value: "bebidas",
+            label: "Bebidas"
+        }
+    ];
+
     return (
         <Container>
             <Header />
@@ -33,11 +53,12 @@ export function NewDish() {
                         placeholder="Ex.: Salada Ceasar"
                         type="text"
                     />
-                    <Input
-                        autoComplete="e-mail"
-                        placeholder="E-mail"
-                        type="text"
-                        icon={upload}
+                    <InputSelect
+                        autoComplete="dishCategory"
+                        label="Categoria"
+                        icon={downArrow}
+                        type="select"
+                        options={options}
                     />
                 </div>
                 <Button id="button" title="Salvar"/>

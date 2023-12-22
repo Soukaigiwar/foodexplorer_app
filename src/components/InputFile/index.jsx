@@ -7,7 +7,8 @@ export function InputFile({ label, id, icon, ...rest }) {
         <Container>
             <label id={uniqueId} htmlFor={id}>{label}</label>
             <div
-                onClick={() => document.getElementById( uniqueId ).click()}
+                onClick={() =>
+                    document.getElementById(uniqueId).click()}
             >
                 <img src={icon} alt={label} />
                 <input
