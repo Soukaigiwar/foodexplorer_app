@@ -3,6 +3,8 @@ import { BackTextButton } from "../../components/BackTextButton";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
 import { Input } from "../../components/Input";
+import { InputFile } from "../../components/InputFile";
+import upload from "../../assets/upload.svg";
 
 import { Container, Form } from "./styles";
 
@@ -16,14 +18,33 @@ export function NewDish() {
             <Form>
                 <h2>Novo Prato</h2>
                 <div>
-                    <Input
-                        id="image"
+                    <InputFile
                         label="Imagem do prato"
-                        placeholder="Selecione imagem"
+                        text="Selecione imagem"
+                        id="input_file"
+                        icon={upload}
                         type="file"
-
                     />
                 </div>
+                <div>
+                    <Input
+                        label="Nome"
+                        autoComplete="dishName"
+                        placeholder="Ex.: Salada Ceasar"
+                        type="text"
+                    />
+                    <Input
+                        autoComplete="e-mail"
+                        placeholder="E-mail"
+                        type="text"
+                        icon={upload}
+                    />
+                </div>
+                <Button id="button" title="Salvar"/>
+            </Form>
+            {/* <Form>
+                <h2>Novo Prato</h2>
+
                 <div>
                     <Input
                         id="dish_name"
@@ -61,7 +82,7 @@ export function NewDish() {
                     />
                 </div>
                 <Button title="Salvar Alterações" />
-            </Form>
+            </Form> */}
             <Footer />
         </Container>
     );

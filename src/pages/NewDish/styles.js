@@ -22,7 +22,6 @@ export const Container = styled.div`
             padding-top: 1.1rem;
             padding-left: 3.2rem;
             font-size: 1.6rem;
-
         }
     }
 
@@ -33,19 +32,77 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     grid-area: form;
+    max-width: 34rem;
+    margin: 0 3.2rem 0;
 
-    padding: 0 3.2rem;
-        
     h2 {
         font-family: "Poppins";
-        font-size: 32px;
+        font-size: 3.2rem;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 140%;
-        padding-top: 2.2rem;
-        margin-bottom: 3.6rem;
-        color: ${({ theme }) => theme.COLORS.FG_300};
+        margin: 2.2rem 0 3.6rem;
+        color: ${({ theme }) => theme.COLORS.FG_100};
     }
+
+    &:focus {
+        outline: none;
+    }
+
+    > div > label {
+        display: flex;
+        align-items: center;
+        padding-left: 6.4rem;
+        height: 4.8rem;
+        width: 34rem;
+        text-align: start;
+        cursor: pointer;
+        color: ${({ theme }) => theme.COLORS.FG_500};
+        background-color: ${({ theme }) => theme.COLORS.BG_900};
+        border-radius: 8px;
+
+
+        input {
+            display: none;
+        }
+
+        svg {
+            position: absolute;
+            width: 2.4rem;
+            height: 2.4rem;
+            left: 6.2rem;
+            color: ${({ theme }) => theme.COLORS.FG_100};
+        }
+    }
+
+    `;
+
+export const DishImage = styled.div`
+    position: relative;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.COLORS.BG_900};
+    color: ${({ theme }) => theme.COLORS.FG_500};
+
+    /* > label {
+        display: flex;
+        align-items: center;
+        padding-left: 3.2rem;
+        height: 4.8rem;
+        width: 100%;
+        text-align: start;
+        cursor: pointer;
+
+        input {
+            display: none;
+        }
+
+        svg {
+            position: absolute;
+            width: 2.4rem;
+            height: 2.4rem;
+            color: ${({ theme }) => theme.COLORS.FG_100};
+        }
+    } */
 `;
 
 export const BackTextButton = styled.div`

@@ -54,7 +54,7 @@ export function Card({ data }) {
         <Container>
             <div className="favorite">
                 {isAdminRole ? (
-                    <a href="admin_edit">
+                    <a href="add_new_dish">
                         <img src={edit} alt="" />
                     </a>
                 ) : (
