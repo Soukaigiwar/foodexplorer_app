@@ -23,10 +23,9 @@ export function NewDish() {
     const [dishIngredients, setDishIngredients] = useState([]);
     const [newTag, setNewTag] = useState("");
 
-    const handleDishImage = () => {
-        console.log("alterar arquivo escolhido");
-        // setDishImage(e.target.files[0]);
-        // console.log(e.target.files[0]);
+    const handleDishImage = (e) => {
+        console.log(e.target.files[0]);
+        setDishImage(e.target.files[0]);
     };
 
     const handleCategoryChange = (e) => {
@@ -45,7 +44,7 @@ export function NewDish() {
     };
 
     const handleAddDish = () => {
-        // if (!dishImage) return alert("Escolha uma imagem.");
+        if (!dishImage) return alert("Escolha uma imagem.");
         if (!dishName) return alert("Preencha o nome do Prato.");
         if (!dishCategory) return alert("Seleciona uma categoria.");
         if (!dishPrice) return alert("Insira um valor para o item.");
@@ -55,7 +54,7 @@ export function NewDish() {
     };
 
     const handleNewDish = async () => {
-        console.log(dishImage, dishName, dishCategory, dishPrice, dishDescription, dishIngredients);
+        console.log(dishImage.name, dishName, dishCategory, dishPrice, dishDescription, dishIngredients);
         await api.post("/dishes", {
             "title": dishName,
             "category": dishCategory,
@@ -63,8 +62,8 @@ export function NewDish() {
             "price": dishPrice,
             "ingredients": dishIngredients,
             "image": {
-                "title": "teste_img",
-                "filename": "filename_teste_img"
+                "title": dishName,
+                "filename": dishImage.name
             }
         });
     };
@@ -72,17 +71,17 @@ export function NewDish() {
     const options = [
         {
             id: 1,
-            value: "refeicoes",
+            value: "Refeiçao",
             label: "Refeições"
         },
         {
             id: 2,
-            value: "sobremesas",
+            value: "Sobremesas",
             label: "Sobremesas"
         },
         {
             id: 3,
-            value: "bebidas",
+            value: "Bebidas",
             label: "Bebidas"
         }
     ];
@@ -98,11 +97,11 @@ export function NewDish() {
                 <div>
                     <InputFile
                         label="Imagem do prato"
-                        text={dishImage ? dishImage : "Selecione imagem"}
+                        text={dishImage ? dishImage.name : "Selecione imagem"}
                         id="input_file"
                         icon={upload}
                         type="file"
-                        onChange={() => { handleDishImage; }}
+                        onChange={handleDishImage}
                     />
                 </div>
                 <div>

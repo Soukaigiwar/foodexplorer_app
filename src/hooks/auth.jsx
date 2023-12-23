@@ -43,24 +43,24 @@ function AuthProvider({ children }) {
         setData({});
     }
 
-    async function updateProfile({ user, avatarFile }) {
+    async function updateDishImage({ dish, dishImageFile }) {
         
         try {
 
-            if (avatarFile) {
+            if (dishImageFile) {
                 const fileUploadForm = new FormData();
-                fileUploadForm.append("avatar", avatarFile);
+                fileUploadForm.append("dishes", dishImageFile);
                 
-                const response = await api.patch("/users/avatar", fileUploadForm);
+                const response = await api.patch("/dishes", fileUploadForm);
                 
-                user.avatar = response.data.avatar;
+                dish.image = response.data.image;
             }
             
-            await api.put("/users", user);
-            localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+            // await api.put("/users", user);
+            // localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
 
-            setData({ user, token: data.token});
-            alert("Perfil atualizado.");
+            // setData({ user, token: data.token});
+            // alert("Perfil atualizado.");
 
         } catch (error) {
             if (error.response) {
@@ -89,8 +89,7 @@ function AuthProvider({ children }) {
         <AuthContext.Provider value={{
             signIn,
             signOut,
-            updateProfile,
-            // isAdmin,
+            updateDishImage,
             user: data.user
         }}
         >

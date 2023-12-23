@@ -14,6 +14,7 @@ export function InputFile({ label, id, icon, ...rest }) {
                 <input
                     id={id}
                     type="file"
+                    onChange={rest.onChange}
                 />
                 <span>{rest.text}</span>
             </div>
