@@ -6,6 +6,7 @@ import { Input } from "../../components/Input";
 import { InputFile } from "../../components/InputFile";
 import { InputSelect } from "../../components/InputSelect";
 import { InputTag } from "../../components/InputTag";
+import { InputTextarea } from "../../components/InputTextarea";
 import upload from "../../assets/upload.svg";
 import downArrow from "../../assets/down_arrow.svg";
 
@@ -89,6 +90,22 @@ export function NewDish() {
                             onClick={handleAddTag}
                         />
                     </Tags>
+                </div>
+                <div>
+                    <Input
+                        label="Preço"
+                        autoComplete="dishPrice"
+                        placeholder="R$ 00,00"
+                        type="text"
+                    />
+                </div>
+                <div>
+                    <InputTextarea
+                        label="Descrição"
+                        autoComplete="dishDescription"
+                        defaultValue="Fale brevemente sobre o prato, seus ingredientes e composição"
+                        type="textarea"
+                    />
                 </div>
                 <Button id="button" title="Salvar"/>
             </Form>

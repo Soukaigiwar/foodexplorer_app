@@ -4,7 +4,6 @@ export function Button({ title, icon: Icon, ...rest }) {
     return (
         <Container type="button" {...rest}>
             {Icon && <img src={Icon} />}
-            {/* <img src={icon} /> */}
             {title}
         </Container>
     );

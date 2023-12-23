@@ -41,7 +41,7 @@ export const Container = styled.div`
 export const Form = styled.form`
     grid-area: form;
     max-width: 34rem;
-    margin: 0 3.2rem 0;
+    margin: 0 3.2rem 5.3rem;
 
     h2 {
         font-family: "Poppins";
