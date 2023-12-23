@@ -1,14 +1,21 @@
 import { Container } from "./styles";
 
-export function InputSelect({ label, id, options, ...rest }) {
+export function InputSelect({ label, id, options, onChange, ...rest }) {
     return (
         <Container>
             <label htmlFor={id}>{label}</label>
             <div
-                onClick={() =>
-                    document.getElementById(id).click()}
+                onClick={() => {
+                    const selectElement = document.getElementById(id);
+                    if (selectElement) {
+                        selectElement.click();
+                    }
+                }
+                }
+                //document.getElementById(id).click()}
             >
-                <select id={id}>
+                <select id={id} onChange={onChange}>
+                    <option value="none">Selecione a Categoria</option>
                     {
                         options.map(option => (
                             <option key={option.id} value={option.value}>{option.label}</option>
