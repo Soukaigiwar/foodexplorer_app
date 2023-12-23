@@ -23,12 +23,14 @@ export function Brand() {
     return (
         <Container onClick={() => navigate("/")}>
             <img src={logo} alt="logomarca do food explorer" />
-            <h1>
-                food explorer
+            <div>
+                <h1>
+                    food explorer
+                </h1>
                 {isAdminRole &&
                     <span>admin</span>
                 }
-            </h1>
+            </div>
         </Container>
     );
 }
