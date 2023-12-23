@@ -3,7 +3,7 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     display: flex;
-    width: ${({ isnew }) => isnew ? "10.6rem" : "14rem"};
+    width: ${({ isnew }) => isnew ? "10.6rem" : "15.5rem"};
     height: 3.2rem;
     background-color: ${({ theme, isnew }) =>
         isnew ? theme.COLORS.BG_900 : theme.COLORS.FG_500};
@@ -12,7 +12,7 @@ export const Container = styled.div`
         isnew ? `1px dashed ${theme.COLORS.FG_500}` : "none"};
     border-radius: .8rem;
     padding: 1rem 0.6rem 1rem 1.6rem;
-    margin: 1.6rem 0 1.6rem 1.6rem;
+    margin: 0.8rem 0 0.8rem 0.8rem;
 
     > button {
         border: none;
@@ -40,7 +40,7 @@ export const Container = styled.div`
     > input {
         color: ${({ theme }) => theme.COLORS.FG_100};
         background: transparent;
-        min-width: 6.6rem; 
+        min-width: 1.6rem; 
         border: none;
         font-family: 'Roboto';
         font-size: 1.4rem;
