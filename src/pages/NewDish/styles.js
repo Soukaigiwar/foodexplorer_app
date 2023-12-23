@@ -25,6 +25,14 @@ export const Container = styled.div`
         }
     }
 
+    #ingredients {
+        font-family: "Roboto";
+        font-size: 16px;
+        font-weight: 400;
+        color: ${({ theme }) => theme.COLORS.FG_100};
+        margin-bottom: 1.6rem;
+    }
+
 @media (${devices.desktop}) {
     
 }
@@ -77,32 +85,16 @@ export const Form = styled.form`
 
     `;
 
-export const DishImage = styled.div`
-    position: relative;
+export const Tags = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 4.8rem;
+    width: 100%;
     border-radius: 8px;
     background-color: ${({ theme }) => theme.COLORS.BG_900};
     color: ${({ theme }) => theme.COLORS.FG_500};
-
-    /* > label {
-        display: flex;
-        align-items: center;
-        padding-left: 3.2rem;
-        height: 4.8rem;
-        width: 100%;
-        text-align: start;
-        cursor: pointer;
-
-        input {
-            display: none;
-        }
-
-        svg {
-            position: absolute;
-            width: 2.4rem;
-            height: 2.4rem;
-            color: ${({ theme }) => theme.COLORS.FG_100};
-        }
-    } */
+    margin-bottom: 3.2rem;
 `;
 
 export const BackTextButton = styled.div`

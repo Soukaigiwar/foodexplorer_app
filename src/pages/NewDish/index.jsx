@@ -5,10 +5,11 @@ import { Footer } from "../../components/Footer";
 import { Input } from "../../components/Input";
 import { InputFile } from "../../components/InputFile";
 import { InputSelect } from "../../components/InputSelect";
+import { InputTag } from "../../components/InputTag";
 import upload from "../../assets/upload.svg";
 import downArrow from "../../assets/down_arrow.svg";
 
-import { Container, Form } from "./styles";
+import { Container, Form, Tags } from "./styles";
 
 export function NewDish() {
     const options = [
@@ -28,6 +29,10 @@ export function NewDish() {
             label: "Bebidas"
         }
     ];
+
+    const handleAddTag = () => {
+        console.log("texto");
+    };
 
     return (
         <Container>
@@ -53,6 +58,8 @@ export function NewDish() {
                         placeholder="Ex.: Salada Ceasar"
                         type="text"
                     />
+                </div>
+                <div>
                     <InputSelect
                         autoComplete="dishCategory"
                         label="Categoria"
@@ -60,6 +67,28 @@ export function NewDish() {
                         type="select"
                         options={options}
                     />
+                </div>
+                <div>
+                    <h3 id="ingredients" >Ingredientes</h3>
+                    <Tags>
+                        <InputTag
+                            isNew={false}
+                            value={"Pão Naan"}
+                        />
+                        <InputTag
+                            isNew={false}
+                            value={"Alface"}
+                        />
+                        <InputTag
+                            isNew={false}
+                            value={"Tomate Cereja"}
+                        />
+                        <InputTag
+                            isNew={true}
+                            placeholder="Adicionar"
+                            onClick={handleAddTag}
+                        />
+                    </Tags>
                 </div>
                 <Button id="button" title="Salvar"/>
             </Form>
