@@ -3,13 +3,13 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     display: flex;
-    width: ${({ isNew }) => isNew ? "10.6rem" : "14rem"};
+    width: ${({ isnew }) => isnew ? "10.6rem" : "14rem"};
     height: 3.2rem;
-    background-color: ${({ theme, isNew }) =>
-        isNew ? theme.COLORS.BG_900 : theme.COLORS.FG_600};
+    background-color: ${({ theme, isnew }) =>
+        isnew ? theme.COLORS.BG_900 : theme.COLORS.FG_500};
     color: ${({ theme }) => theme.COLORS.FG_100};
-    border: ${({ theme, isNew }) =>
-        isNew ? `1px dashed ${theme.COLORS.FG_500}` : "none"};
+    border: ${({ theme, isnew }) =>
+        isnew ? `1px dashed ${theme.COLORS.FG_500}` : "none"};
     border-radius: .8rem;
     padding: 1rem 0.6rem 1rem 1.6rem;
     margin: 1.6rem 0 1.6rem 1.6rem;
@@ -46,7 +46,7 @@ export const Container = styled.div`
         font-size: 1.4rem;
         font-style: normal;
         font-weight: 400;
-        cursor: ${({ isNew }) => isNew ? "text" : "default"};
+        cursor: ${({ isnew }) => isnew ? "text" : "default"};
 
         &::placeholder {
             color: ${({ theme }) => theme.COLORS.FG_500};

@@ -3,7 +3,7 @@ import { Container } from "./styles";
 
 export function InputTag({ isNew = true, title, onClick, ...rest }) {
     return (
-        <Container isNew={isNew}>
+        <Container isnew={isNew}>
             <input
                 type="text"
                 title={title}

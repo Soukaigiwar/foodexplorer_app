@@ -107,49 +107,12 @@ export function NewDish() {
                         type="textarea"
                     />
                 </div>
-                <Button id="button" title="Salvar"/>
+                <Button
+                    id="button"
+                    title="Salvar"
+                    alternateButtonColor={true}
+                />
             </Form>
-            {/* <Form>
-                <h2>Novo Prato</h2>
-
-                <div>
-                    <Input
-                        id="dish_name"
-                        label="Nome"
-                        placeholder="Ex.: Salada Ceasar"
-                        type="text"
-                    />
-                </div>
-                <div>
-                    <select
-                        id="dish_category"
-                        label="Categoria"
-                        type="text"
-                    >
-                        <option value="refeicao">Refeição</option>
-                        <option value="sobremesa">Sobremesa</option>
-                        <option value="bebida">Bebidas</option>
-                    </select>
-                </div>
-                <div>
-                    <Input
-                        id="dish_price"
-                        label="Preço"
-                        placeholder="R$ 00,00"
-                        type="text"
-                    />
-                </div>
-                <div>
-                    <Input
-                        id="dish_description"
-                        label="Descrição"
-                        rows={4}
-                        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                        type="textarea"
-                    />
-                </div>
-                <Button title="Salvar Alterações" />
-            </Form> */}
             <Footer />
         </Container>
     );

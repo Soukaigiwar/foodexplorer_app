@@ -6,7 +6,10 @@ export const Container = styled.button`
     align-items: center;
     width: 100%;
     height: 4.8rem;
-    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    background-color: ${({ theme, alternateButtonColor }) =>
+        alternateButtonColor
+            ? theme.COLORS.TOMATO_400
+            : theme.COLORS.TOMATO_100};
     border: none;
     border-radius: 0.5rem;
     color: ${({ theme }) => theme.COLORS.FG_100};
