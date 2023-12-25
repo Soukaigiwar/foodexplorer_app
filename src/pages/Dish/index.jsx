@@ -7,7 +7,7 @@ import { Tag } from "../../components/Tag";
 import { Footer } from "../../components/Footer";
 
 import { Container, Content } from "./styles";
-import ravanello_400 from "../../assets/ravanello_400.png";
+import dishPlaceHolder from "../../assets/ravanello_400.png";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import orderBag from "../../assets/order_bag.svg";
@@ -28,6 +28,9 @@ export function Dish() {
     const [search, setSearch] = useState("");
     const [quantity, setQuantity] = useState(1);
 
+    const dishImageUrl = data.image_filename
+        ? `${api.defaults.baseURL}/files/${data.image_filename}`
+        : dishPlaceHolder;
 
     function handleKeyDown(e) {
         
@@ -78,11 +81,7 @@ export function Dish() {
             <Content>
                 <div className="dish">
                     <div className="image">
-                        <img src={ravanello_400} alt="Imagem do prato escolhido." />
-                        {/* <img 
-                            src={`${api.defaults.baseURL}/files/${dish.imgUrl}`} 
-                            alt="Imagem do prato escolhido." /> 
-                    */}
+                        <img src={dishImageUrl} alt="Imagem do prato escolhido." />
                     </div>
                     <div className="details">
                         <h2>{data.title}</h2>

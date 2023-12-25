@@ -1,5 +1,5 @@
 import { Container } from "./styles.js";
-import dishImage from "../../assets/ravanello_200.png";
+import dishPlaceHolder from "../../assets/dish_place_holder.png";
 import { TextButton } from "../../components/TextButton";
 import { Button } from "../../components/Button";
 import favorite from "../../assets/hearth.svg";
@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "../../hooks/cart.jsx";
 import { useRole } from "../../hooks/role";
 import { handleQuantity } from "../../utils/item.js";
+import { api } from "../../services/api";
 
 export function Card({ data }) {
     const [quantity, setQuantity] = useState(1);
@@ -22,6 +23,10 @@ export function Card({ data }) {
     
     const navigate = useNavigate();
 
+    const dishImageUrl = data.image_filename
+        ? `${api.defaults.baseURL}/files/${data.image_filename}`
+        : dishPlaceHolder;
+    
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
     }
@@ -61,7 +66,7 @@ export function Card({ data }) {
                     <img src={favorite} alt="" />
                 )}
             </div>
-            <img src={dishImage} alt="" onClick={() => { handleDetails(data.id); }} />
+            <img src={dishImageUrl} alt="" onClick={() => { handleDetails(data.id); }} />
             <h2 onClick={() => { handleDetails(data.id); }}>{data.title} &gt;</h2>
             <p onClick={() => { handleDetails(data.id); }}>{data.description}</p>
             <h3 onClick={() => { handleDetails(data.id); }}>R$ {handleZeros(data.price)}</h3>
