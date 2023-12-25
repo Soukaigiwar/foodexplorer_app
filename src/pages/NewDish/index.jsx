@@ -55,7 +55,7 @@ export function NewDish() {
 
     const handleNewDish = async () => {
         console.log(dishImage.name, dishName, dishCategory, dishPrice, dishDescription, dishIngredients);
-        await api.post("/dishes", {
+        const { data } = await api.post("/dishes", {
             "title": dishName,
             "category": dishCategory,
             "description": dishDescription,
@@ -66,7 +66,30 @@ export function NewDish() {
                 "filename": dishImage.name
             }
         });
+
+        updateDishImage(data.dishId, dishImage);
     };
+
+
+    async function updateDishImage(dishId, dishImageFile) {
+        console.log(dishId, dishImageFile);
+        try {
+            if (dishImageFile) {
+                const fileUploadForm = new FormData();
+
+                fileUploadForm.append("dish_image", dishImageFile);
+
+                await api.patch(`/images/${dishId}`, fileUploadForm);
+            }
+
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível inserir a imagem.");
+            }
+        }
+    }
 
     const options = [
         {

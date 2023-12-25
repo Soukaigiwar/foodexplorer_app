@@ -43,33 +43,33 @@ function AuthProvider({ children }) {
         setData({});
     }
 
-    async function updateDishImage({ dish, dishImageFile }) {
+    // async function updateDishImage({ dish, dishImageFile }) {
         
-        try {
+    //     try {
 
-            if (dishImageFile) {
-                const fileUploadForm = new FormData();
-                fileUploadForm.append("dishes", dishImageFile);
+    //         if (dishImageFile) {
+    //             const fileUploadForm = new FormData();
+    //             fileUploadForm.append("dishes", dishImageFile);
                 
-                const response = await api.patch("/dishes", fileUploadForm);
+    //             const response = await api.patch("/dishes", fileUploadForm);
                 
-                dish.image = response.data.image;
-            }
+    //             dish.image = response.data.image;
+    //         }
             
-            // await api.put("/users", user);
-            // localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
+    //         // await api.put("/users", user);
+    //         // localStorage.setItem("@foodexplorer:user", JSON.stringify(user));
 
-            // setData({ user, token: data.token});
-            // alert("Perfil atualizado.");
+    //         // setData({ user, token: data.token});
+    //         // alert("Perfil atualizado.");
 
-        } catch (error) {
-            if (error.response) {
-                alert(error.response.data.message);
-            } else {
-                alert("Não foi possível atualizar o perfil.");
-            }
-        }
-    }
+    //     } catch (error) {
+    //         if (error.response) {
+    //             alert(error.response.data.message);
+    //         } else {
+    //             alert("Não foi possível atualizar o perfil.");
+    //         }
+    //     }
+    // }
 
     useEffect(() => {
         const token = localStorage.getItem("@foodexplorer:token");
@@ -89,7 +89,6 @@ function AuthProvider({ children }) {
         <AuthContext.Provider value={{
             signIn,
             signOut,
-            updateDishImage,
             user: data.user
         }}
         >
