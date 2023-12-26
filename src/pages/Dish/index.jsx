@@ -7,7 +7,7 @@ import { Tag } from "../../components/Tag";
 import { Footer } from "../../components/Footer";
 
 import { Container, Content } from "./styles";
-import dishPlaceHolder from "../../assets/ravanello_400.png";
+import dishPlaceHolder from "../../assets/dish_place_holder.png";
 import minus from "../../assets/minus.svg";
 import plus from "../../assets/plus.svg";
 import orderBag from "../../assets/order_bag.svg";

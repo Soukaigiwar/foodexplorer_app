@@ -1,5 +1,5 @@
 import { Container, Price } from "./styles";
-import dishImage from "../../assets/ravanello_200.png";
+import dishImage from "../../assets/dish_place_holder.png";
 import { TextButton } from "../TextButton";
 import { handleZeros } from "../../utils/string";
 import { useCart } from "../../hooks/cart";
