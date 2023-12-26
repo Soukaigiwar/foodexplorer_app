@@ -97,6 +97,6 @@ export const Tags = styled.div`
     margin-bottom: 3.2rem;
 `;
 
-export const BackTextButton = styled.div`
+export const BackTextButtonArea = styled.div`
     grid-area: back_text_button;
 `;

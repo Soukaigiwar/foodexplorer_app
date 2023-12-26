@@ -12,7 +12,7 @@ import { api } from "../../services/api";
 import upload from "../../assets/upload.svg";
 import downArrow from "../../assets/down_arrow.svg";
 
-import { Container, Form, Tags } from "./styles";
+import { Container, Form, Tags, BackTextButtonArea } from "./styles";
 
 export function NewDish() {
     const [dishImage, setDishImage] = useState(null);
@@ -112,9 +112,9 @@ export function NewDish() {
     return (
         <Container>
             <Header />
-            <div className="backTextButton">
+            <BackTextButtonArea>
                 <BackTextButton />
-            </div>
+            </BackTextButtonArea>
             <Form>
                 <h2>Novo Prato</h2>
                 <div>
