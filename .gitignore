@@ -11,6 +11,16 @@ node_modules
 dist
 dist-ssr
 *.local
+.npm
+Dockerfile*
+docker-compose.yml
+nginx.conf
+.eslintrc.cjs
+.ash_history
+.dockerignore
+_redirects
+
+
 
 # Editor directories and files
 .vscode/*
