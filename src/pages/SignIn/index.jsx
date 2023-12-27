@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 import { Container, Header, Form } from "./styles";
 import logo from "../../assets/poligon.svg";
@@ -12,6 +13,7 @@ export function SignIn() {
     const [password, setPassword] = useState("");
 
     const { signIn } = useAuth();
+    const navigate = useNavigate();
 
     function handleSignIn() {
         signIn({ email, password });
@@ -57,7 +59,7 @@ export function SignIn() {
                     />
                 </div>
                 <Button title="Entrar" onClick={handleSignIn} />
-                <a href="/register">Criar uma conta</a>
+                <a onClick={() => { navigate("/register"); }}>Criar uma conta</a>
             </Form>
         </Container>
     );
