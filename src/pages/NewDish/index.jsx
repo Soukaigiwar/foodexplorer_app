@@ -117,36 +117,38 @@ export function NewDish() {
             </BackTextButtonArea>
             <Form>
                 <h2>Novo Prato</h2>
-                <div>
-                    <InputFile
-                        label="Imagem do prato"
-                        text={dishImage ? dishImage.name : "Selecione imagem"}
-                        id="input_file"
-                        icon={upload}
-                        type="file"
-                        onChange={handleDishImage}
-                    />
-                </div>
-                <div>
-                    <Input
-                        label="Nome"
-                        value={dishName}
-                        autoComplete="dishName"
-                        placeholder="Ex.: Salada Ceasar"
-                        type="text"
-                        onChange={e => setDishName(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <InputSelect
-                        autoComplete="dishCategory"
-                        label="Categoria"
-                        icon={downArrow}
-                        type="select"
-                        value={dishCategory}
-                        options={options}
-                        onChange={handleCategoryChange}
-                    />
+                <div className="input_area">
+                    <div>
+                        <InputFile
+                            label="Imagem do prato"
+                            text={dishImage ? dishImage.name : "Selecione imagem"}
+                            id="input_file"
+                            icon={upload}
+                            type="file"
+                            onChange={handleDishImage}
+                        />
+                    </div>
+                    <div>
+                        <Input
+                            label="Nome"
+                            value={dishName}
+                            autoComplete="dishName"
+                            placeholder="Ex.: Salada Ceasar"
+                            type="text"
+                            onChange={e => setDishName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <InputSelect
+                            autoComplete="dishCategory"
+                            label="Categoria"
+                            icon={downArrow}
+                            type="select"
+                            value={dishCategory}
+                            options={options}
+                            onChange={handleCategoryChange}
+                        />
+                    </div>
                 </div>
                 <div> {/* Ingredients */}
                     <h3 id="ingredients" >Ingredientes</h3>

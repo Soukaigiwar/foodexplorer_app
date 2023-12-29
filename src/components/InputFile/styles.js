@@ -44,18 +44,21 @@ export const Container = styled.div`
             display: none;
     }
 
-
     @media (${devices.desktop}) {
-        input {
-            
-        }
-
         input:focus {
             outline: solid 1px ${({ theme }) => theme.COLORS.FG_100};
         }
 
-        label {
-            
+        img {
+            position: absolute;
+            top: 3.2rem;
+            left: 3.2rem;
+            width: 2.4rem;
+        }
+
+        div {
+            width: 22.9rem;
+            padding: 1.2rem 3.2rem 1.2rem 6.4rem;
         }
     }
 `;

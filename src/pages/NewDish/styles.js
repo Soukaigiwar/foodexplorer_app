@@ -41,9 +41,9 @@ export const Container = styled.div`
 export const Form = styled.form`
     grid-area: form;
     max-width: 34rem;
-    margin: 0 3.2rem 5.3rem;
 
     h2 {
+        padding: 2.5rem 3.2rem;
         font-family: "Poppins";
         font-size: 3.2rem;
         font-style: normal;
@@ -53,33 +53,81 @@ export const Form = styled.form`
         color: ${({ theme }) => theme.COLORS.FG_100};
     }
 
-    &:focus {
-        outline: none;
-    }
-
-    > div > label {
+    .input_area {
+        margin: 0 3.2rem 5.3rem;
         display: flex;
-        align-items: center;
-        padding-left: 6.4rem;
-        height: 4.8rem;
-        width: 34rem;
-        text-align: start;
-        cursor: pointer;
-        color: ${({ theme }) => theme.COLORS.FG_500};
-        background-color: ${({ theme }) => theme.COLORS.BG_900};
-        border-radius: 8px;
+        flex-direction: column;
 
 
-        input {
-            display: none;
+        &:focus {
+            outline: none;
         }
 
-        svg {
-            position: absolute;
-            width: 2.4rem;
-            height: 2.4rem;
-            left: 6.2rem;
-            color: ${({ theme }) => theme.COLORS.FG_100};
+        > div > label {
+            display: flex;
+            align-items: center;
+            padding-left: 6.4rem;
+            height: 4.8rem;
+            width: 34rem;
+            text-align: start;
+            cursor: pointer;
+            color: ${({ theme }) => theme.COLORS.FG_500};
+            background-color: ${({ theme }) => theme.COLORS.BG_900};
+            border-radius: 8px;
+
+
+            input {
+                display: none;
+            }
+
+            svg {
+                position: absolute;
+                width: 2.4rem;
+                height: 2.4rem;
+                left: 6.2rem;
+                color: ${({ theme }) => theme.COLORS.FG_100};
+            }
+        }
+    }
+
+    @media (${devices.desktop}) {
+        max-width: unset;
+
+        h2 {
+            padding: 0 12.5rem;
+            width: 100%;
+        }
+
+        .input_area {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 3.2rem;
+            width: 112rem;
+            margin: 0 12.5rem;
+
+
+            > div:nth-child(1) {
+                width: 22.9rem;
+            }
+
+            > div:nth-child(2) {
+                display: flex;
+                height: 100%;
+                width: 46.3rem;
+                cursor: pointer;
+                color: ${({ theme }) => theme.COLORS.FG_500};
+
+                input {
+                    padding: 1.2rem 1.4rem;
+                    margin-top: 0.9rem;
+                    width: 100%;
+                }
+            }
+
+            > div:nth-child(3) {
+                width: 36.4rem;
+            }
         }
     }
 
