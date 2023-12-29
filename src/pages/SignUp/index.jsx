@@ -85,7 +85,7 @@ export function SignUp() {
                     />
                 </div>
                 <Button title="Criar Conta" onClick={handleSignUp} />
-                <a href="/">Já tenho uma conta</a>
+                <a onClick={() => { navigate("/"); }}>Já tenho uma conta</a>
             </Form>
         </Container>
     );
