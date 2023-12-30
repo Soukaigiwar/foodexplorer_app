@@ -31,7 +31,7 @@ export const Container = styled.div`
 
     @media (${devices.desktop}) {
         input {
-            
+            margin-top: 0.85rem;
         }
 
         input:focus {

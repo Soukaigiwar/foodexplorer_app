@@ -150,38 +150,40 @@ export function NewDish() {
                         />
                     </div>
                 </div>
-                <div> {/* Ingredients */}
-                    <h3 id="ingredients" >Ingredientes</h3>
-                    <Tags>
-                        {
-                            dishIngredients.map((ingredient, index) => (
-                                <InputTag
-                                    key={String(index)}
-                                    isNew={false}
-                                    value={ingredient}
-                                    onClick={() =>
-                                        handleRemoveIngredient(ingredient)}
-                                />
-                            ))
-                        }
-                        <InputTag
-                            isNew={true}
-                            placeholder="Adicionar"
-                            onChange={e => setNewTag(e.target.value)}
-                            value={newTag}
-                            onClick={handleAddIngredient}
+                <div className="tag_and_price_area"> {/* Ingredients */}
+                    <div>
+                        <h3 id="ingredients" >Ingredientes</h3>
+                        <Tags>
+                            {
+                                dishIngredients.map((ingredient, index) => (
+                                    <InputTag
+                                        key={String(index)}
+                                        isNew={false}
+                                        value={ingredient}
+                                        onClick={() =>
+                                            handleRemoveIngredient(ingredient)}
+                                    />
+                                ))
+                            }
+                            <InputTag
+                                isNew={true}
+                                placeholder="Adicionar"
+                                onChange={e => setNewTag(e.target.value)}
+                                value={newTag}
+                                onClick={handleAddIngredient}
+                            />
+                        </Tags>
+                    </div>
+                    <div>
+                        <Input
+                            label="Preço"
+                            value={dishPrice}
+                            autoComplete="dishPrice"
+                            placeholder="R$ 00,00"
+                            type="text"
+                            onChange={e => setDishPrice(e.target.value)}
                         />
-                    </Tags>
-                </div>
-                <div>
-                    <Input
-                        label="Preço"
-                        value={dishPrice}
-                        autoComplete="dishPrice"
-                        placeholder="R$ 00,00"
-                        type="text"
-                        onChange={e => setDishPrice(e.target.value)}
-                    />
+                    </div>
                 </div>
                 <div>
                     <InputTextarea

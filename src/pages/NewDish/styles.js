@@ -40,7 +40,7 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     grid-area: form;
-    max-width: 34rem;
+    max-width: 100%;
 
     h2 {
         padding: 2.5rem 3.2rem;
@@ -54,10 +54,9 @@ export const Form = styled.form`
     }
 
     .input_area {
-        margin: 0 3.2rem 5.3rem;
+        margin: 0 3.2rem;
         display: flex;
         flex-direction: column;
-
 
         &:focus {
             outline: none;
@@ -88,6 +87,12 @@ export const Form = styled.form`
                 color: ${({ theme }) => theme.COLORS.FG_100};
             }
         }
+    }
+
+    .tag_and_price_area {
+        margin: 0 3.2rem ;
+        display: flex;
+        flex-direction: column;
     }
 
     @media (${devices.desktop}) {
@@ -129,6 +134,20 @@ export const Form = styled.form`
                 width: 36.4rem;
             }
         }
+
+        .tag_and_price_area {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 3.2rem;
+            width: 112rem;
+            margin: 0 12.5rem;
+
+            > div {
+                width: 25.1rem;
+                
+            }
+        }
     }
 
     `;
@@ -138,11 +157,22 @@ export const Tags = styled.div`
     flex-wrap: wrap;
     gap: 8px;
     min-height: 4.8rem;
-    width: 100%;
+    /* width: 100%; */
     border-radius: 8px;
     background-color: ${({ theme }) => theme.COLORS.BG_900};
     color: ${({ theme }) => theme.COLORS.FG_500};
     margin-bottom: 3.2rem;
+
+    @media (${devices.desktop}) {
+        display: inline-flex;
+        flex-wrap: wrap;
+        width: 83.7rem;
+        
+        > input {
+            background-color: red;
+            width: 200px;
+        }
+    }
 `;
 
 export const BackTextButtonArea = styled.div`
