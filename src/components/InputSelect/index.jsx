@@ -10,15 +10,13 @@ export function InputSelect({ label, id, options, onChange, ...rest }) {
                     if (selectElement) {
                         selectElement.click();
                     }
-                }
-                }
-                //document.getElementById(id).click()}
+                }}
             >
                 <select id={id} onChange={onChange}>
-                    <option value="none">Selecione a Categoria</option>
+                    <option value={rest.value ? rest.value : "none"}>Selecione a Categoria</option>
                     {
                         options.map(option => (
-                            <option key={option.id} value={option.value}>{option.label}</option>
+                            <option key={option.id} value={option.value} selected={option.value === rest.value}>{option.label}</option>
                         ))
                     }
                 </select>

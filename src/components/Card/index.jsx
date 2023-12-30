@@ -46,6 +46,10 @@ export function Card({ data }) {
         addItemToCart(item);
     }
 
+    const handleEditItem = (id) => {
+        navigate(`/edit_dish/${id}`);
+    };
+
     useEffect(() => {
         const checkIfUserRoleIsAdmin = async () => {
             const result = await isAdmin();
@@ -59,15 +63,15 @@ export function Card({ data }) {
         <Container>
             <div className="favorite">
                 {isAdminRole ? (
-                    <a href="add_new_dish">
+                    <a onClick={() => handleEditItem(data.id) }>
                         <img src={edit} alt="" />
                     </a>
                 ) : (
                     <img src={favorite} alt="" />
                 )}
             </div>
-            <img src={dishImageUrl} alt="" onClick={() => { handleDetails(data.id); }} />
-            <h2 onClick={() => { handleDetails(data.id); }}>{data.title} &gt;</h2>
+            <img src={dishImageUrl} alt="" onClick={() => handleDetails(data.id)} />
+            <h2 onClick={() => handleDetails(data.id)}>{data.title} &gt;</h2>
             <p onClick={() => { handleDetails(data.id); }}>{data.description}</p>
             <h3 onClick={() => { handleDetails(data.id); }}>R$ {handleZeros(data.price)}</h3>
             {!isAdminRole && (

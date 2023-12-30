@@ -7,21 +7,23 @@ import { InputFile } from "../../components/InputFile";
 import { InputSelect } from "../../components/InputSelect";
 import { InputTag } from "../../components/InputTag";
 import { InputTextarea } from "../../components/InputTextarea";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import upload from "../../assets/upload.svg";
 import downArrow from "../../assets/down_arrow.svg";
-
+import { useParams } from "react-router-dom";
 import { Container, Form, Tags, BackTextButtonArea } from "./styles";
 
-export function NewDish() {
+export function EditDish() {
     const [dishImage, setDishImage] = useState(null);
     const [dishName, setDishName] = useState("");
     const [dishCategory, setDishCategory] = useState("");
     const [dishPrice, setDishPrice] = useState();
     const [dishDescription, setDishDescription] = useState("");
     const [dishIngredients, setDishIngredients] = useState([]);
-    const [newTag, setNewTag] = useState("");
+    const [newIngredient, setNewIngredient] = useState("");
+
+    const params = useParams();
 
     const handleDishImage = (e) => {
         setDishImage(e.target.files[0]);
@@ -32,8 +34,8 @@ export function NewDish() {
     };
 
     const handleAddIngredient = () => {
-        setDishIngredients(prevState => [...prevState, newTag]);
-        setNewTag("");
+        setDishIngredients(prevState => [...prevState, newIngredient]);
+        setNewIngredient("");
     };
 
     const handleRemoveIngredient = (deleted) => {
@@ -41,51 +43,14 @@ export function NewDish() {
             prevState.filter(ingredient => ingredient !== deleted));
     };
 
-    const handleAddDish = () => {
-        if (!dishImage) return alert("Escolha uma imagem.");
+    const handleUpdateDish = () => {
         if (!dishName) return alert("Preencha o nome do Prato.");
         if (!dishCategory) return alert("Seleciona uma categoria.");
         if (!dishPrice) return alert("Insira um valor para o item.");
         if (!dishDescription) return alert("Preencha com a descrição.");
 
-        handleNewDish();
+        updateDish();
     };
-
-    const handleNewDish = async () => {
-        const { data } = await api.post("/dishes", {
-            "title": dishName,
-            "category": dishCategory,
-            "description": dishDescription,
-            "price": dishPrice,
-            "ingredients": dishIngredients,
-            "image": {
-                "title": dishName,
-                "filename": dishImage.name
-            }
-        });
-
-        updateDishImage(data.dishId, dishImage);
-    };
-
-
-    async function updateDishImage(dishId, dishImageFile) {
-        try {
-            if (dishImageFile) {
-                const fileUploadForm = new FormData();
-
-                fileUploadForm.append("dish_image", dishImageFile);
-
-                await api.patch(`/images/${dishId}`, fileUploadForm);
-            }
-
-        } catch (error) {
-            if (error.response) {
-                alert(error.response.data.message);
-            } else {
-                alert("Não foi possível inserir a imagem.");
-            }
-        }
-    }
 
     const options = [
         {
@@ -105,6 +70,61 @@ export function NewDish() {
         }
     ];
 
+    const updateDish = async () => {
+        const category = options.find(option => option.value === dishCategory);
+
+        await api.put("/dishes", {
+            "id": Number(params.id),
+            "title": dishName,
+            "category": category.id,
+            "description": dishDescription,
+            "price": dishPrice,
+            "ingredients": dishIngredients
+        });
+        
+        updateDishImage(params.id, dishImage);
+    };
+
+
+    const updateDishImage = async (dishId, dishImage) => {
+        try {
+            if (dishImage) {
+                const fileUploadForm = new FormData();
+
+                fileUploadForm.append("dish_image", dishImage);
+
+                await api.patch(`/images/${dishId}`, fileUploadForm);
+                return;
+            }
+
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível atualizar a imagem.");
+            }
+        }
+    };
+
+    useEffect(() => {
+        async function fetchDishes() {
+            const id = params.id;
+
+            if (id) {
+                const { data } = await api.get(`/dishes/${id}`);
+                const ingredients = data.ingredients.map(ingredient => ingredient.title);
+
+                setDishName(data.title);
+                setDishCategory(data.category);
+                setDishIngredients(ingredients);
+                setDishPrice(data.price);
+                setDishDescription(data.description);
+            }
+        }
+
+        fetchDishes();
+    }, []);
+
     return (
         <Container>
             <Header />
@@ -112,7 +132,7 @@ export function NewDish() {
                 <BackTextButton />
             </BackTextButtonArea>
             <Form>
-                <h2>Novo prato</h2>
+                <h2>Editar prato</h2>
                 <div className="input_area">
                     <div>
                         <InputFile
@@ -164,8 +184,8 @@ export function NewDish() {
                             <InputTag
                                 isNew={true}
                                 placeholder="Adicionar"
-                                onChange={e => setNewTag(e.target.value)}
-                                value={newTag}
+                                onChange={e => setNewIngredient(e.target.value)}
+                                value={newIngredient}
                                 onClick={handleAddIngredient}
                             />
                         </Tags>
@@ -188,6 +208,7 @@ export function NewDish() {
                             autoComplete="dishDescription"
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
                             type="textarea"
+                            value={dishDescription}
                             onChange={e => setDishDescription(e.target.value)}
                         />
                     </div>
@@ -197,7 +218,7 @@ export function NewDish() {
                         id="button"
                         title="Salvar alterações"
                         alternateButtonColor={true}
-                        onClick={handleAddDish}
+                        onClick={handleUpdateDish}
                     />
                 </div>
             </Form>

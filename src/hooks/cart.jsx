@@ -14,7 +14,7 @@ function CartProvider({ children }) {
             if (cartCache.length > 0) {
                 return cartCache;
             } else { 
-                console.log("Não há itens no carrinho.");
+                return;
             }
         }
 
@@ -101,7 +101,6 @@ function CartProvider({ children }) {
             localStorage.setItem("@foodexplorer:cart", JSON.stringify(newItem));
         } catch (error) {
             if (error.response) {
-                console.log(error.response.data.message);
                 alert(error.response.data.message);
             } else {
                 alert("Não foi possível incluir item no carrinho.");
