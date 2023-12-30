@@ -18,6 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+
     .title,
     h2,
     h3 {
@@ -297,6 +298,7 @@ export const Content = styled.div`
             display: flex;
             flex-direction: column;
             margin-top: 3.2rem;
+            margin-bottom: 3.2rem;
             
             > .payment_area {
                 display: block;
