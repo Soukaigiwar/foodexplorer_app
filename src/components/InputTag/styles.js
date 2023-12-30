@@ -10,6 +10,9 @@ export const Container = styled.div`
     width: 100%;
     
     .tags {
+        display: flex;
+        justify-content: center;
+        padding: 0 1.6rem;
         background-color: ${({ theme, isnew }) =>
         isnew ? theme.COLORS.BG_900 : theme.COLORS.FG_500};
         color: ${({ theme }) => theme.COLORS.FG_100};
@@ -43,7 +46,7 @@ export const Container = styled.div`
         > input {
             color: ${({ theme }) => theme.COLORS.FG_100};
             background: transparent;
-            /* min-width: 1.6rem;  */
+            width: 11.7rem;
             border: none;
             font-family: 'Roboto';
             font-size: 1.4rem;

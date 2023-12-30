@@ -185,21 +185,25 @@ export function NewDish() {
                         />
                     </div>
                 </div>
-                <div>
-                    <InputTextarea
-                        label="Descrição"
-                        autoComplete="dishDescription"
-                        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                        type="textarea"
-                        onChange={e => setDishDescription(e.target.value)}
+                <div className="description_area">
+                    <div>
+                        <InputTextarea
+                            label="Descrição"
+                            autoComplete="dishDescription"
+                            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                            type="textarea"
+                            onChange={e => setDishDescription(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <div className="submit_area">
+                    <Button
+                        id="button"
+                        title="Salvar alterações"
+                        alternateButtonColor={true}
+                        onClick={handleAddDish}
                     />
                 </div>
-                <Button
-                    id="button"
-                    title="Salvar"
-                    alternateButtonColor={true}
-                    onClick={handleAddDish}
-                />
             </Form>
             <Footer />
         </Container>

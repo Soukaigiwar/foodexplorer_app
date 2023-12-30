@@ -94,6 +94,17 @@ export const Form = styled.form`
         display: flex;
         flex-direction: column;
     }
+    
+    .description_area {
+        margin: 0 3.2rem ;
+        /* display: flex;
+        flex-direction: column; */
+    }
+
+    .submit_area {
+        margin: 0 3.2rem;
+        margin-bottom: 5.3rem;
+    }
 
     @media (${devices.desktop}) {
         max-width: unset;
@@ -147,6 +158,23 @@ export const Form = styled.form`
                 width: 25.1rem;
                 
             }
+        }
+
+        .description_area {
+            margin: 0 12.5rem;
+            > div {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+
+        .submit_area {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 12.5rem;
+            margin-bottom: 11.6rem;
         }
     }
 

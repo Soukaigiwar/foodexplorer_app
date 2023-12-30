@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { devices } from "../../styles/media";
 
 export const Container = styled.button`
     display: flex;
@@ -23,5 +24,9 @@ export const Container = styled.button`
         width: 2.1rem;
         height: 2.1rem;
         margin-right: 0.5rem;
+    }
+
+    @media (${devices.desktop}) {
+        width: 17.2rem;
     }
 `;

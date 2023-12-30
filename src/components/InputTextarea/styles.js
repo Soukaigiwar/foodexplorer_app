@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { devices } from "../../styles/media";
 
 export const Container = styled.div`
+    width: 100%;
     label {
         color: ${({ theme }) => theme.COLORS.FG_100};
     }
@@ -19,8 +20,7 @@ export const Container = styled.div`
         font-style: normal;
         font-weight: 400;
         line-height: 100%;
-        margin-top: 1.6rem;
-        margin-bottom: 1.6rem;
+        margin: 1.6rem auto;
         border-radius: 1rem;
         padding: 1.4rem;
 
