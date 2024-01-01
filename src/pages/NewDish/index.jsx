@@ -8,6 +8,7 @@ import { InputSelect } from "../../components/InputSelect";
 import { InputTag } from "../../components/InputTag";
 import { InputTextarea } from "../../components/InputTextarea";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 import upload from "../../assets/upload.svg";
 import downArrow from "../../assets/down_arrow.svg";
@@ -22,6 +23,8 @@ export function NewDish() {
     const [dishDescription, setDishDescription] = useState("");
     const [dishIngredients, setDishIngredients] = useState([]);
     const [newTag, setNewTag] = useState("");
+
+    const navigate = useNavigate();
 
     const handleDishImage = (e) => {
         setDishImage(e.target.files[0]);
@@ -49,8 +52,11 @@ export function NewDish() {
         if (!dishDescription) return alert("Preencha com a descrição.");
 
         handleNewDish();
-    };
 
+    };
+    
+
+    
     const handleNewDish = async () => {
         const { data } = await api.post("/dishes", {
             "title": dishName,
@@ -65,6 +71,7 @@ export function NewDish() {
         });
 
         updateDishImage(data.dishId, dishImage);
+        navigate("/");
     };
 
 
@@ -192,11 +199,12 @@ export function NewDish() {
                         />
                     </div>
                 </div>
+                
                 <div className="submit_area">
                     <Button
                         id="button"
                         title="Salvar alterações"
-                        alternateButtonColor={true}
+                        alternatebuttoncolor={true}
                         onClick={handleAddDish}
                     />
                 </div>

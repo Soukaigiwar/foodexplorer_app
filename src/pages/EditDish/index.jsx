@@ -8,10 +8,10 @@ import { InputSelect } from "../../components/InputSelect";
 import { InputTag } from "../../components/InputTag";
 import { InputTextarea } from "../../components/InputTextarea";
 import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../../services/api";
 import upload from "../../assets/upload.svg";
 import downArrow from "../../assets/down_arrow.svg";
-import { useParams } from "react-router-dom";
 import { Container, Form, Tags, BackTextButtonArea } from "./styles";
 
 export function EditDish() {
@@ -23,6 +23,7 @@ export function EditDish() {
     const [dishIngredients, setDishIngredients] = useState([]);
     const [newIngredient, setNewIngredient] = useState("");
 
+    const navigate = useNavigate();
     const params = useParams();
 
     const handleDishImage = (e) => {
@@ -50,6 +51,12 @@ export function EditDish() {
         if (!dishDescription) return alert("Preencha com a descrição.");
 
         updateDish();
+        navigate("/");
+    };
+
+    const handleRemoveDish = async () => {
+        await api.delete(`/dishes/${params.id}`);
+        navigate("/");
     };
 
     const options = [
@@ -107,7 +114,7 @@ export function EditDish() {
     };
 
     useEffect(() => {
-        async function fetchDishes() {
+        const fetchDishes = async () => {
             const id = params.id;
 
             if (id) {
@@ -120,7 +127,7 @@ export function EditDish() {
                 setDishPrice(data.price);
                 setDishDescription(data.description);
             }
-        }
+        };
 
         fetchDishes();
     }, []);
@@ -213,11 +220,19 @@ export function EditDish() {
                         />
                     </div>
                 </div>
+                <div className="delete_area">
+                    <Button
+                        id="remove_button"
+                        title="Excluir prato"
+                        alternatebuttoncolor={true}
+                        onClick={handleRemoveDish}
+                    />
+                </div>
                 <div className="submit_area">
                     <Button
                         id="button"
                         title="Salvar alterações"
-                        alternateButtonColor={true}
+                        alternatebuttoncolor={true}
                         onClick={handleUpdateDish}
                     />
                 </div>
