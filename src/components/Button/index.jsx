@@ -5,7 +5,7 @@ export function Button({ title, icon: Icon, alternatebuttoncolor = false, ...res
     //const [buttonFaceColor, setButtonFaceColor] = useState(alternatebuttoncolor);
 
     return (
-        <Container type="button" alternatebuttoncolor={alternatebuttoncolor} {...rest}>
+        <Container type="button" $alternatebuttoncolor={alternatebuttoncolor} {...rest}>
             {Icon && <img src={Icon} />}
             {title}
         </Container>

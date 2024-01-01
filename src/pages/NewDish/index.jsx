@@ -30,10 +30,6 @@ export function NewDish() {
         setDishImage(e.target.files[0]);
     };
 
-    const handleCategoryChange = (e) => {
-        setDishCategory(e.target.value);
-    };
-
     const handleAddIngredient = () => {
         setDishIngredients(prevState => [...prevState, newTag]);
         setNewTag("");
@@ -45,19 +41,22 @@ export function NewDish() {
     };
 
     const handleAddDish = () => {
-        if (!dishImage) return alert("Escolha uma imagem.");
+        console.log("handleAddDish", dishCategory);
         if (!dishName) return alert("Preencha o nome do Prato.");
         if (!dishCategory) return alert("Seleciona uma categoria.");
         if (!dishPrice) return alert("Insira um valor para o item.");
         if (!dishDescription) return alert("Preencha com a descrição.");
 
         handleNewDish();
-
     };
-    
 
-    
     const handleNewDish = async () => {
+        let fileName = "";
+
+        if (dishImage) {
+            fileName = dishImage.name;
+        }
+
         const { data } = await api.post("/dishes", {
             "title": dishName,
             "category": dishCategory,
@@ -66,7 +65,7 @@ export function NewDish() {
             "ingredients": dishIngredients,
             "image": {
                 "title": dishName,
-                "filename": dishImage.name
+                "filename": fileName
             }
         });
 
@@ -149,7 +148,7 @@ export function NewDish() {
                             type="select"
                             value={dishCategory}
                             options={options}
-                            onChange={handleCategoryChange}
+                            onChange={value => setDishCategory(value)}
                         />
                     </div>
                 </div>
@@ -162,7 +161,7 @@ export function NewDish() {
                                     <InputTag
                                         key={String(index)}
                                         isNew={false}
-                                        value={ingredient}
+                                        defaultValue={ingredient}
                                         onClick={() =>
                                             handleRemoveIngredient(ingredient)}
                                     />
@@ -180,7 +179,7 @@ export function NewDish() {
                     <div>
                         <Input
                             label="Preço"
-                            value={dishPrice}
+                            defaultValue={dishPrice}
                             autoComplete="dishPrice"
                             placeholder="R$ 00,00"
                             type="text"

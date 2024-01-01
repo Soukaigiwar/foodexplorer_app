@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { Container } from "./styles";
 
 export function InputSelect({ label, id, options, onChange, ...rest }) {
+    const [selectedValue, setSelectedValue] = useState("");
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSelectedValue(value);
+        onChange(value);
+    };
+
     return (
         <Container>
             <label htmlFor={id}>{label}</label>
@@ -12,11 +21,11 @@ export function InputSelect({ label, id, options, onChange, ...rest }) {
                     }
                 }}
             >
-                <select id={id} onChange={onChange}>
-                    <option value={rest.value ? rest.value : "none"}>Selecione a Categoria</option>
+                <select id={id} value={selectedValue} onChange={handleChange}>
+                    <option value="">Selecione a Categoria</option>
                     {
                         options.map(option => (
-                            <option key={option.id} value={option.value} selected={option.value === rest.value}>{option.label}</option>
+                            <option key={option.id} value={option.value}>{option.label}</option>
                         ))
                     }
                 </select>

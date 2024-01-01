@@ -15,7 +15,7 @@ import downArrow from "../../assets/down_arrow.svg";
 import { Container, Form, Tags, BackTextButtonArea } from "./styles";
 
 export function EditDish() {
-    const [dishImage, setDishImage] = useState(null);
+    const [dishImage, setDishImage] = useState();
     const [dishName, setDishName] = useState("");
     const [dishCategory, setDishCategory] = useState("");
     const [dishPrice, setDishPrice] = useState();
@@ -154,7 +154,7 @@ export function EditDish() {
                     <div>
                         <Input
                             label="Nome"
-                            value={dishName}
+                            defaultValue={dishName || ""}
                             autoComplete="dishName"
                             placeholder="Ex.: Salada Ceasar"
                             type="text"
@@ -167,7 +167,7 @@ export function EditDish() {
                             label="Categoria"
                             icon={downArrow}
                             type="select"
-                            value={dishCategory}
+                            defaultValue={dishCategory}
                             options={options}
                             onChange={handleCategoryChange}
                         />
@@ -181,18 +181,18 @@ export function EditDish() {
                                 dishIngredients.map((ingredient, index) => (
                                     <InputTag
                                         key={String(index)}
-                                        isNew={false}
-                                        value={ingredient}
+                                        isNew={0}
+                                        defaultValue={ingredient || ""}
                                         onClick={() =>
                                             handleRemoveIngredient(ingredient)}
                                     />
                                 ))
                             }
                             <InputTag
-                                isNew={true}
+                                isNew={1}
                                 placeholder="Adicionar"
                                 onChange={e => setNewIngredient(e.target.value)}
-                                value={newIngredient}
+                                defaultValue={newIngredient || ""}
                                 onClick={handleAddIngredient}
                             />
                         </Tags>
@@ -200,7 +200,7 @@ export function EditDish() {
                     <div>
                         <Input
                             label="Preço"
-                            value={dishPrice}
+                            defaultValue={dishPrice}
                             autoComplete="dishPrice"
                             placeholder="R$ 00,00"
                             type="text"
@@ -215,7 +215,7 @@ export function EditDish() {
                             autoComplete="dishDescription"
                             placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
                             type="textarea"
-                            value={dishDescription}
+                            defaultValue={dishDescription || ""}
                             onChange={e => setDishDescription(e.target.value)}
                         />
                     </div>
