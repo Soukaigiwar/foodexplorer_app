@@ -321,12 +321,19 @@ export const Content = styled.div`
                         }
 
                         > form {
+                            margin: 5.9rem 0 4.8rem;
+                            button {
+                                width: 100%;
+                            }
                             .input_validate {
                                 width: 16.6rem;
                             }
 
                             .input_cvc {
-                                width: 16.6rem;
+                                margin-top: 0.8rem;
+                            }
+                                label {
+                                    margin-bottom: unset;
                             }
                         }
                     }

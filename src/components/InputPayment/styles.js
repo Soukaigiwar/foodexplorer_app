@@ -39,7 +39,7 @@ export const Container = styled.div`
         }
 
         label {
-            
+            margin-bottom: unset;
         }
     }
 `;

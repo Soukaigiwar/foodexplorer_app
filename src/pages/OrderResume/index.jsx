@@ -175,6 +175,7 @@ export function OrderResume() {
                                     <div className="next_button">
                                         <Button
                                             title="Avançar"
+                                            $bgcolor="TOMATO_100" 
                                             onClick={togglePaymentScreen}
                                         />
                                     </div>
@@ -232,7 +233,7 @@ export function OrderResume() {
                                                     </label>
 
                                                     <Input
-                                                        id={"20"}
+                                                        id={"card_number"}
                                                         placeholder="0000 0000 0000 0000"
                                                         maxLength={16}
                                                         onChange={handleCardNumber}
@@ -270,6 +271,7 @@ export function OrderResume() {
                                                     <Button
                                                         icon={orderIcon}
                                                         title="Finalizar Pagamento"
+                                                        $bgcolor="TOMATO_100" 
                                                         onClick={handlePayment}
                                                     />
                                                 </fieldset>

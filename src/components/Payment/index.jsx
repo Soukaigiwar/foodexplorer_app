@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { useState } from "react";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Input } from "../Input";
+import { Button } from "../Button";
 
 import qrcode from "../../assets/qrcode.svg";
 import pixIcon from "../../assets/pix_icon.svg";
@@ -14,10 +14,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { api } from "../../services/api.js";
 import { useNavigate } from "react-router-dom";
 
-export function Payment({ method, itemse }) {
+export function Payment({ method, items }) {
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState();
-    const [paymentScreenVisible, setPaymentScreenVisible] = useState(true);
+    const [paymentIsVisible, setPaymentIsVisible] = useState(true);
     const [paymentMethod, setPaymentMethod] = useState("pix");
     const [paymentStatus, setPaymentStatus] = useState("");
     const [cardNumber, setCardNumber] = useState("");
@@ -84,7 +84,7 @@ export function Payment({ method, itemse }) {
     };
 
     const togglePaymentScreen = () => {
-        setPaymentScreenVisible(!paymentScreenVisible);
+        setPaymentIsVisible(!paymentIsVisible);
     };
 
     return (
@@ -168,6 +168,7 @@ export function Payment({ method, itemse }) {
                                     <Button
                                         icon={orderIcon}
                                         title="Finalizar Pagamento"
+                                        $bgcolor="TOMATO_100"
                                         onClick={handlePayment}
                                     />
                                 </fieldset>

@@ -82,6 +82,7 @@ export function Header() {
                         <span>{getQuantity()}</span>
                         <Button
                             icon={orderBagIcon}
+                            $bgcolor="TOMATO_100"
                             onClick={() => { navigate("/order"); }}
                         />
                     </OrderBag>
@@ -89,6 +90,7 @@ export function Header() {
                         <Button
                             icon={orderBagIcon}
                             title={"Pedidos (" + getQuantity() + ")"}
+                            $bgcolor="TOMATO_100" 
                             onClick={handleOrder}
                         />
                     </OrderButton>

@@ -94,6 +94,7 @@ export function Card({ data }) {
                     </div>
                     <Button
                         className="button"
+                        $bgcolor="TOMATO_100"
                         icon={""}
                         title="incluir"
                         onClick={addItem}

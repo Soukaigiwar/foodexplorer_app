@@ -84,7 +84,11 @@ export function SignUp() {
                         onKeyDown={handleKeyDown}
                     />
                 </div>
-                <Button title="Criar Conta" onClick={handleSignUp} />
+                <Button
+                    title="Criar Conta"
+                    $bgcolor="TOMATO_100" 
+                    onClick={handleSignUp}
+                />
                 <a onClick={() => { navigate("/"); }}>Já tenho uma conta</a>
             </Form>
         </Container>
