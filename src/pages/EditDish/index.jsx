@@ -220,19 +220,17 @@ export function EditDish() {
                         />
                     </div>
                 </div>
-                <div className="delete_area">
+                <div className="submit_area">
                     <Button
                         id="remove_button"
                         title="Excluir prato"
-                        alternatebuttoncolor={true}
+                        $bgcolor="BG_800"
                         onClick={handleRemoveDish}
                     />
-                </div>
-                <div className="submit_area">
                     <Button
                         id="button"
                         title="Salvar alterações"
-                        alternatebuttoncolor={true}
+                        $bgcolor="TOMATO_400"
                         onClick={handleUpdateDish}
                     />
                 </div>

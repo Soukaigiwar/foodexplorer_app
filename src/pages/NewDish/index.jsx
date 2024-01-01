@@ -203,7 +203,7 @@ export function NewDish() {
                     <Button
                         id="button"
                         title="Salvar alterações"
-                        alternatebuttoncolor={true}
+                        $bgcolor={"TOMATO_400"}
                         onClick={handleAddDish}
                     />
                 </div>

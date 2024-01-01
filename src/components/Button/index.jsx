@@ -1,11 +1,10 @@
 import { Container } from "./styles";
 //import { useState } from "react";
 
-export function Button({ title, icon: Icon, alternatebuttoncolor = false, ...rest }) {
-    //const [buttonFaceColor, setButtonFaceColor] = useState(alternatebuttoncolor);
+export function Button({ title, bgcolor, icon: Icon, ...rest }) {
 
     return (
-        <Container type="button" $alternatebuttoncolor={alternatebuttoncolor} {...rest}>
+        <Container type="button" $bgcolor={bgcolor} {...rest}>
             {Icon && <img src={Icon} />}
             {title}
         </Container>

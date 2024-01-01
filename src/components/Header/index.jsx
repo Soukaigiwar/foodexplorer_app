@@ -72,6 +72,7 @@ export function Header() {
                 <OrderButton>
                     <Button
                         title={"Novo Prato"}
+                        $bgcolor="TOMATO_100"
                         onClick={handleAddNewDish}
                     />
                 </OrderButton>

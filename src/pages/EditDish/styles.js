@@ -172,6 +172,7 @@ export const Form = styled.form`
 
         .submit_area {
             display: flex;
+            gap: 3.2rem;
             justify-content: flex-end;
             margin-right: 12.5rem;
             margin-bottom: 11.6rem;
