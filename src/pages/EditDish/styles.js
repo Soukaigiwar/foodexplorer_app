@@ -97,11 +97,11 @@ export const Form = styled.form`
     
     .description_area {
         margin: 0 3.2rem ;
-        /* display: flex;
-        flex-direction: column; */
     }
 
     .submit_area {
+        display: flex;
+        gap: 3.2rem;
         margin: 0 3.2rem;
         margin-bottom: 5.3rem;
     }
