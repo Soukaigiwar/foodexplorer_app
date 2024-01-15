@@ -11,6 +11,7 @@ export const Container = styled.div`
         "footer";
 
     height: 100vh;
+    margin-left: 12.5rem;
 
     .backTextButton{
         img {
@@ -40,7 +41,6 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     grid-area: form;
-    max-width: 100%;
 
     h2 {
         padding: 2.5rem 3.2rem;
@@ -104,10 +104,15 @@ export const Form = styled.form`
         gap: 3.2rem;
         margin: 0 3.2rem;
         margin-bottom: 5.3rem;
+
+        > button {
+            width: 17.3rem;
+        }
     }
 
     @media (${devices.desktop}) {
         max-width: unset;
+        margin: 0 auto;
 
         h2 {
             padding: 0 12.5rem;
@@ -162,10 +167,10 @@ export const Form = styled.form`
 
         .description_area {
             margin: 0 12.5rem;
+            width: 112rem;
             > div {
                 display: flex;
                 flex-direction: row;
-                width: 100%;
                 margin: 0 auto;
             }
         }
@@ -174,7 +179,8 @@ export const Form = styled.form`
             display: flex;
             gap: 3.2rem;
             justify-content: flex-end;
-            margin-right: 12.5rem;
+            width: 112rem;
+            /* margin: 0 12.5rem; */
             margin-bottom: 11.6rem;
         }
     }

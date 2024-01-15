@@ -97,13 +97,15 @@ export const Form = styled.form`
     
     .description_area {
         margin: 0 3.2rem ;
-        /* display: flex;
-        flex-direction: column; */
     }
 
     .submit_area {
         margin: 0 3.2rem;
         margin-bottom: 5.3rem;
+        
+        > button {
+            width: 17.3rem;
+        }
     }
 
     @media (${devices.desktop}) {
