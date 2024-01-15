@@ -1,9 +1,12 @@
 import axios from "axios";
 
 export let api;
-const enviroment = import.meta.env.VITE_USER_NODE_ENV;
+const enviroment = import.meta.env.DEV;
 
-if (enviroment === "development") {
+console.log(import.meta.env.DEV);
+console.log(enviroment);
+
+if (enviroment) {
     api = axios.create({
         baseURL: "http://localhost:3333",
     });
