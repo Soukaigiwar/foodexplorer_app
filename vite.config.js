@@ -8,4 +8,7 @@ export default defineConfig({
         host: true,
         port: 4000,
     },
+    define: {
+        "process.env": {},
+    },
 });

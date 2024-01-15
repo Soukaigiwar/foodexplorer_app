@@ -33,3 +33,7 @@ _redirects
 *.sln
 *.sw?
 .env
+
+# api files
+src/services/api_dev.js
+
