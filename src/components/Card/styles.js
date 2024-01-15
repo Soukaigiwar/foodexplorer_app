@@ -116,8 +116,11 @@ export const Container = styled.div`
             cursor: pointer;
         }
 
-        > p {
-            display: unset;
+        p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
             color: var(--light-light-400, #C4C4CC);
             text-align: center;
             font-family: Roboto;
