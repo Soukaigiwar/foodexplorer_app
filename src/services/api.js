@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export let api;
-const enviroment = import.meta.env.VITE_NODE_ENV;
+const enviroment = import.meta.env.VITE_USER_NODE_ENV;
 
 if (enviroment === "development") {
     api = axios.create({
