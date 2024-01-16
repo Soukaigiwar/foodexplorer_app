@@ -41,10 +41,19 @@ export const Container = styled.div`
 
 
     @media (${devices.desktop}) {
-        min-width: 16.0rem;
+        min-width: 19.0rem;
+
+        img {
+            margin-right: 1rem;
+            width: 3rem;
+        }
 
         > div {
             position: relative;
+
+            > h1 {
+                font-size: 2.4rem;
+            }
             > span {
                     position: absolute;
                     top: 2rem;
