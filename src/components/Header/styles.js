@@ -31,13 +31,26 @@ export const Search = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
+        width: 30rem;
     }
 `;
 
 export const MenuIcon = styled.div`
     @media (${devices.desktop}) {
         display: none;
+    }
+`;
+
+export const Options = styled.div`
+    display: none;
+
+    @media (${devices.desktop}) {
+        display: flex;
+        justify-content: space-between;
+        width: 28rem;
+        margin-left: 4.2rem;
+        margin-right: 3.2rem;
+        
     }
 `;
 

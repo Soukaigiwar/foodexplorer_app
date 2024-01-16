@@ -1,7 +1,8 @@
-import { Container, MenuIcon, OrderButton, Search, SignOut, OrderBag } from "./styles";
+import { Container, MenuIcon, OrderButton, Search, SignOut, Options, OrderBag } from "./styles";
 import { Brand } from "../Brand";
 import { SearchInput } from "../SearchInput";
 import { Button } from "../Button";
+import { TextButton } from "../TextButton";
 import { Menu } from "../Menu";
 
 import menuIcon from "../../assets/menu.svg";
@@ -78,6 +79,16 @@ export function Header() {
                 </OrderButton>
             ) : (
                 <>
+                    <Options>
+                        <TextButton
+                            title={"Meus favoritos"}
+                            onClick={() => { }}
+                        />
+                        <TextButton
+                            title={"Histórico de pedidos"}
+                            onClick={() => { }}
+                        />
+                    </Options>
                     <OrderBag>
                         <span>{getQuantity()}</span>
                         <Button
