@@ -32,9 +32,10 @@ export const Container = styled.div`
         font-size: 2rem;
         padding: 1.6rem 0;
         gap: 1.3rem;
-
+        
         > img {
             width: 7.7rem;
+            cursor: pointer;
         }
 
         > div {
@@ -44,6 +45,7 @@ export const Container = styled.div`
 
             p {
                 color: ${({ theme }) => theme.COLORS.FG_300};
+                cursor: pointer;
 
                 span {
                     margin-left: 1.2rem;
