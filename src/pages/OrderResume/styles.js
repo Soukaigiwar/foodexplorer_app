@@ -267,7 +267,7 @@ export const Content = styled.div`
                 margin-left: 0;
                 margin-bottom: 0;
                 width: 100%;
-                height: 39rem;
+                height: 45rem;
                 overflow-y: auto;
 
                 &::-webkit-scrollbar {
