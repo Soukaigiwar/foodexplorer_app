@@ -22,6 +22,7 @@ export const Container = styled.div`
     }
 
     @media (${devices.desktop}) {
+        justify-content: space-around;
         img {
             margin-left: 12.3rem;
 

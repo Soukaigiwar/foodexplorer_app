@@ -8,7 +8,6 @@ export const Container = styled.div`
     > :nth-child(2) {
         width: 100%;
     }
-    /* justify-content: space-between; */
 
     padding: 5.6rem 2.8rem 2.4rem;
     width: 100%;
@@ -16,7 +15,7 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.BG_700};
 
     @media (${devices.desktop}) {
-        padding: 5.6rem 12.3rem 2.4rem;
+        justify-content: center;
 
         > :nth-child(2) {
             width: unset;
