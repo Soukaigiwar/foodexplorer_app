@@ -243,6 +243,16 @@ export const Content = styled.div`
         display: flex;
         gap: 7.5rem;
 
+        h2 {
+            margin-top: 0;
+            margin-left: 0;
+            margin-bottom: 3.2rem;
+            width: 100%;
+            font-family: "poppins";
+            font-size: 3.2rem;
+            font-weight: 500;
+        }
+        
         .item_list_area {
             display: flex;
             flex-direction: column;
@@ -250,11 +260,6 @@ export const Content = styled.div`
             margin-top: 3.2rem;
             width: 44.4rem;
 
-            .title {
-                margin-top: 0;
-                margin-left: 0;
-                width: 100%;
-            }
 
             .item_list {
                 display: flex;

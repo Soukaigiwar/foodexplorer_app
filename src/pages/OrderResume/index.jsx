@@ -152,7 +152,7 @@ export function OrderResume() {
                 <Content method={paymentMethod} status={paymentStatus}>
                     {listAreaVisible && (
                         <div className="item_list_area">
-                            <div className="title">Meu Pedido</div>
+                            <h2>Meu Pedido</h2>
                             <div className="item_list">
                                 {items && items.length > 0 ? (
                                     items.map((item, index) => (
