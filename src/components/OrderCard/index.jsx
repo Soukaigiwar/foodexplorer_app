@@ -1,11 +1,17 @@
 import { Container, Price } from "./styles";
-import dishImage from "../../assets/dish_place_holder.png";
+import dishPlaceHolder from "../../assets/dish_place_holder.png";
 import { TextButton } from "../TextButton";
 import { handleZeros } from "../../utils/string";
 import { useCart } from "../../hooks/cart";
+import { api } from "../../services/api";
+
 
 export function OrderCard({ data, paymentStatus, ...rest }) {
     const { deleteItem } = useCart();
+
+    const dishImageUrl = data.image_filename
+        ? `${api.defaults.baseURL}/files/${data.image_filename}`
+        : dishPlaceHolder;
 
     const handleDeleteItem = (dish_id) => {
         deleteItem(dish_id);
@@ -13,7 +19,7 @@ export function OrderCard({ data, paymentStatus, ...rest }) {
 
     return (
         <Container {...rest}>
-            <img src={dishImage} alt="Imagem do Prato" />
+            <img src={dishImageUrl} alt="Imagem do Prato" />
             <div>
                 <p>
                     {data.quantity} x {data.title}
