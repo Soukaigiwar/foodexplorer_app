@@ -120,6 +120,7 @@ export function Dish() {
                             </div>
                             <Button
                                 icon={orderBag}
+                                $bgcolor="TOMATO_100"
                                 title={`pedir ∙ R$ ${handleZeros(String(data.price * quantity))}`}
                                 onClick={ addItem }
                             />
