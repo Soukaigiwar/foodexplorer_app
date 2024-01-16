@@ -30,7 +30,8 @@ export function Payment({ method, items }) {
         if (method && method === "pix") {
             await payWithPix();
         } else {
-            if (!cardNumber) return alert("Preencha o número do Cartão de Crédito.");
+            if (!cardNumber)
+                return alert("Preencha o número do Cartão de Crédito.");
             if (!cardCvcNumber)
                 return alert("Preencha o código CVC do Cartão de Crédito.");
             await payWithCard();
@@ -109,71 +110,90 @@ export function Payment({ method, items }) {
                                 setPaymentMethod("credit");
                             }}
                         >
-                            <img src={creditIcon} alt="Logo pagamento Crédito" />
+                            <img
+                                src={creditIcon}
+                                alt="Logo pagamento Crédito"
+                            />
                             <span>cartão</span>
                         </div>
                     </div>
                     <div className="payment_content">
-                        {paymentMethod === "pix" && paymentStatus === "processing" && (
-                            <div className="payment_pix_area">
-                                <img
-                                    src={qrcode}
-                                    alt="qrcode"
-                                    onClick={() => {
-                                        handlePayment("pix");
-                                    }}
-                                />
-                            </div>
-                        )}
-
-                        {paymentMethod === "credit" && paymentStatus === "processing" && (
-                            <form>
-                                <fieldset>
-                                    <label htmlFor="credit_card_number">Número do Cartão</label>
-
-                                    <Input
-                                        id={"20"}
-                                        placeholder="0000 0000 0000 0000"
-                                        maxLength={16}
-                                        onChange={handleCardNumber}
+                        {paymentMethod === "pix" &&
+                            paymentStatus === "processing" && (
+                                <div className="payment_pix_area">
+                                    <h3>teste</h3>
+                                    <img
+                                        id="qrcode"
+                                        src={qrcode}
+                                        alt="qrcode"
+                                        onClick={() => {
+                                            handlePayment("pix");
+                                        }}
                                     />
-                                </fieldset>
-                                <fieldset>
-                                    <div className="fieldset_wrapper">
-                                        <div className="col-2">
-                                            <div className="input_wrapper">
-                                                <label htmlFor="credit_card_expire">Validade</label>
-                                                <DatePicker
-                                                    selected={cardExpireDate}
-                                                    showMonthYearPicker
-                                                    dateFormat="MM/yyyy"
-                                                    className="input_validate"
-                                                    onChange={(date) => setCardExpireDate(date)}
-                                                />
-                                            </div>
-                                            <div className="input_wrapper">
-                                                <label htmlFor="credit_card_cvc">CVC</label>
-                                                <Input
-                                                    type="text"
-                                                    placeholder="CVC"
-                                                    className="input_cvc"
-                                                    maxLength={3}
-                                                    onChange={handleCvc}
-                                                />
+                                </div>
+                            )}
+
+                        {paymentMethod === "credit" &&
+                            paymentStatus === "processing" && (
+                                <form>
+                                    <fieldset>
+                                        <label htmlFor="credit_card_number">
+                                            Número do Cartão
+                                        </label>
+
+                                        <Input
+                                            id={"20"}
+                                            placeholder="0000 0000 0000 0000"
+                                            maxLength={16}
+                                            onChange={handleCardNumber}
+                                        />
+                                    </fieldset>
+                                    <fieldset>
+                                        <div className="fieldset_wrapper">
+                                            <div className="col-2">
+                                                <div className="input_wrapper">
+                                                    <label htmlFor="credit_card_expire">
+                                                        Validade
+                                                    </label>
+                                                    <DatePicker
+                                                        selected={
+                                                            cardExpireDate
+                                                        }
+                                                        showMonthYearPicker
+                                                        dateFormat="MM/yyyy"
+                                                        className="input_validate"
+                                                        onChange={(date) =>
+                                                            setCardExpireDate(
+                                                                date
+                                                            )
+                                                        }
+                                                    />
+                                                </div>
+                                                <div className="input_wrapper">
+                                                    <label htmlFor="credit_card_cvc">
+                                                        CVC
+                                                    </label>
+                                                    <Input
+                                                        type="text"
+                                                        placeholder="CVC"
+                                                        className="input_cvc"
+                                                        maxLength={3}
+                                                        onChange={handleCvc}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </fieldset>
-                                <fieldset>
-                                    <Button
-                                        icon={orderIcon}
-                                        title="Finalizar Pagamento"
-                                        $bgcolor="TOMATO_100"
-                                        onClick={handlePayment}
-                                    />
-                                </fieldset>
-                            </form>
-                        )}
+                                    </fieldset>
+                                    <fieldset>
+                                        <Button
+                                            icon={orderIcon}
+                                            title="Finalizar Pagamento"
+                                            $bgcolor="TOMATO_100"
+                                            onClick={handlePayment}
+                                        />
+                                    </fieldset>
+                                </form>
+                            )}
 
                         {paymentStatus === "paid" && (
                             <div className="payment_done_area">

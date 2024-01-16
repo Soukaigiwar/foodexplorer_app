@@ -18,7 +18,6 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-
     .title,
     h2,
     h3 {
@@ -47,8 +46,8 @@ export const Content = styled.div`
         }
 
         .total {
-            margin: 1rem 3.9rem 0rem;   
-            
+            margin: 1rem 3.9rem 0rem;
+
             > h3 {
                 font-family: Poppins;
                 font-size: 1.8rem;
@@ -74,9 +73,9 @@ export const Content = styled.div`
     .payment_method_area {
         display: flex;
         margin-top: 5.6rem;
-        
+
         > .payment_area {
-            margin: 0 3.5rem 0 3.5rem; 
+            margin: 0 3.5rem 0 3.5rem;
             width: 100%;
 
             .payment_method {
@@ -85,18 +84,18 @@ export const Content = styled.div`
                 border-radius: 8px;
                 border: 1px solid ${({ theme }) => theme.COLORS.FG_600};
                 margin: 3.2rem auto;
-                
+
                 > div {
                     display: flex;
                 }
-                
+
                 /* botões do método de pagamento */
                 .pix,
                 .credit {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding: 0.2rem 1.0rem;
+                    padding: 0.2rem 1rem;
                     width: 50%;
                     height: 8.1rem;
                     border-bottom: 1px solid var(--light-light-600, #76797b);
@@ -120,20 +119,22 @@ export const Content = styled.div`
 
                 /* aba do pix */
                 .pix {
-                    border-right: 1px solid ${({ theme }) => theme.COLORS.FG_600};
+                    border-right: 1px solid
+                        ${({ theme }) => theme.COLORS.FG_600};
                     border-radius: 8px 0px 0px 0px;
                     background-color: ${({ method, theme }) =>
-    method === "pix" ? theme.COLORS.BG_800 : theme.COLORS.BG_400};
+                        method === "pix"
+                            ? theme.COLORS.BG_800
+                            : theme.COLORS.BG_400};
                 }
 
                 /* aba do credito */
                 .credit {
                     border-radius: 0px 8px 0px 0px;
-                    background-color:
-                        ${({ method, theme }) => method === "credit"
+                    background-color: ${({ method, theme }) =>
+                        method === "credit"
                             ? theme.COLORS.BG_800
-                            : theme.COLORS.BG_400
-                        };
+                            : theme.COLORS.BG_400};
                 }
 
                 > .payment_content {
@@ -173,7 +174,7 @@ export const Content = styled.div`
                             gap: 1.7rem;
                         }
 
-                        .input_wrapper{
+                        .input_wrapper {
                             display: flex;
                             flex-direction: column;
                             width: 100%;
@@ -186,7 +187,8 @@ export const Content = styled.div`
                             border: none;
                             border-radius: 0.8rem;
                             margin-top: 8px;
-                            background-color: ${({ theme }) => theme.COLORS.BG_900};
+                            background-color: ${({ theme }) =>
+                                theme.COLORS.BG_900};
                             color: ${({ theme }) => theme.COLORS.FG_600};
                             padding: 1.2rem 1.4rem;
                         }
@@ -194,18 +196,17 @@ export const Content = styled.div`
                         .input_cvc {
                             width: 100%;
                         }
-                    
+
                         input::-webkit-outer-spin-button,
                         input::-webkit-inner-spin-button {
                             -webkit-appearance: none;
                             margin: 0;
                         }
-                    
+
                         input[type="date"]::-webkit-calendar-picker-indicator {
                             display: none;
                             -webkit-appearance: none;
                         }
-                        
                     }
                 }
             }
@@ -219,12 +220,12 @@ export const Content = styled.div`
                 align-items: center;
                 margin: 5.9rem auto;
                 opacity: 0.4;
-                
+
                 img {
                     width: 12.8rem;
                     height: 12.8rem;
                 }
-                
+
                 > p {
                     font-family: "Roboto";
                     font-size: 2.3rem;
@@ -265,16 +266,16 @@ export const Content = styled.div`
                 overflow-y: auto;
 
                 &::-webkit-scrollbar {
-                width: 0.8rem;
+                    width: 0.8rem;
                 }
 
                 &::-webkit-scrollbar-track {
-                background: ${({ theme }) => theme.COLORS.BG_800};
+                    background: ${({ theme }) => theme.COLORS.BG_800};
                 }
 
                 &::-webkit-scrollbar-thumb {
-                border-radius: 9999px;
-                background-color: ${({ theme }) => theme.COLORS.FG_500};
+                    border-radius: 9999px;
+                    background-color: ${({ theme }) => theme.COLORS.FG_500};
                 }
             }
 
@@ -282,7 +283,7 @@ export const Content = styled.div`
                 width: 100%;
                 margin-left: 0;
                 margin-top: 0;
-                
+
                 > h3 {
                     height: 3.2rem;
                     font-size: 2rem;
@@ -299,7 +300,7 @@ export const Content = styled.div`
             flex-direction: column;
             margin-top: 3.2rem;
             margin-bottom: 3.2rem;
-            
+
             > .payment_area {
                 display: block;
                 width: 53rem;
@@ -317,6 +318,7 @@ export const Content = styled.div`
                             img {
                                 width: 25rem;
                                 height: 25rem;
+                                cursor: pointer;
                             }
                         }
 
@@ -332,8 +334,8 @@ export const Content = styled.div`
                             .input_cvc {
                                 margin-top: 0.8rem;
                             }
-                                label {
-                                    margin-bottom: unset;
+                            label {
+                                margin-bottom: unset;
                             }
                         }
                     }

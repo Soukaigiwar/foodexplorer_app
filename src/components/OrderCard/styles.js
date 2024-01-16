@@ -59,7 +59,7 @@ export const Container = styled.div`
 export const Price = styled.span`
     display: none;
 
-    @media (${devices.desktop}){
+    @media (${devices.desktop}) {
         display: unset;
     }
 `;
