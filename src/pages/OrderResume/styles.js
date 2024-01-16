@@ -248,7 +248,7 @@ export const Content = styled.div`
             margin-left: 0;
             margin-bottom: 3.2rem;
             width: 100%;
-            font-family: "poppins";
+            font-family: Poppins;
             font-size: 3.2rem;
             font-weight: 500;
         }

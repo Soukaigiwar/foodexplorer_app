@@ -3,7 +3,7 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     display: flex;
-    /* grid-area: foot; */
+    grid-area: footer;
     align-items: center;
     justify-content: space-between;
 
@@ -24,10 +24,12 @@ export const Container = styled.div`
     @media (${devices.desktop}) {
         img {
             margin-left: 12.3rem;
+
         }
 
         span {
             margin-right: 12.3rem;
+            font-size: 1.4rem;
         }
     }
 `;
@@ -39,13 +41,13 @@ export const BwBrand = styled.div`
     
 
     img {
-        margin-right: 0.64rem;
-        width: 1.8rem;
+        margin-right: 1rem;
+        width: 3rem;
     }
 
     h2 {
         font-family: "Roboto";
-        font-size: 1.5rem;
+        font-size: 2.4rem;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
