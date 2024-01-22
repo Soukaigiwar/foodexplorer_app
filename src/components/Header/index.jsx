@@ -82,11 +82,11 @@ export function Header() {
                     <Options>
                         <TextButton
                             title={"Meus favoritos"}
-                            onClick={() => { }}
+                            onClick={() => { navigate("/favorites"); }}
                         />
                         <TextButton
                             title={"Histórico de pedidos"}
-                            onClick={() => { }}
+                            onClick={() => { navigate("/order_history"); }}
                         />
                     </Options>
                     <OrderBag>
