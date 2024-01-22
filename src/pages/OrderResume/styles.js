@@ -29,6 +29,7 @@ export const Content = styled.div`
 
     .item_list_area {
         display: block;
+
         .title {
             margin: 5.6rem 3.5rem 2.7rem;
         }
@@ -242,6 +243,7 @@ export const Content = styled.div`
     @media (${devices.desktop}) {
         display: flex;
         gap: 7.5rem;
+        margin: 0 auto;
 
         h2 {
             margin-top: 0;
@@ -256,7 +258,7 @@ export const Content = styled.div`
         .item_list_area {
             display: flex;
             flex-direction: column;
-            margin-left: 12.3rem;
+            /* margin-left: 12.3rem; */
             margin-top: 3.2rem;
             width: 44.4rem;
 
