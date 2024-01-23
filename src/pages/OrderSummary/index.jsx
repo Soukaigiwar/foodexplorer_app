@@ -1,42 +1,78 @@
 /* eslint-disable no-unused-vars */
 import { Header } from "../../components/Header";
-import { BackTextButton } from "../../components/BackTextButton";
 import { Footer } from "../../components/Footer";
 
 import { Container, Content } from "./styles";
-import dishPlaceHolder from "../../assets/dish_place_holder.png";
-
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import bullet_red from "../../assets/bullet_red.svg";
+import bullet_yellow from "../../assets/bullet_yellow.svg";
+import bullet_green from "../../assets/bullet_green.svg";
 
 export function OrderSummary() {
-    const params = useParams();
 
-    const [data, setData] = useState({});
-    const dishImageUrl = data.image_filename
-        ? `${api.defaults.baseURL}/files/${data.image_filename}`
-        : dishPlaceHolder;
-
-    useEffect(() => {
-        async function fetchDish() {
-
-            let response = await api.get(`/dishes/${params.id}`);
-
-            const ingredient = (response.data.ingredients);
-
-            setData(response.data);
-        }
-
-        fetchDish();
-    }, []);
 
     return (
         <Container>
             <Header />
-            <BackTextButton />
             <Content>
-                <h2>Order Summary</h2>
+                <h2>Histórico de Pedidos</h2>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Código</th>
+                                <th>Detalhamento</th>
+                                <th>Data e Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img src={bullet_red} alt="Pendente" />
+                                        <p>Pendente</p>
+                                    </div>
+                                </td>
+                                <td>0000052</td>
+                                <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
+                                <td>20/05 às 18h00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img src={bullet_yellow} alt="Pendente" />
+                                        <p>Preparando</p>
+                                    </div>
+                                </td>
+                                <td>00000003</td>
+                                <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
+                                <td>20/05 às 18h00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img src={bullet_green} alt="Pendente" />
+                                        <p>Entregue</p>
+                                    </div>
+                                </td>
+                                <td>0000021</td>
+                                <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
+                                <td>20/05 às 18h00</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <img src={bullet_green} alt="Pendente" />
+                                        <p>Entregue</p>
+                                    </div>
+                                </td>
+                                <td>0000006</td>
+                                <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
+                                <td>20/05 às 18h00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </Content>
             <Footer />
         </Container>

@@ -4,10 +4,9 @@ import { devices } from "../../styles/media";
 export const Container = styled.div`
 
 display: grid;
-grid-template-rows: 104px min-content 1fr 77px;
+grid-template-rows: 104px 1fr 77px;
 grid-template-areas: 
     "header"
-    "back_text_button"
     "content"
     "footer";
 
@@ -22,124 +21,73 @@ height: 100vh;
         }
 }
 
-.details {
-    padding: 0 5.6rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2.4rem;
-
-    > h2 {
-        font-family: "Poppins";
-        font-size: 2.7rem;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 3.78rem;
-        text-align: center;
-        color: ${({ theme }) => theme.COLORS.FG_300};
-    }
-
-    > p {
-        text-align: center;
-        font-family: "Poppins";
-        font-size: 16.225px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 2.27rem;
-        color: ${({ theme }) => theme.COLORS.FG_300};
-
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
-
-    > .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-    }
-
-    margin-bottom: 5rem;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-around;
-
-    width: 100%;
-    height: 3.8rem;
-    gap: 1.6rem;
-    
-
-    > div {
-        display: inline-flex;
-        align-items: center;
-        gap: 1.6rem;
-        font-family: "Roboto";
-        font-size: 2.2rem;
-        font-weight: 700;
-        height: 3.8rem;
-        color: ${({ theme }) => theme.COLORS.FG_300};
-    }
-
-    > button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 15.4rem;
-        height: 3.8rem;
-        font-size: 0.94rem;
-        font-weight: 500;
-        line-height: 1.6rem;
-        cursor: pointer;
-        
-    }
-}
-
 @media (${devices.desktop}) {
-    .dish {
-        padding: 0 12.2rem;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 4.2rem;
 
-        .image{
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            width: 39rem;
-        }
-        
-        .details {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            margin: 0;
-            padding: 0 0 0 4.78rem;
-
-            p {
-                text-align: start;
-            }
-
-            .tags {
-                justify-content: start;
-            }
-        }
-
-        .actions {
-            justify-content: flex-start;
-        }
-    }
-}
-`;
+}`;
 
 export const Content = styled.div`
     grid-area: content;
-`;
-
-export const BackTextButton = styled.div`
-    grid-area: back_text_button;
-`;
+    
+    @media (${devices.desktop}) {
+        grid-area: content;
+        width: 113.2rem;
+        margin: 0 auto;
+        
+        h2 {
+            margin-top: 3.43rem;
+            margin-bottom: 2.62rem;
+            color: var(--Light-Light-300, ${({ theme }) => theme.COLORS.FG_300});
+            font-family: 'Poppins';
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 140%;
+        }
+        
+        table, tr, th {
+            border: 1px solid ${({ theme }) => theme.COLORS.BG_1000};
+            border-spacing: 0;
+            color: ${({ theme }) => theme.COLORS.FG_300};        
+        }
+        
+        tr {
+            th {
+                padding: 2.1rem 2.4rem;
+                font-size: 1.4rem;
+                font-weight: 700;
+                text-align: start;
+            }
+            th:nth-child(1) {
+                width: 15rem;
+            }
+            
+            th:nth-child(2) {
+                width: 15rem;
+            }
+            
+            th:nth-child(3) {
+                width: 67rem;
+            }
+    
+            th:nth-child(4) {
+                width: 15rem;
+            }
+            
+            td {
+                border: 1px solid ${({ theme }) => theme.COLORS.BG_1000};
+                font-size: 1.4rem;
+                font-weight: 400;
+                padding: 16px 24px;
+                
+    
+                > div {
+                    display: flex;
+                    align-items: center;
+    
+                    img {
+                        margin-right: 0.8rem;
+                    }
+                }
+            }
+        }
+    }`;
