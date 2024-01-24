@@ -30,16 +30,12 @@ export function Favorite() {
 
     const items = [];
     
-        items.push(item);
-        items.push(item2);
-        items.push(item3);
-        items.push(item4);
-        items.push(item5);
+        // items.push(item);
+        // items.push(item2);
+        // items.push(item3);
+        // items.push(item4);
+        // items.push(item5);
     
-
-    // items.map((item, index) => {
-    //     console.log(index);
-    // })
     return (
         <Container>
             <Header />
@@ -55,7 +51,10 @@ export function Favorite() {
                             </div>
                         ))
                     ) : (
-                        <h3>Carrinho vazio.</h3>
+                        <div className="no_items">
+                            <span>😕</span>
+                            <h3>Não há favoritos para exibir</h3>
+                        </div>
                     )}
                 </div>
             </Content>

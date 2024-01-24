@@ -35,6 +35,23 @@ export const Content = styled.div`
             line-height: 140%;
         }
 
+        .no_items {
+            width: 100%;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+
+            span {
+                font-size: 16rem;
+            }
+        }
+
+        h3 {
+            color: var(--Light-Light-300, ${({ theme }) => theme.COLORS.FG_300});
+            font-family: 'Poppins';
+        }
+
         .cards {
             display: flex;
             flex-wrap: wrap;
@@ -51,10 +68,6 @@ export const Content = styled.div`
             margin-right: 4.8rem; 
             padding: 1.6rem 4.8rem 4.8rem 0;
             margin-right: 0;
-        }
-
-        .favorite_card:last-child {
-            
         }
 }
 `;
