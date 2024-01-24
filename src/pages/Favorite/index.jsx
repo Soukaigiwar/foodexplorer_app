@@ -1,42 +1,63 @@
 /* eslint-disable no-unused-vars */
 import { Header } from "../../components/Header";
-import { BackTextButton } from "../../components/BackTextButton";
 import { Footer } from "../../components/Footer";
+import { FavoriteCard } from "../../components/FavoriteCard";
 
 import { Container, Content } from "./styles";
-import dishPlaceHolder from "../../assets/dish_place_holder.png";
 
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
 
 export function Favorite() {
-    const params = useParams();
+    const item = {
+        image_filename: "dish_place_holder.png",
+        title: "Salada Ravanello",
+    }
+    const item2 = {
+        image_filename: "dish_place_holder.png",
+        title: "Salada Radish",
+    }
+    const item3 = {
+        image_filename: "dish_place_holder.png",
+        title: "Dadinhos de amendoim",
+    }
+    const item4 = {
+        image_filename: "dish_place_holder.png",
+        title: "Pudim",
+    }
+    const item5 = {
+        image_filename: "dish_place_holder.png",
+        title: "Heineken 350ml",
+    }
 
-    const [data, setData] = useState({});
-    const dishImageUrl = data.image_filename
-        ? `${api.defaults.baseURL}/files/${data.image_filename}`
-        : dishPlaceHolder;
+    const items = [];
+    
+        items.push(item);
+        items.push(item2);
+        items.push(item3);
+        items.push(item4);
+        items.push(item5);
+    
 
-    useEffect(() => {
-        async function fetchDish() {
-
-            let response = await api.get(`/dishes/${params.id}`);
-
-            const ingredient = (response.data.ingredients);
-
-            setData(response.data);
-        }
-
-        fetchDish();
-    }, []);
-
+    // items.map((item, index) => {
+    //     console.log(index);
+    // })
     return (
         <Container>
             <Header />
-            <BackTextButton />
             <Content>
-                <h2>Favorites</h2>
+                <h2>Meus Favoritos</h2>
+                <div className="cards">
+                    {items && items.length > 0 ? (
+                        items.map((item, index) => (
+                            <div className="favorite_card" key={String(index)}>
+                                <FavoriteCard
+                                    data={item}
+                                />
+                            </div>
+                        ))
+                    ) : (
+                        <h3>Carrinho vazio.</h3>
+                    )}
+                </div>
             </Content>
             <Footer />
         </Container>

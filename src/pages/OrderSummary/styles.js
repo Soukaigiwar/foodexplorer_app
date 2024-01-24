@@ -12,15 +12,6 @@ grid-template-areas:
 
 height: 100vh;
 
-.image {
-    text-align: center;
-
-    img {
-            margin: 1.6rem auto 1.6rem;
-            width: 26.4rem;
-        }
-}
-
 @media (${devices.desktop}) {
 
 }`;
