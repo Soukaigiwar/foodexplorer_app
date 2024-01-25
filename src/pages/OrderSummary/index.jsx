@@ -3,13 +3,26 @@ import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 
 import { Container, Content } from "./styles";
+import { useEffect } from "react";
+import { api } from "../../services/api";
 import bullet_red from "../../assets/bullet_red.svg";
 import bullet_yellow from "../../assets/bullet_yellow.svg";
 import bullet_green from "../../assets/bullet_green.svg";
 
 export function OrderSummary() {
 
+    useEffect(() => {
+        async function fetchOrders() {
+            const response = await api.get("/orders/all");
 
+            
+            
+            //console.log(response);
+            return response;
+        }
+
+        fetchOrders();
+    }, []);
     return (
         <Container>
             <Header />
