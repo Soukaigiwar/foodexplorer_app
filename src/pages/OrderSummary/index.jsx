@@ -16,8 +16,8 @@ export function OrderSummary() {
             const response = await api.get("/orders/all");
 
             
-            
-            //console.log(response);
+            //{"order_id": 1, "title": "Spaguetti Gambe", "quantity": 1, "status": "pending"}
+            console.log(response);
             return response;
         }
 
