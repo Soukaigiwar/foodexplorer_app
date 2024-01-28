@@ -240,14 +240,16 @@ export const Content = styled.div`
     }
 
     @media (${devices.desktop}) {
+        max-width: 136.8rem;
+        margin: 0 auto;
         display: flex;
         gap: 7.5rem;
 
         h2 {
-            margin-top: 0;
-            margin-left: 0;
+            /* margin-top: 0;
+            margin-left: 0; */
             margin-bottom: 3.2rem;
-            width: 100%;
+            /* width: 100%; */
             font-family: Poppins;
             font-size: 3.2rem;
             font-weight: 500;
@@ -256,9 +258,9 @@ export const Content = styled.div`
         .item_list_area {
             display: flex;
             flex-direction: column;
-            margin-left: 12.3rem;
+            /* margin-left: 12.3rem; */
             margin-top: 3.2rem;
-            width: 44.4rem;
+            /* width: 44.4rem; */
 
 
             .item_list {
@@ -303,13 +305,13 @@ export const Content = styled.div`
         .payment_method_area {
             display: flex;
             flex-direction: column;
-            margin-top: 3.2rem;
-            margin-bottom: 3.2rem;
+            margin: 3.2rem 0;
+
 
             > .payment_area {
                 display: block;
                 width: 53rem;
-                margin-left: 0;
+                /* margin-left: 0; */
 
                 .payment_method {
                     margin: 3.4rem auto 0;
