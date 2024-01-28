@@ -29,6 +29,7 @@ export const Content = styled.div`
 
     .item_list_area {
         display: block;
+
         .title {
             margin: 5.6rem 3.5rem 2.7rem;
         }
@@ -244,6 +245,7 @@ export const Content = styled.div`
         margin: 0 auto;
         display: flex;
         gap: 7.5rem;
+        margin: 0 auto;
 
         h2 {
             /* margin-top: 0;

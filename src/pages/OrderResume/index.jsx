@@ -47,12 +47,33 @@ export function OrderResume() {
     };
 
     const payWithPix = async () => {
-        const itemsWithPendingStatus = items.map((item) => ({
-            ...item,
-            status: "pending",
-        }));
+        /*
+        const orderData = { 
+            userId, 
+            order: [], 
+            status: rawData.status 
+        };
 
-        await api.post("/orders", itemsWithPendingStatus);
+        rawData.order.forEach(item => {
+            orderData.order.push(item)
+        })
+        */
+        const orderData = {
+            status: "pending",
+            order: []
+        }
+
+        items.forEach(item => {
+            orderData.order.push({
+                dish_id: item.dish_id,
+                price: item.price,
+                quantity: item.quantity,
+            })
+        });
+
+        console.log(orderData);
+
+        await api.post("/orders", orderData);
         localStorage.setItem("@foodexplorer:status", "pending");
         setPaymentStatus("pending");
         setItems([]);
@@ -60,12 +81,20 @@ export function OrderResume() {
     };
 
     const payWithCard = async () => {
-        const itemsWithPaidStatus = items.map((item) => ({
-            ...item,
+        const orderData = {
             status: "paid",
-        }));
+            order: []
+        }
 
-        await api.post("/orders", itemsWithPaidStatus);
+        items.forEach(item => {
+            orderData.order.push({
+                dish_id: item.dish_id,
+                price: item.price,
+                quantity: item.quantity,
+            })
+        });
+
+        await api.post("/orders", orderData);
         localStorage.setItem("@foodexplorer:status", "paid");
         setPaymentStatus(localStorage.getItem("@foodexplorer:status"));
         setItems([]);
@@ -116,7 +145,7 @@ export function OrderResume() {
             }
 
             if ((cacheData && response.data &&
-                    response.data[0].status === "processing") ||
+                    response.data.status === "processing") ||
                     (cacheData && !response.data)) {
                 setTotal(
                     cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
@@ -126,7 +155,7 @@ export function OrderResume() {
             }
 
             if (!cacheData && response.data &&
-                    response.data[0].status === "processing") {
+                    response.data.status === "processing") {
                 setTotal(
                     response.data.reduce(
                         (sum, dish) => sum + dish.price * dish.quantity,
