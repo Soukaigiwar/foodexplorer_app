@@ -22,10 +22,8 @@ export const Container = styled.div`
     }
 
     @media (${devices.desktop}) {
-        justify-content: space-around;
         img {
             margin-left: 12.3rem;
-
         }
 
         span {
@@ -39,19 +37,34 @@ export const BwBrand = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    
 
     img {
         margin-right: 1rem;
-        width: 3rem;
+        width: 2.2rem;
     }
-
+    
     h2 {
         font-family: "Roboto";
-        font-size: 2.4rem;
+        font-size: 1.5rem;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
         color: ${({ theme }) => theme.COLORS.FG_700};
+    }
+    
+    @media (${devices.desktop}) {
+        img {
+            margin-right: 1rem;
+            width: 3rem;
+        }
+
+        h2 {
+            font-family: "Roboto";
+            font-size: 2.4rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            color: ${({ theme }) => theme.COLORS.FG_700};
+        }
     }
 `;
