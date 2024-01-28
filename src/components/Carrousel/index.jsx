@@ -29,10 +29,14 @@ export function Carrousel({ title, category }) {
 
         if (width < 429) {
             setNavigationAvailable(false);
-        } else if (width > 768) {
-            
+        } else if (width > 429 && width < 768) {
+            setSlidesInCarrousel(width / 230);
+        } else if (width >= 768 && width < 1360) {
+            setSlidesInCarrousel(width / 430);
+        } else if (width > 1360) {
             setNavigationAvailable(true);
-            setSlidesInCarrousel(width / 390);
+            setSlidesInCarrousel(1360 / 370);
+            // setSlidesInCarrousel(width / 500);
             setSpaceBetweenCards(20);
         }
     }
