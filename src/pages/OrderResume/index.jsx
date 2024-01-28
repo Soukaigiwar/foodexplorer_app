@@ -61,14 +61,14 @@ export function OrderResume() {
         const orderData = {
             status: "pending",
             order: []
-        }
+        };
 
         items.forEach(item => {
             orderData.order.push({
                 dish_id: item.dish_id,
                 price: item.price,
                 quantity: item.quantity,
-            })
+            });
         });
 
         console.log(orderData);
@@ -84,14 +84,14 @@ export function OrderResume() {
         const orderData = {
             status: "paid",
             order: []
-        }
+        };
 
         items.forEach(item => {
             orderData.order.push({
                 dish_id: item.dish_id,
                 price: item.price,
                 quantity: item.quantity,
-            })
+            });
         });
 
         await api.post("/orders", orderData);

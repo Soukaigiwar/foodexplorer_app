@@ -18,6 +18,9 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+    width: 113rem;
+    margin: 0 auto;
+    
     .title,
     h2,
     h3 {

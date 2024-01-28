@@ -10,31 +10,31 @@ export function Favorite() {
     const item = {
         image_filename: "dish_place_holder.png",
         title: "Salada Ravanello",
-    }
+    };
     const item2 = {
         image_filename: "dish_place_holder.png",
         title: "Salada Radish",
-    }
+    };
     const item3 = {
         image_filename: "dish_place_holder.png",
         title: "Dadinhos de amendoim",
-    }
+    };
     const item4 = {
         image_filename: "dish_place_holder.png",
         title: "Pudim",
-    }
+    };
     const item5 = {
         image_filename: "dish_place_holder.png",
         title: "Heineken 350ml",
-    }
+    };
 
     const items = [];
     
-        // items.push(item);
-        // items.push(item2);
-        // items.push(item3);
-        // items.push(item4);
-        // items.push(item5);
+    // items.push(item);
+    // items.push(item2);
+    // items.push(item3);
+    // items.push(item4);
+    // items.push(item5);
     
     return (
         <Container>
