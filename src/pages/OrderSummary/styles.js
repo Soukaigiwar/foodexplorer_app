@@ -17,15 +17,25 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     grid-area: content;
-
+    color: ${({ theme }) => theme.COLORS.FG_300};
 
     margin: 0 3.5rem;
+    
+    h2 {
+        margin-top: 5.6rem;
+        margin-bottom: 1.7rem;
+    }
+
+    h2 span {
+        display: none;
+    }
 
     #item_list {
         display: flex;
         flex-direction: column;
         font-family: "Roboto";
-        color: ${({ theme }) => theme.COLORS.FG_300};
+        margin-bottom: 1.7rem;
+        
         gap: 1.7rem;
     }
 
@@ -75,6 +85,16 @@ export const Content = styled.div`
         grid-area: content;
         margin: 0 auto;
 
+        h2 {
+            padding: 0;
+            margin-top: 3.429rem;
+            margin-bottom: 3.429rem;
+        }
+
+        h2 span {
+            display: unset;
+        }
+
         #item_list {
             font-family: "Roboto";
             color: ${({ theme }) => theme.COLORS.FG_300};
@@ -82,10 +102,10 @@ export const Content = styled.div`
         }
 
         #head {
-            font-style: Roboto;
-            font-size: 1.4rem;
             display: flex;
             flex-direction: row;
+            font-style: Roboto;
+            font-size: 1.4rem;
             
             border-top-left-radius: 0.8rem;
             border-top-right-radius: 0.8rem;
