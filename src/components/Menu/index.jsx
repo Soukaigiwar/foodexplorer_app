@@ -19,6 +19,11 @@ export function Menu({ toggleMenu, menuisvisible }) {
         signOut();
     };
 
+    const handleLinkToOrderSummary = () => {
+        toggleMenu();
+        navigate("/order_history");
+    };
+
     const handleAddNewDish = () => {
         navigate("/add_new_dish");
     };
@@ -58,9 +63,14 @@ export function Menu({ toggleMenu, menuisvisible }) {
                             </p>
                         </>
                     ) : (
-                        <p onClick={() => { handleSignOut(); }}>
+                        <>
+                            <p onClick={() => { handleLinkToOrderSummary(); }}>
+                            Histórico de pedidos
+                            </p>
+                            <p onClick={() => { handleSignOut(); }}>
                             Sair
-                        </p>
+                            </p>
+                        </>
                     )}
                 </div>
             </Content>
