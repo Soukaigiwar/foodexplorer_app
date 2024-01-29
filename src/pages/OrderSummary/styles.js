@@ -44,7 +44,6 @@ export const Content = styled.div`
         border: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
         border-radius: 8px;
         padding: 1.8rem 2rem;
-        /* height: 20.4rem; */
     }
 
     .codigo {
@@ -131,9 +130,7 @@ export const Content = styled.div`
             line-height: 160%;
             border: none;
             padding: 0;
-            
-            /* padding: 1.8rem 2rem; */
-            /* height: 20.4rem; */
+
         }
 
         .codigo,
@@ -141,7 +138,7 @@ export const Content = styled.div`
         .detalhamento,
         .data_hora {
             border: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
-            padding: 2rem;
+            padding: 1.6rem 2.4rem;
             margin-top: 0;
             border-top: 0;
         }
