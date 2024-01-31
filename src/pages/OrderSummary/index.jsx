@@ -58,59 +58,14 @@ export function OrderSummary() {
                                         </p>
                                     </div>
                                     <div className="data_hora">
-                                        <p>20/05 às 18h00</p>
+                                        <p>{order.date}</p>
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
                         <h3>Nenhum pedido.</h3>
-                    )};
-                    <div className="lines">
-                        <div className="status">
-                            <img src={bullet_yellow} alt="Preparando" />
-                            <p>Entregue</p>
-                        </div>
-                        <div className="codigo">
-                            <p>0000006</p>
-                        </div>
-                        <div className="detalhamento">
-                            <p>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</p>
-                        </div>
-                        <div className="data_hora">
-                            <p>20/05 às 18h00</p>
-                        </div>
-                    </div>
-                    <div className="lines">
-                        <div className="status">
-                            <img src={bullet_green} alt="Entregue" />
-                            <p>Entregue</p>
-                        </div>
-                        <div className="codigo">
-                            <p>0000006</p>
-                        </div>
-                        <div className="detalhamento">
-                            <p>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</p>
-                        </div>
-                        <div className="data_hora">
-                            <p>20/05 às 18h00</p>
-                        </div>
-                    </div>
-                    <div className="lines">
-                        <div className="status">
-                            <img src={bullet_green} alt="Entregue" />
-                            <p>Entregue</p>
-                        </div>
-                        <div className="codigo">
-                            <p>0000006</p>
-                        </div>
-                        <div className="detalhamento">
-                            <p>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</p>
-                        </div>
-                        <div className="data_hora">
-                            <p>20/05 às 18h00</p>
-                        </div>
-                    </div>
+                    )}
 
                     {/* 
                     <tr>
