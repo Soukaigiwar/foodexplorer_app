@@ -42,8 +42,16 @@ export function OrderSummary() {
                             <div key={String(index)}>
                                 <div className="lines" >
                                     <div className="status">
-                                        <img src={bullet_red} alt="Pendente" />
-                                        <p>{order.status}</p>
+                                        <img src={
+                                            order.status === "pendent" ? bullet_red :
+                                                order.status === "processing" ? bullet_yellow :
+                                                    bullet_green
+                                        } alt={order.status} />
+                                        <p>{
+                                            order.status === "delivered" ? "Entregue" :
+                                                order.status === "processing" ? "Processando" :
+                                                    order.status === "pendent" ? "Cancelado" : "Cancelado"
+                                        }</p>
                                     </div>
                                     <div className="codigo">
                                         <p>{String(order.order_id).padStart(8, "0")}</p>
