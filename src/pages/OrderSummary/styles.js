@@ -84,6 +84,7 @@ export const Content = styled.div`
     @media (${devices.desktop}) {
         grid-area: content;
         margin: 0 auto;
+        width: 116rem;
 
         h2 {
             padding: 0;

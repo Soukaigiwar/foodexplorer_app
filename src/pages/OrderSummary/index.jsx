@@ -31,12 +31,14 @@ export function OrderSummary() {
             <Content>
                 <h2><span>Histórico de </span>Pedidos</h2>
                 <div id="item_list">
-                    <div id="head">
-                        <div id="head_status">Status</div>
-                        <div id="head_codigo">Código</div>
-                        <div id="head_detalhamento">Detalhamento</div>
-                        <div id="head_data_hora">Data e Hora</div>
-                    </div>
+                    {(orders && orders.length > 0) ?? (
+                        <div id="head">
+                            <div id="head_status">Status</div>
+                            <div id="head_codigo">Código</div>
+                            <div id="head_detalhamento">Detalhamento</div>
+                            <div id="head_data_hora">Data e Hora</div>
+                        </div>
+                    )}
                     {orders && orders.length > 0 ? (
                         orders.map((order, index) => (
                             <div key={String(index)}>
