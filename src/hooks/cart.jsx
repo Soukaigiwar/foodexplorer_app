@@ -38,22 +38,33 @@ function CartProvider({ children }) {
         return newItem;
     }
 
-    function addItemToCart(item) {
+    function addItemToCart(item, orderStatus = "processing") {
+        console.log("item to add dish_id", item.dish_id);
+        
+        
+        console.log("orderStatus:", orderStatus);
+
         const hasItemAndProcessingOrder = localStorage.getItem("@foodexplorer:status");
         if (hasItemAndProcessingOrder && hasItemAndProcessingOrder !== "processing") {
             clearCart();
         }
 
         if (item && item.dish_id && item.quantity) {
-            localStorage.setItem("@foodexplorer:status", "processing");
+
+            let orderStatusFromCache = localStorage.getItem("@foodexplorer:status");
+
+            if (!orderStatusFromCache) {
+                localStorage.setItem("@foodexplorer:status", orderStatus);
+            }
             setNewItem(prevItems => {
                 const itemIndex = prevItems
                     .findIndex(prev => prev.dish_id === item.dish_id);
+                console.log("item no hook cart:", item);
 
                 if (itemIndex !== -1) {
                     return prevItems.map((prev, index) => {
                         if (index === itemIndex) {
-                            return {
+                            const newItem = {
                                 ...prev,
                                 dish_id: item.dish_id,
                                 title: item.title,
@@ -62,6 +73,9 @@ function CartProvider({ children }) {
                                 image_title: item.image_title,
                                 image_filename: item.image_filename
                             };
+
+
+                            return newItem;
                         } else {
                             return prev;
                         }

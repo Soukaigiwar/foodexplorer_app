@@ -71,7 +71,7 @@ export function OrderResume() {
             });
         });
 
-        console.log(orderData);
+        console.log("order data:", orderData);
 
         await api.post("/orders", orderData);
         localStorage.setItem("@foodexplorer:status", "pending");
@@ -125,52 +125,61 @@ export function OrderResume() {
     useEffect(() => {
         async function fetchItems() {
             const cacheData = await loadCartFromBrowserCache();
-            let statusCache = localStorage.getItem("@foodexplorer:status");
-
-            if (!statusCache) {
-                statusCache = "processing";
-                setPaymentStatus("processing");
-            }
-
-            setPaymentStatus(statusCache);
-
-            const response = await api.get("/orders/last");
-
-            if (cacheData) {
-                setTotal(
-                    cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
-                );
-                setPaymentStatus(statusCache);
-                setItems(cacheData);
-            }
-
-            if ((cacheData && response.data &&
-                    response.data.status === "processing") ||
-                    (cacheData && !response.data)) {
-                setTotal(
-                    cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
-                );
-                setPaymentStatus(statusCache);
-                setItems(cacheData);
-            }
-
-            if (!cacheData && response.data &&
-                    response.data.status === "processing") {
-                setTotal(
-                    response.data.reduce(
-                        (sum, dish) => sum + dish.price * dish.quantity,
-                        0
-                    )
-                );
-                setPaymentStatus(statusCache);
-                setItems(response.data);
-
-                for (let item of response.data) {
-                    addItemToCart(item);
+            console.log("cacheData", cacheData);
+            
+            let orderStatus = localStorage.getItem("@foodexplorer:status");
+            
+            let lastOrder = undefined;
+            
+            if (!orderStatus) orderStatus = "processing"; 
+            
+            try {
+                lastOrder = await api.get("/orders/last");
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    // lastOrder = [];
+                    console.log(error.message);
                 }
             }
-        }
+            
+            const hasDataOnOrderData = lastOrder && Object.keys(lastOrder.data).length !== 0;
+            
+            if (hasDataOnOrderData) orderStatus = lastOrder.data.status;
+            console.log("lastOrderStatus1:", orderStatus);
+            
+            // console.log("lastOrder", lastOrder.data);
+            
+            if (cacheData && 
+                (orderStatus === "processing" || orderStatus === "pending")) {
+                console.log("tem cache e status ou é processing ou pending");
+                setTotal(
+                    cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
+                );
+                setPaymentStatus(orderStatus);
+                setItems(cacheData);
+                return;
+            }
+                
+            if (!cacheData && hasDataOnOrderData) {
+                console.log("lastOrderStatus", lastOrder.data.status);
+                console.log("lastOrderStatus2:", orderStatus);
+                setTotal(
+                    lastOrder.data.items
+                        .reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
+                );
+                setPaymentStatus(orderStatus);
+                setItems(lastOrder.data.items);
 
+                for (let item of lastOrder.data.items) {
+                    //console.log(item);
+                    addItemToCart(item, orderStatus);
+                }
+            }
+            // if not found last order on database, search cacheData for processing order
+            // if (!hasDataOnOrderData) {
+            // }
+        }
+        
         fetchItems();
     }, [addItemToCart, loadCartFromBrowserCache]);
 
