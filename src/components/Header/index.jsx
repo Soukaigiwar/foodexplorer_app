@@ -18,6 +18,7 @@ import { useRole } from "../../hooks/role";
 export function Header() {
     const [menuIsVisible, setmenuIsVisible] = useState(false);
     const [isAdminRole, setIsAdminRole] = useState(false);
+    const [quantity, setQuantity] = useState(0);
 
     const { isAdmin } = useRole();
     const { signOut } = useAuth();
@@ -50,6 +51,15 @@ export function Header() {
     
         checkIfUserRoleIsAdmin();
     }, []);
+
+    useEffect(() => {
+        (async () => {
+            const result = await getQuantity();
+            
+            const quantity = result ? result : 0;
+            setQuantity(quantity);
+        })();
+    }, [quantity]);
 
     return (
         <Container>
@@ -90,7 +100,7 @@ export function Header() {
                         />
                     </Options>
                     <OrderBag>
-                        <span>{getQuantity()}</span>
+                        <span>{quantity}</span>
                         <Button
                             icon={orderBagIcon}
                             $bgcolor="TOMATO_100"
@@ -100,7 +110,7 @@ export function Header() {
                     <OrderButton>
                         <Button
                             icon={orderBagIcon}
-                            title={"Pedidos (" + getQuantity() + ")"}
+                            title={"Pedidos (" + quantity + ")"}
                             $bgcolor="TOMATO_100" 
                             onClick={handleOrder}
                         />
