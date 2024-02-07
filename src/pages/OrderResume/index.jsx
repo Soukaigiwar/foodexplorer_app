@@ -124,17 +124,17 @@ export function OrderResume() {
 
     useEffect(() => {
         async function fetchItems() {
-            const cacheData = await loadCartFromBrowserCache();
+            const cacheData = await loadCartFromBrowserCache(); // ja tinha itens no cache
             console.log("cacheData", cacheData);
             
-            let orderStatus = localStorage.getItem("@foodexplorer:status");
+            let orderStatus = localStorage.getItem("@foodexplorer:status"); // status recuperado do cache
             
             let lastOrder = undefined;
             
-            if (!orderStatus) orderStatus = "processing"; 
+            if (!orderStatus) orderStatus = "processing"; // se nao tinha orderStatus atribui como "processing". isso significa novo pedido
             
             try {
-                lastOrder = await api.get("/orders/last");
+                lastOrder = await api.get("/orders/last"); //carrega ultimo pedido
             } catch (error) {
                 if (error.response && error.response.status === 404) {
                     // lastOrder = [];
@@ -142,25 +142,31 @@ export function OrderResume() {
                 }
             }
             
-            const hasDataOnOrderData = lastOrder && Object.keys(lastOrder.data).length !== 0;
+            const hasItemsOnOrderData = lastOrder && Object.keys(lastOrder.data).length !== 0;
+
+            console.log(hasItemsOnOrderData);
+            console.log(lastOrder.data);
             
-            if (hasDataOnOrderData) orderStatus = lastOrder.data.status;
+            if (hasItemsOnOrderData) orderStatus = lastOrder.data.status;
             console.log("lastOrderStatus1:", orderStatus);
             
             // console.log("lastOrder", lastOrder.data);
             
             if (cacheData && 
                 (orderStatus === "processing" || orderStatus === "pending")) {
+                //tem cache e status ou é processing ou pending
                 console.log("tem cache e status ou é processing ou pending");
+
                 setTotal(
                     cacheData.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
                 );
+
                 setPaymentStatus(orderStatus);
                 setItems(cacheData);
                 return;
             }
                 
-            if (!cacheData && hasDataOnOrderData) {
+            if (!cacheData && hasItemsOnOrderData) {
                 console.log("lastOrderStatus", lastOrder.data.status);
                 console.log("lastOrderStatus2:", orderStatus);
                 setTotal(
@@ -176,8 +182,11 @@ export function OrderResume() {
                 }
             }
             // if not found last order on database, search cacheData for processing order
-            // if (!hasDataOnOrderData) {
-            // }
+            if (!hasItemsOnOrderData) {
+                console.log("aqui");
+                loadCartFromBrowserCache();
+
+            }
         }
         
         fetchItems();
