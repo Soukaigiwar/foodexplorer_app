@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { handleZeros } from "../../utils/string";
-import { handleQuantity } from "../../utils/item.js";
+//import { handleQuantity } from "../../utils/item.js";
 import { useCart } from "../../hooks/cart.jsx";
 
 export function Dish() {
@@ -32,13 +32,23 @@ export function Dish() {
         ? `${api.defaults.baseURL}/files/${data.image_filename}`
         : dishPlaceHolder;
 
+    function handleIncrement() {
+        if (quantity < 20)
+            setQuantity(quantity + 1);
+    }
+
+    function handleDecrement() {
+        if (quantity > 1)
+            setQuantity(quantity - 1);
+    }
+    
     function handleKeyDown(e) {
         
         if (e.key === "+" || e.key === "ArrowUp" || e.key === "ArrowRight")
-            setQuantity(handleQuantity(quantity, 1));
+            handleIncrement();
 
         if ((e.key === "-" || e.key === "ArrowDown" || e.key === "ArrowLeft") && quantity > 1)
-            setQuantity(handleQuantity(quantity, -1));
+            handleDecrement();
     }
 
     function addItem(event) {
@@ -105,7 +115,7 @@ export function Dish() {
                                     icon={minus}
                                     alt="Diminuir quantidade."
                                     onKeyDown={handleKeyDown}
-                                    onClick={() => { setQuantity(handleQuantity(quantity, -1)); }}
+                                    onClick={ handleDecrement }
                                 />
                                 <span>
                                     {quantity}
@@ -115,7 +125,7 @@ export function Dish() {
                                     icon={plus}
                                     alt="Aumentar quantidade."
                                     onKeyDown={handleKeyDown}
-                                    onClick={() => { setQuantity(handleQuantity(quantity, 1)); }}
+                                    onClick={ handleIncrement }
                                 />
                             </div>
                             <Button

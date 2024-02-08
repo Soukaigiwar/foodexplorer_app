@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useCart } from "../../hooks/cart.jsx";
 import { useRole } from "../../hooks/role";
-import { handleQuantity } from "../../utils/item.js";
 import { api } from "../../services/api";
 
 export function Card({ data }) {
@@ -29,6 +28,16 @@ export function Card({ data }) {
     
     function handleDetails(id) {
         navigate(`/dishes/${id}`);
+    }
+
+    function handleIncrement() {
+        if (quantity < 20)
+            setQuantity(quantity + 1);
+    }
+
+    function handleDecrement() {
+        if (quantity > 1)
+            setQuantity(quantity - 1);
     }
 
     function addItem(event) {
@@ -80,7 +89,7 @@ export function Card({ data }) {
                         <TextButton
                             icon={minus}
                             alt="Diminuir quantidade."
-                            onClick={() => { setQuantity(handleQuantity(quantity, -1)); }}
+                            onClick={ handleDecrement }
                         />
                         <span>
                             {quantity.toString().padStart(2, 0)}
@@ -88,7 +97,7 @@ export function Card({ data }) {
                         <TextButton
                             icon={plus}
                             alt="Aumentar quantidade."
-                            onClick={() => { setQuantity(handleQuantity(quantity, 1)); }}
+                            onClick={ handleIncrement }
 
                         />
                     </div>
