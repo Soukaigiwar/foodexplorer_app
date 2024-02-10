@@ -18,7 +18,7 @@ import orderIcon from "../../assets/order_bag.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCart } from "../../hooks/cart.jsx";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 export function OrderResume() {
@@ -26,10 +26,11 @@ export function OrderResume() {
         setNewOrderStatus,
         getCart,
         getOrderStatus,
-        getTotal
+        getTotal,
+        // clearCart,
     } = useCart();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     //const [items, setItems] = useState(getCart());
     //const [total, setTotal] = useState();
@@ -55,7 +56,7 @@ export function OrderResume() {
             await payWithCard();
         }
 
-        handleNavigationToHome();
+        //handleNavigationToHome();
     };
 
     const payWithPix = async () => {
@@ -83,8 +84,7 @@ export function OrderResume() {
         
         setNewOrderStatus("pending");
         setPaymentStatus("pending");
-        //setItems(items);
-        setTotal(getTotal());
+        localStorage.setItem("@foodexplorer:paymentStatus", "pending");
     };
 
     const payWithCard = async () => {
@@ -104,11 +104,10 @@ export function OrderResume() {
         });
 
         await api.post("/orders", orderData);
+
         setNewOrderStatus("paid");
         setPaymentStatus("paid");
-        //setItems(items);
-        //setTotal(0);
-        //clearCart();
+        localStorage.setItem("@foodexplorer:paymentStatus", "paid");
     };
 
     const handleCardNumber = (e) => {
@@ -123,9 +122,9 @@ export function OrderResume() {
         }
     };
 
-    const handleNavigationToHome = () => {
-        navigate("/");
-    };
+    // const handleNavigationToHome = () => {
+    //     navigate("/");
+    // };
 
     const togglePaymentScreen = () => {
         setPaymentScreenVisible(true);
@@ -160,6 +159,14 @@ export function OrderResume() {
         }
         
         fetchItems();
+    }, []);
+
+    useEffect(() => {
+        const savedPaymentStatus = localStorage
+            .getItem("@foodexplorer:paymentStatus");
+        if (savedPaymentStatus) {
+            setPaymentStatus(savedPaymentStatus);
+        }
     }, []);
 
     return (

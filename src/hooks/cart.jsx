@@ -27,11 +27,18 @@ function CartProvider({ children }) {
     const getTotal = () =>
         cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-    const clearCart = () => setCart([]);
+    const clearCart = () => {
+        setCart([]);
+        setItemQtd(0);
+    };
 
     async function addItemToCart(item) {
-        if (itemQtd > 0 && orderStatus !== "processing") {
-            //clearCart();
+        const orderStatus = getOrderStatus();
+        if (orderStatus !== "processing") {
+            clearCart();
+            setItemQtd(1);
+            setNewOrderStatus("processing");
+            localStorage.setItem("@foodexplorer:paymentStatus", "processing");
         }
 
         if (item && item.dish_id) {
@@ -68,12 +75,11 @@ function CartProvider({ children }) {
             });
         }
 
-
         return;
     }
 
     function removeItem(dish_id) {
-        const newCart = cart.filter(item => item.dish_id !== dish_id);
+        const newCart = cart.filter((item) => item.dish_id !== dish_id);
         setCart(newCart);
     }
 
@@ -84,11 +90,18 @@ function CartProvider({ children }) {
                 console.log(data);
                 console.log("cart|useEffect|data.items:", data.items);
                 setOrderStatus("processing");
-                
-                if (data && data.items && Object.keys(data.items).length !== 0) {
+
+                if (
+                    data &&
+                    data.items &&
+                    Object.keys(data.items).length !== 0
+                ) {
                     setItemQtd(data.items.length);
                     setOrderStatus(data.status);
-                    console.log("cart|useEffect|data.items.length:", data.items.length);
+                    console.log(
+                        "cart|useEffect|data.items.length:",
+                        data.items.length
+                    );
                 }
             } catch (error) {
                 //console.log(error.message);
@@ -96,15 +109,14 @@ function CartProvider({ children }) {
         }
         fetchData();
     }, []);
-    
+
     useEffect(() => {
         setItemQtd(cart.length);
     }, [cart]);
-    
+
     useEffect(() => {
         console.log(itemQtd);
     }, [itemQtd]);
-      
 
     return (
         <CartContext.Provider
