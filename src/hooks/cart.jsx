@@ -24,10 +24,8 @@ function CartProvider({ children }) {
         return cart;
     };
 
-    const getTotal = () => {
-
-        return 22.11;
-    };
+    const getTotal = () =>
+        cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     const clearCart = () => setCart([]);
 
@@ -75,22 +73,9 @@ function CartProvider({ children }) {
     }
 
     function removeItem(dish_id) {
-        console.log("dish_id", dish_id);
-        if (cart.length === 1) {
-            setCart([]);
-
-            return;
-        }
-        return;
+        const newCart = cart.filter(item => item.dish_id !== dish_id);
+        setCart(newCart);
     }
-
-
-    // function cacheToCart(items) {
-    //     items.map((item) => {
-    //         setCart(...items, item);
-    //     });
-    // }
-
 
     useEffect(() => {
         async function fetchData() {

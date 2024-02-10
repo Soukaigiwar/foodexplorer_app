@@ -22,8 +22,17 @@ import { useNavigate } from "react-router-dom";
 
 
 export function OrderResume() {
-    const [items, setItems] = useState([]);
-    const [total, setTotal] = useState();
+    const {
+        setNewOrderStatus,
+        getCart,
+        getOrderStatus,
+        getTotal
+    } = useCart();
+
+    const navigate = useNavigate();
+
+    //const [items, setItems] = useState(getCart());
+    //const [total, setTotal] = useState();
     const [paymentMethod, setPaymentMethod] = useState("pix");
     const [paymentStatus, setPaymentStatus] = useState("processing");
     const [cardNumber, setCardNumber] = useState("");
@@ -32,14 +41,7 @@ export function OrderResume() {
     const [paymentScreenVisible, setPaymentScreenVisible] = useState(true);
     const [listAreaVisible, setListAreaVisible] = useState(true);
     
-    const navigate = useNavigate();
 
-    const {
-        setNewOrderStatus,
-        getCart,
-        getOrderStatus,
-        getTotal
-    } = useCart();
 
     //console.log("items in cart", getCart());
 
@@ -81,7 +83,7 @@ export function OrderResume() {
         
         setNewOrderStatus("pending");
         setPaymentStatus("pending");
-        setItems(items);
+        //setItems(items);
         setTotal(getTotal());
     };
 
@@ -104,8 +106,8 @@ export function OrderResume() {
         await api.post("/orders", orderData);
         setNewOrderStatus("paid");
         setPaymentStatus("paid");
-        setItems(items);
-        setTotal(0);
+        //setItems(items);
+        //setTotal(0);
         //clearCart();
     };
 
@@ -135,8 +137,7 @@ export function OrderResume() {
             const cart = getCart();
             const status = getOrderStatus();
             
-            setItems(cart);
-            setTotal(getTotal());
+            
 
             if (cart.length > 0) {
                 
@@ -170,8 +171,8 @@ export function OrderResume() {
                         <div className="item_list_area">
                             <h2>Meu Pedido</h2>
                             <div className="item_list">
-                                {items && items.length > 0 ? (
-                                    items.map((item, index) => (
+                                {getCart() && getCart().length > 0 ? (
+                                    getCart().map((item, index) => (
                                         <OrderCard key={String(index)} data={item} paymentStatus={paymentStatus} />
                                     ))
                                 ) : (
@@ -179,14 +180,14 @@ export function OrderResume() {
                                 )}
                             </div>
 
-                            {total && (
+                            {getTotal() && (
                                 <div className="total">
-                                    <h3>Total: R$ {handleZeros(total)}</h3>
+                                    <h3>Total: R$ {handleZeros(getTotal())}</h3>
                                 </div>
                             )}
                     
 
-                            {items && items.length > 0 && (
+                            {getCart() && getCart().length > 0 && (
                                 paymentScreenVisible && (
                                     <div className="next_button">
                                         <Button
@@ -202,7 +203,7 @@ export function OrderResume() {
                     )}
                     {paymentScreenVisible && (
                         <div className="payment_method_area">
-                            {items && items.length > 0 && (
+                            {getCart() && getCart().length > 0 && (
                                 <div className="payment_area">
                                     <h2>Pagamento</h2>
                                     <div className="payment_method" method={paymentMethod}>
