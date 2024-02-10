@@ -14,7 +14,7 @@ export function OrderSummary() {
 
     useEffect(() => {
         async function fetchOrders() {
-            const {data} = await api.get("/orders/all");
+            const { data } = await api.get("/orders/all");
 
             setOrders(data);
 
@@ -31,29 +31,33 @@ export function OrderSummary() {
             <Content>
                 <h2><span>Histórico de </span>Pedidos</h2>
                 <div id="item_list">
-                    {(orders && orders.length > 0) ?? (
+                    {(orders && orders.length > 0) ? (
                         <div id="head">
                             <div id="head_status">Status</div>
                             <div id="head_codigo">Código</div>
                             <div id="head_detalhamento">Detalhamento</div>
                             <div id="head_data_hora">Data e Hora</div>
                         </div>
-                    )}
+                    ) : (<></>)
+                    }
                     {orders && orders.length > 0 ? (
                         orders.map((order, index) => (
                             <div key={String(index)}>
                                 <div className="lines" >
                                     <div className="status">
                                         <img src={
-                                            order.status === "pendent" ? bullet_red :
+                                            order.status === "pending" ? bullet_red :
                                                 order.status === "processing" ? bullet_yellow :
                                                     bullet_green
                                         } alt={order.status} />
                                         <p>{
                                             order.status === "delivered" ? "Entregue" :
                                                 order.status === "processing" ? "Processando" :
-                                                    order.status === "pendent" ? "Cancelado" : "Cancelado"
+                                                    order.status === "pending" ? "Pendente" :
+                                                        order.status === "paid" ? "Pago" :
+                                                            order.status === "canceled" ? "Cancelado" : "Cancelado"
                                         }</p>
+                                        {/* <p>{ order.status }</p> */}
                                     </div>
                                     <div className="codigo">
                                         <p>{String(order.order_id).padStart(8, "0")}</p>
@@ -76,19 +80,6 @@ export function OrderSummary() {
                     ) : (
                         <h3>Nenhum pedido.</h3>
                     )}
-
-                    {/* 
-                    <tr>
-                        <td>
-                            <div>
-                                <img src={bullet_green} alt="Pendente" />
-                                <p>Entregue</p>
-                            </div>
-                        </td>
-                        <td>0000006</td>
-                        <td>1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                        <td>20/05 às 18h00</td>
-                    </tr> */}
                 </div>
             </Content>
             <Footer />

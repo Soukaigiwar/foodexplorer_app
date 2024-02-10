@@ -52,7 +52,7 @@ export const Content = styled.div`
         font-weight: 400;
         line-height: 160%;
         border: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
-        border-radius: 8px;
+        border-radius: 0px;
         padding: 1.8rem 2rem;
     }
 
@@ -104,10 +104,11 @@ export const Content = styled.div`
 
         #head {
             display: flex;
+            display: flex;
             flex-direction: row;
             font-style: Roboto;
             font-size: 1.4rem;
-            
+            width: 112rem;
             border-top-left-radius: 0.8rem;
             border-top-right-radius: 0.8rem;
         }
@@ -136,7 +137,7 @@ export const Content = styled.div`
             width: 60rem;
             border-right: none;
         }
-
+        
         #head_data_hora {
             width: 22rem;
             border-top-right-radius: 0.8rem;
@@ -149,50 +150,48 @@ export const Content = styled.div`
             font-size: 1.4rem;
             font-weight: 400;
             line-height: 160%;
-            border: none;
+            border: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
+            border-top: 0;
             padding: 0;
-
+            width: 112rem;
         }
 
         .codigo,
         .status,
         .detalhamento,
         .data_hora {
-            border: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
+            display: unset;
             padding: 1.6rem 2.4rem;
             margin-top: 0;
             border-top: 0;
         }
 
-        .codigo {
-            grid-area: codigo;
-            border-right: 0;
-            margin-right: 0;
-            width: 15.2rem;
-        }
-
         .status {
             grid-area: status;
-
             display: flex;
             align-items: center;
-            width: 15.2rem;
-
-            border-right: 0;
-
+            width: 15.1rem;
+            border-right: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
+            
             img {
                 width: 1rem;
                 margin-right: 0.8rem;
             }
         }
 
-        .detalhamento {
-            grid-area: detalhamento;
-            border-right: 0;
-            width: 60rem;
-
+        .codigo {
+            grid-area: codigo;
+            width: 15.2rem;
+            border-right: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
+            margin-right: 0;
         }
 
+        .detalhamento {
+            grid-area: detalhamento;
+            width: 59.7rem;
+            border-right: 2px solid ${({ theme }) => theme.COLORS.BG_1000};
+        }
+        
         .data_hora {
             grid-area: data_hora;
             white-space: nowrap;
