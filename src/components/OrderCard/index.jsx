@@ -7,14 +7,16 @@ import { api } from "../../services/api";
 
 
 export function OrderCard({ data, paymentStatus, ...rest }) {
-    const { deleteItem } = useCart();
+    const { removeItem } = useCart();
+    
+
 
     const dishImageUrl = data.image_filename
         ? `${api.defaults.baseURL}/files/${data.image_filename}`
         : dishPlaceHolder;
 
     const handleDeleteItem = (dish_id) => {
-        deleteItem(dish_id);
+        removeItem(dish_id);
     };
 
     return (

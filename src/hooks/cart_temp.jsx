@@ -4,42 +4,27 @@ import { api } from "../services/api";
 export const CartContext = createContext({});
 
 function CartProvider({ children }) {
-    const [cart, setCart] = useState([]);
+    const [newItem, setNewItem] = useState([]);
     const [itemQtd, setItemQtd] = useState(0);
     const [orderStatus, setOrderStatus] = useState("");
 
     const getOrderStatus = () => orderStatus;
 
-    const setNewOrderStatus = (status) => setOrderStatus(status);
-
     const getQuantity = () => itemQtd;
 
-    const getCart = () => cart;
-
     const showItem = () => {
-        if (cart.length === 0) {
+        if (newItem.length === 0) {
             return 0;
         }
 
-        return cart;
+        return newItem;
     };
 
-    const getTotal = () => {
+    const clearCart = () => setNewItem([]);
 
-        return 22.11;
-    };
-
-    const clearCart = () => setCart([]);
-
-    async function addItemToCart(item) {
-        if (itemQtd > 0 && orderStatus !== "processing") {
-            //clearCart();
-        }
-
-        if (item && item.dish_id) {
-            console.log("entrou para add item");
-
-            setCart((prevItems) => {
+    function addItemToCart(item) {
+        if (item && item.dish_id && item.quantity) {
+            setNewItem((prevItems) => {
                 const itemIndex = prevItems.findIndex(
                     (prev) => prev.dish_id === item.dish_id
                 );
@@ -70,69 +55,50 @@ function CartProvider({ children }) {
             });
         }
 
-
         return;
     }
 
-    function removeItem(dish_id) {
-        console.log("dish_id", dish_id);
-        if (cart.length === 1) {
-            setCart([]);
+    function deleteItem() {
+        if (newItem.length === 1) {
+            setNewItem([]);
 
             return;
         }
-        return;
     }
 
-
-    // function cacheToCart(items) {
-    //     items.map((item) => {
-    //         setCart(...items, item);
-    //     });
-    // }
-
-
-    useEffect(() => {
+    useEffect(async () => {
         async function fetchData() {
             try {
                 const { data } = await api.get("/orders/last");
                 console.log(data);
                 console.log("cart|useEffect|data.items:", data.items);
-                setOrderStatus("processing");
-                
-                if (data && data.items && Object.keys(data.items).length !== 0) {
+
+                if (Object.keys(data.items).length !== 0) {
+                    console.log(
+                        "cart|useEffect|data.items.length:",
+                        data.items.length
+                    );
                     setItemQtd(data.items.length);
                     setOrderStatus(data.status);
-                    console.log("cart|useEffect|data.items.length:", data.items.length);
                 }
+
+                // return data;
             } catch (error) {
-                //console.log(error.message);
+                console.log(error.message);
             }
         }
         fetchData();
     }, []);
-    
-    useEffect(() => {
-        setItemQtd(cart.length);
-    }, [cart]);
-    
-    useEffect(() => {
-        console.log(itemQtd);
-    }, [itemQtd]);
-      
 
     return (
         <CartContext.Provider
             value={{
                 addItemToCart,
                 clearCart,
-                removeItem,
-                showItem,
+                deleteItem,
                 getQuantity,
-                getCart,
+                showItem,
                 getOrderStatus,
-                setNewOrderStatus,
-                getTotal,
             }}
         >
             {children}

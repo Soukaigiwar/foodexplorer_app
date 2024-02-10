@@ -17,21 +17,31 @@ import creditIcon from "../../assets/credit_icon.svg";
 import orderIcon from "../../assets/order_bag.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-//import { useCart } from "../../hooks/cart";
+import { useCart } from "../../hooks/cart.jsx";
 import { useNavigate } from "react-router-dom";
+
 
 export function OrderResume() {
     const [items, setItems] = useState([]);
     const [total, setTotal] = useState();
     const [paymentMethod, setPaymentMethod] = useState("pix");
-    const [paymentStatus, setPaymentStatus] = useState("");
+    const [paymentStatus, setPaymentStatus] = useState("processing");
     const [cardNumber, setCardNumber] = useState("");
     const [cardExpireDate, setCardExpireDate] = useState(new Date());
     const [cardCvcNumber, setCardCvcNumber] = useState("");
     const [paymentScreenVisible, setPaymentScreenVisible] = useState(true);
     const [listAreaVisible, setListAreaVisible] = useState(true);
-    //const { loadCartFromBrowserCache, addItemToCart } = useCart();
+    
     const navigate = useNavigate();
+
+    const {
+        setNewOrderStatus,
+        getCart,
+        getOrderStatus,
+        getTotal
+    } = useCart();
+
+    //console.log("items in cart", getCart());
 
     const handlePayment = async (method = "pix") => {
         if (method && method === "pix") {
@@ -47,21 +57,15 @@ export function OrderResume() {
     };
 
     const payWithPix = async () => {
-        /*
-        const orderData = { 
-            userId, 
-            order: [], 
-            status: rawData.status 
-        };
+        const items = getCart();
 
-        rawData.order.forEach(item => {
-            orderData.order.push(item)
-        })
-        */
         const orderData = {
             status: "pending",
             order: []
         };
+
+
+        console.log("items", items);
 
         items.forEach(item => {
             orderData.order.push({
@@ -74,15 +78,16 @@ export function OrderResume() {
         console.log("order data:", orderData);
 
         await api.post("/orders", orderData);
-        // localStorage.setItem("@foodexplorer:status", "pending");
-        localStorage.removeItem("@foodexplorer:cart");
-        localStorage.removeItem("@foodexplorer:status");
+        
+        setNewOrderStatus("pending");
         setPaymentStatus("pending");
-        setItems([]);
-        setTotal();
+        setItems(items);
+        setTotal(getTotal());
     };
 
     const payWithCard = async () => {
+        const items = getCart();
+
         const orderData = {
             status: "paid",
             order: []
@@ -97,11 +102,11 @@ export function OrderResume() {
         });
 
         await api.post("/orders", orderData);
-        localStorage.removeItem("@foodexplorer:cart");
-        localStorage.removeItem("@foodexplorer:status");
-        // setPaymentStatus("paid");
-        setItems([]);
-        setTotal();
+        setNewOrderStatus("paid");
+        setPaymentStatus("paid");
+        setItems(items);
+        setTotal(0);
+        //clearCart();
     };
 
     const handleCardNumber = (e) => {
@@ -127,63 +132,28 @@ export function OrderResume() {
 
     useEffect(() => {
         async function fetchItems() {
-            // const cacheData = await loadCartFromBrowserCache(); // ja tinha itens no cache
-            // console.log("cacheData", cacheData);
+            const cart = getCart();
+            const status = getOrderStatus();
             
-            // let orderStatus = localStorage.getItem("@foodexplorer:status"); // status recuperado do cache
-            
-            let lastOrder = undefined;
-            
-            // if (!orderStatus) orderStatus = "processing"; // se nao tinha orderStatus atribui como "processing". isso significa novo pedido
-            
-            try {
-                lastOrder = await api.get("/orders/last"); //carrega ultimo pedido
-            } catch (error) {
-                if (error.response && error.response.status === 404) {
-                    // lastOrder = [];
-                    console.log(error.message);
-                }
+            setItems(cart);
+            setTotal(getTotal());
+
+            if (cart.length > 0) {
+                
+                console.log(cart, status);
             }
 
-            const hasItemsOnOrderData = lastOrder && Object.keys(lastOrder.data).length !== 0;
-
-            let orderStatus = undefined;
-
-            if (hasItemsOnOrderData) {
-                orderStatus = lastOrder.data.status;
-                console.log(orderStatus);
-            }
-
-            if (orderStatus === "processing") {
+            if (status === "processing" || status === "pending") {
                 //tem cache e status ou é processing ou pending
                 // 1 - b
-                console.log("tem cache e status ou é processing ou pending");
+                console.log("tem item e status ou é processing ou pending");
 
-                setTotal(
-                    lastOrder.data.reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
-                );
-
-                setPaymentStatus(orderStatus);
-                setItems(lastOrder.data);
                 return;
             }
-                
-            if (hasItemsOnOrderData) {
-                setTotal(
-                    lastOrder.data.items
-                        .reduce((sum, dish) => sum + dish.price * dish.quantity, 0)
-                );
-                setPaymentStatus(orderStatus);
-                setItems(lastOrder.data.items);
 
-                // for (let item of lastOrder.data.items) {
-                //     //console.log(item);
-                //     addItemToCart(item, orderStatus);
-                // }
-            }
             // if not found last order on database, search cacheData for processing order
             // 1 - a
-            if (!hasItemsOnOrderData) {
+            if (cart.length === 0) {
                 console.log("aqui");
             }
         }

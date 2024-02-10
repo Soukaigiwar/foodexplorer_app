@@ -12,18 +12,17 @@ import { RoleProvider } from "./hooks/role";
 import { Routes } from "./routes";
 import { CartProvider } from "./hooks/cart";
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <ThemeProvider theme={dark}>
             <GlobalStyles />
             <AuthProvider>
-                <RoleProvider>
-                    <CartProvider>
+                <CartProvider>
+                    <RoleProvider>
                         <Routes />
-                    </CartProvider>
-                </RoleProvider>
+                    </RoleProvider>
+                </CartProvider>
             </AuthProvider>
         </ThemeProvider>
-    </React.StrictMode>,
+    </React.StrictMode>
 );

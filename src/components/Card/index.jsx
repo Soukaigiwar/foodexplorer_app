@@ -19,7 +19,7 @@ export function Card({ data }) {
 
     const { isAdmin } = useRole();
     const { addItemToCart } = useCart();
-    
+
     const navigate = useNavigate();
 
     const dishImageUrl = data.image_filename

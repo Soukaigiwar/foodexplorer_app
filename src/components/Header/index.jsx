@@ -16,13 +16,15 @@ import { useNavigate } from "react-router-dom";
 import { useRole } from "../../hooks/role";
 
 export function Header() {
-    const [menuIsVisible, setmenuIsVisible] = useState(false);
-    const [isAdminRole, setIsAdminRole] = useState(false);
-    const [quantity, setQuantity] = useState(0);
-
     const { isAdmin } = useRole();
     const { signOut } = useAuth();
-    const { getQuantity } = useCart();
+    const { getOrderStatus, getQuantity } = useCart();
+
+    const [menuIsVisible, setmenuIsVisible] = useState(false);
+    const [isAdminRole, setIsAdminRole] = useState(false);
+    const [quantityOfItemsOnCart, setQuantityOfItemsOnCart] = useState(getQuantity());
+
+    console.log("quantityOfItemsOnCart:", getQuantity(), getOrderStatus());
 
     const navigate = useNavigate();
 
@@ -48,7 +50,7 @@ export function Header() {
             const result = await isAdmin();
             setIsAdminRole(result);
         };
-    
+
         checkIfUserRoleIsAdmin();
     }, []);
 
@@ -57,9 +59,9 @@ export function Header() {
             const result = await getQuantity();
             
             const quantity = result ? result : 0;
-            setQuantity(quantity);
+            setQuantityOfItemsOnCart(quantity);
         })();
-    }, [quantity]);
+    }, [quantityOfItemsOnCart]);
 
     return (
         <Container>
@@ -100,7 +102,7 @@ export function Header() {
                         />
                     </Options>
                     <OrderBag>
-                        <span>{quantity}</span>
+                        <span>{quantityOfItemsOnCart}</span>
                         <Button
                             icon={orderBagIcon}
                             $bgcolor="TOMATO_100"
@@ -110,7 +112,7 @@ export function Header() {
                     <OrderButton>
                         <Button
                             icon={orderBagIcon}
-                            title={"Pedidos (" + quantity + ")"}
+                            title={"Pedidos (" + getQuantity() + ")"}
                             $bgcolor="TOMATO_100" 
                             onClick={handleOrder}
                         />
