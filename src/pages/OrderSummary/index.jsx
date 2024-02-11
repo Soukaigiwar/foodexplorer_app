@@ -16,13 +16,16 @@ export function OrderSummary() {
         async function fetchOrders() {
             const { data } = await api.get("/orders/all");
 
-            setOrders(data);
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].items.length > 3) {
+                    data[i].items.length = 3;
+                    data[i].items[2].title = data[i].items[2].title + ", ...";
+                }
+            }
 
-            //{"order_id": 1, "title": "Spaguetti Gambe", "quantity": 1, "status": "pending"}
-            // console.log(data);
+            setOrders(data);
             return data;
         }
-
         fetchOrders();
     }, []);
     return (
