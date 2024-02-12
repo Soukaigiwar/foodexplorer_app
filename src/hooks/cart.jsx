@@ -87,21 +87,35 @@ function CartProvider({ children }) {
         async function fetchData() {
             try {
                 const { data } = await api.get("/orders/last");
-                console.log(data);
-                console.log("cart|useEffect|data.items:", data.items);
-                setOrderStatus("processing");
+                console.log("cart|useEffect|data:", data);
 
                 if (
                     data &&
                     data.items &&
-                    Object.keys(data.items).length !== 0
+                    Object.keys(data.items).length !== 0 &&
+                    (data.status === "processing")
                 ) {
+                    console.log("if");
+                    setCart(data.items);
                     setItemQtd(data.items.length);
                     setOrderStatus(data.status);
                     console.log(
                         "cart|useEffect|data.items.length:",
                         data.items.length
                     );
+                } else if (
+                    data &&
+                    data.items &&
+                    Object.keys(data.items).length !== 0 &&
+                    (data.status === "pending" || "paid")
+                ) {
+                    setCart(data.items);
+                    setItemQtd(data.items.length);
+                    setOrderStatus(data.status);
+                    console.log("else if", data.status);
+                } else {
+                    console.log("else");
+                    setCart([]);
                 }
             } catch (error) {
                 //console.log(error.message);

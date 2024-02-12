@@ -165,7 +165,10 @@ export function OrderResume() {
         const savedPaymentStatus = localStorage
             .getItem("@foodexplorer:paymentStatus");
         if (savedPaymentStatus) {
+            console.log("tem paymentStatus");
             setPaymentStatus(savedPaymentStatus);
+        } else {
+            setPaymentStatus(getOrderStatus());
         }
     }, []);
 
