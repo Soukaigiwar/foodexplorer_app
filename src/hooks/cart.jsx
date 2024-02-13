@@ -8,6 +8,9 @@ function CartProvider({ children }) {
     const [itemQtd, setItemQtd] = useState(0);
     const [orderStatus, setOrderStatus] = useState("");
 
+
+
+
     const getOrderStatus = () => orderStatus;
 
     const setNewOrderStatus = (status) => setOrderStatus(status);
@@ -62,8 +65,6 @@ function CartProvider({ children }) {
                                 image_filename: item.image_filename,
                             };
 
-                            // console.log(newItem);
-
                             return newItem;
                         } else {
                             return prev;
@@ -87,35 +88,16 @@ function CartProvider({ children }) {
         async function fetchData() {
             try {
                 const { data } = await api.get("/orders/last");
-                console.log("cart|useEffect|data:", data);
 
                 if (
                     data &&
                     data.items &&
-                    Object.keys(data.items).length !== 0 &&
-                    (data.status === "processing")
-                ) {
-                    console.log("if");
-                    setCart(data.items);
-                    setItemQtd(data.items.length);
-                    setOrderStatus(data.status);
-                    console.log(
-                        "cart|useEffect|data.items.length:",
-                        data.items.length
-                    );
-                } else if (
-                    data &&
-                    data.items &&
-                    Object.keys(data.items).length !== 0 &&
-                    (data.status === "pending" || "paid")
+                    Object.keys(data.items).length !== 0
                 ) {
                     setCart(data.items);
                     setItemQtd(data.items.length);
                     setOrderStatus(data.status);
-                    console.log("else if", data.status);
-                } else {
-                    console.log("else");
-                    setCart([]);
+                    localStorage.setItem("@foodexplorer:paymentStatus", data.status);
                 }
             } catch (error) {
                 //console.log(error.message);
@@ -127,10 +109,6 @@ function CartProvider({ children }) {
     useEffect(() => {
         setItemQtd(cart.length);
     }, [cart]);
-
-    useEffect(() => {
-        console.log(itemQtd);
-    }, [itemQtd]);
 
     return (
         <CartContext.Provider

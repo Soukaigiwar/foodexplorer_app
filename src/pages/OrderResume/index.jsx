@@ -3,7 +3,7 @@ import { StyleSheetManager } from "styled-components";
 import { api } from "../../services/api.js";
 import { handleZeros } from "../../utils/string";
 import isPropValid from "@emotion/is-prop-valid";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderCard } from "../../components/OrderCard";
@@ -18,8 +18,6 @@ import orderIcon from "../../assets/order_bag.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCart } from "../../hooks/cart.jsx";
-// import { useNavigate } from "react-router-dom";
-
 
 export function OrderResume() {
     const {
@@ -27,48 +25,34 @@ export function OrderResume() {
         getCart,
         getOrderStatus,
         getTotal,
-        // clearCart,
     } = useCart();
 
-    // const navigate = useNavigate();
-
-    //const [items, setItems] = useState(getCart());
-    //const [total, setTotal] = useState();
     const [paymentMethod, setPaymentMethod] = useState("pix");
-    const [paymentStatus, setPaymentStatus] = useState("processing");
     const [cardNumber, setCardNumber] = useState("");
     const [cardExpireDate, setCardExpireDate] = useState(new Date());
     const [cardCvcNumber, setCardCvcNumber] = useState("");
     const [paymentScreenVisible, setPaymentScreenVisible] = useState(true);
     const [listAreaVisible, setListAreaVisible] = useState(true);
-    
-
-
-    //console.log("items in cart", getCart());
 
     const handlePayment = async (method = "pix") => {
+        const items = getCart();
+
+        let orderData = {
+            status: "processing",
+            order: []
+        };
+
         if (method && method === "pix") {
-            await payWithPix();
+            setNewOrderStatus("pending");
+            orderData.status = "pending";
         } else {
             if (!cardNumber) return alert("Preencha o número do Cartão de Crédito.");
             if (!cardCvcNumber)
                 return alert("Preencha o código CVC do Cartão de Crédito.");
-            await payWithCard();
+
+            setNewOrderStatus("paid");
+            orderData.status = "paid";
         }
-
-        //handleNavigationToHome();
-    };
-
-    const payWithPix = async () => {
-        const items = getCart();
-
-        const orderData = {
-            status: "pending",
-            order: []
-        };
-
-
-        console.log("items", items);
 
         items.forEach(item => {
             orderData.order.push({
@@ -78,36 +62,11 @@ export function OrderResume() {
             });
         });
 
-        console.log("order data:", orderData);
+        console.log("orderData: ", orderData);
 
         await api.post("/orders", orderData);
         
-        setNewOrderStatus("pending");
-        setPaymentStatus("pending");
-        localStorage.setItem("@foodexplorer:paymentStatus", "pending");
-    };
-
-    const payWithCard = async () => {
-        const items = getCart();
-
-        const orderData = {
-            status: "paid",
-            order: []
-        };
-
-        items.forEach(item => {
-            orderData.order.push({
-                dish_id: item.dish_id,
-                price: item.price,
-                quantity: item.quantity,
-            });
-        });
-
-        await api.post("/orders", orderData);
-
-        setNewOrderStatus("paid");
-        setPaymentStatus("paid");
-        localStorage.setItem("@foodexplorer:paymentStatus", "paid");
+        localStorage.setItem("@foodexplorer:paymentStatus", orderData.status);
     };
 
     const handleCardNumber = (e) => {
@@ -122,68 +81,25 @@ export function OrderResume() {
         }
     };
 
-    // const handleNavigationToHome = () => {
-    //     navigate("/");
-    // };
-
     const togglePaymentScreen = () => {
         setPaymentScreenVisible(true);
         setListAreaVisible(!listAreaVisible);
     };
 
-    useEffect(() => {
-        async function fetchItems() {
-            const cart = getCart();
-            const status = getOrderStatus();
-            
-            
-
-            if (cart.length > 0) {
-                
-                console.log(cart, status);
-            }
-
-            if (status === "processing" || status === "pending") {
-                //tem cache e status ou é processing ou pending
-                // 1 - b
-                console.log("tem item e status ou é processing ou pending");
-
-                return;
-            }
-
-            // if not found last order on database, search cacheData for processing order
-            // 1 - a
-            if (cart.length === 0) {
-                console.log("aqui");
-            }
-        }
-        
-        fetchItems();
-    }, []);
-
-    useEffect(() => {
-        const savedPaymentStatus = localStorage
-            .getItem("@foodexplorer:paymentStatus");
-        if (savedPaymentStatus) {
-            console.log("tem paymentStatus");
-            setPaymentStatus(savedPaymentStatus);
-        } else {
-            setPaymentStatus(getOrderStatus());
-        }
-    }, []);
-
     return (
         <Container>
             <StyleSheetManager shouldForwardProp={isPropValid}>
                 <Header />
-                <Content method={paymentMethod} status={paymentStatus}>
+                <Content method={paymentMethod} status={getOrderStatus()}>
                     {listAreaVisible && (
                         <div className="item_list_area">
                             <h2>Meu Pedido</h2>
                             <div className="item_list">
                                 {getCart() && getCart().length > 0 ? (
+                                    
                                     getCart().map((item, index) => (
-                                        <OrderCard key={String(index)} data={item} paymentStatus={paymentStatus} />
+                                        
+                                        <OrderCard key={String(index)} data={item} paymentStatus={getOrderStatus()} />
                                     ))
                                 ) : (
                                     <h3>Carrinho vazio.</h3>
@@ -239,7 +155,7 @@ export function OrderResume() {
                                         </div>
                                         <div className="payment_content">
                                             {paymentMethod === "pix" &&
-                                        paymentStatus === "processing" &&
+                                        getOrderStatus() === "processing" &&
                                         (<div className="payment_pix_area">
                                             <img
                                                 src={qrcode}
@@ -252,7 +168,7 @@ export function OrderResume() {
                                             }
 
                                             {paymentMethod === "credit" &&
-                                            paymentStatus === "processing" &&
+                                            getOrderStatus() === "processing" &&
                                             (<form>
                                                 <fieldset>
                                                     <label htmlFor="credit_card_number">
@@ -305,21 +221,21 @@ export function OrderResume() {
                                             </form>)
                                             }
 
-                                            {paymentStatus === "paid" && (
+                                            {getOrderStatus() === "paid" && (
                                                 <div className="payment_done_area">
                                                     <img src={clockIcon} alt="relógio" />
                                                     <p>Pagamento aprovado!</p>
                                                 </div>
                                             )}
 
-                                            {paymentStatus === "pending" && (
+                                            {getOrderStatus() === "pending" && (
                                                 <div className="waiting_payment_area">
                                                     <img src={clockIcon} alt="relógio" />
                                                     <p>Aguardando pagamento no caixa</p>
                                                 </div>
                                             )}
 
-                                            {paymentStatus === "delivered" && (
+                                            {getOrderStatus() === "delivered" && (
                                                 <div className="delivery_done_area">
                                                     <img src={forkIcon} alt="relógio" />
                                                     <p>Pedido entregue!</p>

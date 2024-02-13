@@ -24,8 +24,6 @@ export function Header() {
     const [isAdminRole, setIsAdminRole] = useState(false);
     const [quantityOfItemsOnCart, setQuantityOfItemsOnCart] = useState(getQuantity());
 
-    console.log("quantityOfItemsOnCart:", getQuantity(), getOrderStatus());
-
     const navigate = useNavigate();
 
     function toggleMenu() {
