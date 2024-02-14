@@ -60,6 +60,7 @@ export const OrderBag = styled.div`
     width: 3.8rem;
     height: 3.8rem;
     padding-top: 1.5rem;
+    cursor: pointer;
 
     > button {
         display: flex;

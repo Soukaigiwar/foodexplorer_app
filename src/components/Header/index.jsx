@@ -99,12 +99,11 @@ export function Header() {
                             onClick={() => { navigate("/order_history"); }}
                         />
                     </Options>
-                    <OrderBag>
+                    <OrderBag onClick={() => { navigate("/order"); }}>
                         <span>{quantityOfItemsOnCart}</span>
                         <Button
                             icon={orderBagIcon}
                             $bgcolor="TOMATO_100"
-                            onClick={() => { navigate("/order"); }}
                         />
                     </OrderBag>
                     <OrderButton>
