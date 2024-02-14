@@ -93,7 +93,7 @@ export function OrderResume() {
                 <Content method={paymentMethod} status={getOrderStatus()}>
                     {listAreaVisible && (
                         <div className="item_list_area">
-                            <h2>Meu Pedido</h2>
+                            <h2 className="title">Meu Pedido</h2>
                             <div className="item_list">
                                 {getCart() && getCart().length > 0 ? (
                                     

@@ -9,7 +9,7 @@ export const Container = styled.div`
         "header"
         "content"
         "footer";
-    width: 100%;
+
     height: 100vh;
 
     @media (${devices.desktop}) {
@@ -18,10 +18,6 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    width: 113rem;
-    margin: 0 auto;
-    
-    .title,
     h2,
     h3 {
         font-family: Poppins;
@@ -41,7 +37,7 @@ export const Content = styled.div`
             grid-area: item_list;
             display: flex;
             flex-direction: column;
-            margin: 0 3.9rem 0px;
+            margin: 0 3rem 0px;
             min-height: calc(100vh - 484px);
             font-size: 2rem;
             font-style: normal;
@@ -79,8 +75,8 @@ export const Content = styled.div`
         margin-top: 5.6rem;
 
         > .payment_area {
-            margin: 0 3.5rem 0 3.5rem;
-            width: 100%;
+            margin: 0 auto;
+            width: 32rem;
 
             .payment_method {
                 flex-direction: column;
@@ -244,36 +240,37 @@ export const Content = styled.div`
     }
 
     @media (${devices.desktop}) {
-        max-width: 136.8rem;
+        width: 136.8rem;
+        /* max-width: 136.8rem; */
         margin: 0 auto;
         display: flex;
+        justify-content: center;
         gap: 7.5rem;
-        margin: 0 auto;
+
 
         h2 {
-            /* margin-top: 0;
-            margin-left: 0; */
-            margin-bottom: 3.2rem;
-            /* width: 100%; */
+            margin-left: 0;
             font-family: Poppins;
             font-size: 3.2rem;
             font-weight: 500;
         }
+
         
         .item_list_area {
             display: flex;
             flex-direction: column;
-            /* margin-left: 12.3rem; */
-            margin-top: 3.2rem;
-            /* width: 44.4rem; */
-
+            width: 44.4rem;
+            
+            .title {
+                margin: 3rem -3.5rem;
+            }
 
             .item_list {
                 display: flex;
                 flex-direction: column;
-                margin-left: 0;
+                margin-left: -3.5rem;
                 margin-bottom: 0;
-                width: 100%;
+                /* width: 100%; */
                 height: 45rem;
                 overflow-y: auto;
 
@@ -292,7 +289,7 @@ export const Content = styled.div`
             }
 
             .total {
-                width: 100%;
+                /* width: 100%; */
                 margin-left: 0;
                 margin-top: 0;
 
