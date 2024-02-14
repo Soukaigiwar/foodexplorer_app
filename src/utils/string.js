@@ -23,25 +23,3 @@ export const handleZeros = (str) => {
 
     return formatedNumber;
 };
-
-// /**
-//  * 
-//  * @param {array} items 
-//  * @returns {string} A string where each id and quantity are separated by a space.
-//  */
-
-// export const cartToString = (items) => {
-    
-//     if (items) {
-//         let result = "";
-//         for (let i = 0; i < items.length; i++) {
-//             for (let key in items[i]) {
-//                 result += items[i][key] + ' ';
-//             };
-//         };
-        
-//         return result.trim();
-//     };
-
-//     return "";
-// };
