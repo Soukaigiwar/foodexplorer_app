@@ -26,7 +26,7 @@ import { useRole } from "../../hooks/role";
 export function Header() {
     const { isAdmin } = useRole();
     const { signOut } = useAuth();
-    const { getOrderStatus, getQuantity } = useCart();
+    const { getQuantity, getOrderQuantity } = useCart();
 
     const [menuIsVisible, setmenuIsVisible] = useState(false);
     const [isAdminRole, setIsAdminRole] = useState(false);
@@ -109,7 +109,7 @@ export function Header() {
                         <OrderButton>
                             <Button
                                 icon={orderBagIcon}
-                                title={"Pedidos (" + getQuantity() + ")"}
+                                title={"Pedidos (" + getOrderQuantity() + ")"}
                                 $bgcolor="TOMATO_100"
                                 onClick={handleAddNewDish} />
                         </OrderButton>

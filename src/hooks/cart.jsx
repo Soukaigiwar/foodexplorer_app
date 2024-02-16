@@ -6,8 +6,39 @@ export const CartContext = createContext({});
 function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [itemQtd, setItemQtd] = useState(0);
-    const [orderQtd, setOrderQtd] = useState(0);
+    const [openOrdersCount, setOpenOrdersCount] = useState(0);
     const [orderStatus, setOrderStatus] = useState("");
+
+    /*
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+export function Header() {
+    const [newOrdersCount, setNewOrdersCount] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            try {
+                const response = await axios.get("https://seuservidor.com/api/orders/count");
+                setNewOrdersCount(response.data.count);
+            } catch (error) {
+                console.error("Erro ao obter a contagem de novos pedidos:", error);
+            }
+        }, 5000); // Atualizar a cada 5 segundos
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
+    // Restante do seu código
+
+    // Use newOrdersCount para exibir a quantidade de novos pedidos no botão "Pedidos"
+}
+
+
+*/
 
     const getOrderStatus = () => orderStatus;
 
@@ -15,7 +46,7 @@ function CartProvider({ children }) {
 
     const getQuantity = () => itemQtd;
 
-    const getOrderQuantity = () => orderQtd;
+    const getOrderQuantity = () => openOrdersCount;
 
     const getCart = () => cart;
 
@@ -85,16 +116,19 @@ function CartProvider({ children }) {
     }
 
     useEffect(() => {
-        async function fetchOrderQuantity() {
+        const interval = setInterval(async () => {
             try {
-                const { data } = await api.get("/orders/");
-                console.log(data);
+                const { data } = await api.get("/orders/?open_orders=true");
+                if (data && data.length > 0)
+                    setOpenOrdersCount(data.length);
             } catch (error) {
-                setOrderQtd(0);
+                console.error("Erro ao obter a contagem de novos pedidos:", error);
             }
-        }
+        }, 3000);
 
-        fetchOrderQuantity();
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
 
     useEffect(() => {
@@ -133,6 +167,7 @@ function CartProvider({ children }) {
                 getQuantity,
                 getCart,
                 getOrderStatus,
+                getOrderQuantity,
                 setNewOrderStatus,
                 getTotal,
             }}
