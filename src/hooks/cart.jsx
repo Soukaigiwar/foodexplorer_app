@@ -6,16 +6,16 @@ export const CartContext = createContext({});
 function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const [itemQtd, setItemQtd] = useState(0);
+    const [orderQtd, setOrderQtd] = useState(0);
     const [orderStatus, setOrderStatus] = useState("");
-
-
-
 
     const getOrderStatus = () => orderStatus;
 
     const setNewOrderStatus = (status) => setOrderStatus(status);
 
     const getQuantity = () => itemQtd;
+
+    const getOrderQuantity = () => orderQtd;
 
     const getCart = () => cart;
 
@@ -83,6 +83,19 @@ function CartProvider({ children }) {
         const newCart = cart.filter((item) => item.dish_id !== dish_id);
         setCart(newCart);
     }
+
+    useEffect(() => {
+        async function fetchOrderQuantity() {
+            try {
+                const { data } = await api.get("/orders/");
+                console.log(data);
+            } catch (error) {
+                setOrderQtd(0);
+            }
+        }
+
+        fetchOrderQuantity();
+    }, []);
 
     useEffect(() => {
         async function fetchData() {
