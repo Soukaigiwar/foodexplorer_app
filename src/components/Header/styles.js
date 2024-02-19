@@ -2,23 +2,35 @@ import styled from "styled-components";
 import { devices } from "../../styles/media";
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    
-    > :nth-child(2) {
-        width: 100%;
-    }
-
-    padding: 5.6rem 2.8rem 2.4rem;
     width: 100%;
-
     background-color: ${({ theme }) => theme.COLORS.BG_700};
 
+    .content {
+        display: flex;
+        align-items: center;
+        
+        > :nth-child(2) {
+            width: 100%;
+        }
+    
+        padding: 5.6rem 2.8rem 2.4rem;
+        width: 100%;
+    
+    }
+
     @media (${devices.desktop}) {
-        justify-content: center;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        
+
+        .content {
+            justify-content: space-evenly;
+            width: 130rem;
 
         > :nth-child(2) {
             width: unset;
+        }
         }
     }
 `;
