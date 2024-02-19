@@ -32,7 +32,9 @@ O administrador, tem a sua disposição os recursos para adicionar, alterar, exc
 O app está completamente funcional hospedado na plataforma Netlify, para experimentá-lo, [clique aqui](https://sergiomello-foodexplorer.netlify.app/).
 
 😊 Pode usar uma conta pronta para testes ou criar sua própria:
+
 🙋🏻 User: user@email.com Password: 123456
+
 👨‍🍳 Admin: admin@email.com Password: 123456
 
 🚧 Observação 1: O BackEnd está hospedado numa conta gratuita no Render, por isso depois de alguns minutos de inatividade, o serviço vai a mimir 😴🛌 e só desperta quando chega alguma requisição e leva alguns segundos para acordar, depois disso vai que vai suave.
@@ -41,19 +43,28 @@ O app está completamente funcional hospedado na plataforma Netlify, para experi
 ## 🖼️ Como ele se parece? quero imagens!
 🖼️ Tela de login:
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_login.png)
+
 🖼️ Tela inicial depois de fazer login como utilizador:
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app.png)
+
 🖼️ Detalhes do item:
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_detalhe.png)
+
 🖼️ Detalhes e pagamento do pedido:
-![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_pedido.png) 🖼️ Histórico de pedidos
-![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_historico.png) 🖼️ Tela onde o Admin edita o prato:
+![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_pedido.png)
+
+🖼️ Histórico de pedidos
+![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_historico.png)
+
+🖼️ Tela onde o Admin edita o prato:
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_editar.png)
 ## 📱 E responsividade? tem? 🥊Take this!
 🖼️ Login (esquerda) - Editar um prato (direita):
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_login_e_editar_mobile.png)
+
 🖼️ Tela inicial (esquerda) - Histórico de pedidos (direita):
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_inicio_e_pedidos_mobile.png)
+
 🖼️ Itens do pedido (esquerda) - Métodos de pagamento (direita):
 ![Página incial do modo utilizador](https://portifolio-three-delta.vercel.app/assets/img/stage_12_food_explorer_app_pagamento_mobile.png)
 ## 👨‍🏫 Como utilizar
