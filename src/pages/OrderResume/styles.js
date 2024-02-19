@@ -75,8 +75,9 @@ export const Content = styled.div`
         margin-top: 5.6rem;
 
         > .payment_area {
+            
             margin: 0 auto;
-            width: 32rem;
+            width: 37rem;
 
             .payment_method {
                 flex-direction: column;
