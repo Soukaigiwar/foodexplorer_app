@@ -8,7 +8,8 @@ export const Container = styled.div`
         display: flex;
         justify-content: start;
         align-items: center;
-        padding: 3.76rem 0 0 5.6rem;
+        padding-top: 3.76rem;
+        padding-left: 5.6rem;
         font-family: "Poppins";
         font-size: 2.4rem;
         font-weight: 500;
@@ -20,7 +21,8 @@ export const Container = styled.div`
         /* border: solid 1px blue; */
 
         span {
-            padding: 3.76rem 0 0 12.2rem;
+            padding-top: 3.76rem;
+            padding-left: 0;
         }
     }
 `;

@@ -3,22 +3,24 @@ import { devices } from "../../styles/media";
 
 export const Container = styled.div`
     display: grid;
-    grid-template-rows: 104px min-content 1fr 77px;
-    grid-template-areas: 
+    grid-template-rows: 104px min-content 1fr min-content;
+    grid-template-areas:
         "header"
         "back_text_button"
         "content"
         "footer";
 
-    height: 100vh;
+    min-height: 100vh;
+    min-width: 42.9rem;
 
     .image {
         text-align: center;
 
         img {
-                margin: 1.6rem auto 1.6rem;
-                width: 26.4rem;
-            }
+            text-align: center;
+            margin: 1.6rem auto;
+            width: 26.4rem;
+        }
     }
 
     .details {
@@ -26,6 +28,7 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 2.4rem;
+        max-width: 100vw;
 
         > h2 {
             font-family: "Poppins";
@@ -57,6 +60,7 @@ export const Container = styled.div`
             flex-wrap: wrap;
             gap: 2rem;
             justify-content: center;
+            width: 100%;
         }
 
         margin-bottom: 5rem;
@@ -66,10 +70,9 @@ export const Container = styled.div`
         display: flex;
         justify-content: space-around;
 
-        width: 100%;
+        max-width: 100vw;
         height: 3.8rem;
         gap: 1.6rem;
-        
 
         > div {
             display: inline-flex;
@@ -92,51 +95,57 @@ export const Container = styled.div`
             font-weight: 500;
             line-height: 1.6rem;
             cursor: pointer;
-            
         }
     }
 
     @media (${devices.desktop}) {
+        grid-template-rows: 104px min-content 1fr 77px;
+
         .dish {
             padding: 0 12.2rem;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             margin-top: 4.2rem;
+        }
 
-            .image{
-                justify-content: center;
-                margin: 0;
-                padding: 0;
-                width: 39rem;
-            }
-            
-            .details {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
-                margin: 0;
-                padding: 0 0 0 4.78rem;
+        .image img {
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            width: 39rem;
+        }
 
-                p {
-                    text-align: start;
-                }
+        .details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin: 0;
+            padding-right: 4.78rem;
 
-                .tags {
-                    justify-content: start;
-                }
+            p {
+                text-align: start;
             }
 
-            .actions {
-                justify-content: flex-start;
+            .tags {
+                justify-content: start;
             }
+        }
+
+        .actions {
+            justify-content: flex-start;
         }
     }
 `;
 
 export const Content = styled.div`
     grid-area: content;
+    margin: 0 auto;
+
+    @media (${devices.desktop}) {
+        width: 121rem;
+    }
 `;
 
 export const BackTextButton = styled.div`

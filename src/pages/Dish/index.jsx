@@ -16,7 +16,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { handleZeros } from "../../utils/string";
-//import { handleQuantity } from "../../utils/item.js";
 import { useCart } from "../../hooks/cart.jsx";
 
 export function Dish() {
@@ -87,8 +86,8 @@ export function Dish() {
     return (
         <Container>
             <Header />
-            <BackTextButton />
             <Content>
+                <BackTextButton />
                 <div className="dish">
                     <div className="image">
                         <img src={dishImageUrl} alt="Imagem do prato escolhido." />
