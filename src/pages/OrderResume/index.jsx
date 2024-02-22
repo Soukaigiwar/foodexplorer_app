@@ -18,6 +18,7 @@ import orderIcon from "../../assets/order_bag.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCart } from "../../hooks/cart.jsx";
+import { useEffect } from "react";
 
 export function OrderResume() {
     const {
@@ -33,6 +34,13 @@ export function OrderResume() {
     const [cardCvcNumber, setCardCvcNumber] = useState("");
     const [paymentScreenVisible, setPaymentScreenVisible] = useState(true);
     const [listAreaVisible, setListAreaVisible] = useState(true);
+    const [paymentArea, setPaymentArea] = useState("");
+    
+    const togglePaymentScreen = () => {
+        //setPaymentScreenVisible(true);
+        setListAreaVisible(!listAreaVisible);
+        setPaymentArea("payment_area_enabled button_enabled");
+    };
 
     const handlePayment = async (method = "pix") => {
         const items = getCart();
@@ -62,7 +70,6 @@ export function OrderResume() {
             });
         });
 
-        console.log("orderData: ", orderData);
 
         await api.post("/orders", orderData);
         
@@ -81,16 +88,15 @@ export function OrderResume() {
         }
     };
 
-    const togglePaymentScreen = () => {
-        setPaymentScreenVisible(true);
-        setListAreaVisible(!listAreaVisible);
-    };
+    useEffect(() => {
+        console.log("paymentArea:", paymentArea);
+    }, [paymentArea]);
 
     return (
         <Container>
             <StyleSheetManager shouldForwardProp={isPropValid}>
                 <Header />
-                <Content method={paymentMethod} status={getOrderStatus()}>
+                <Content className={paymentArea} method={paymentMethod} status={getOrderStatus()}>
                     {listAreaVisible && (
                         <div className="item_list_area">
                             <h2 className="title">Meu Pedido</h2>
@@ -130,7 +136,7 @@ export function OrderResume() {
                     {paymentScreenVisible && (
                         <div className="payment_method_area">
                             {getCart() && getCart().length > 0 && (
-                                <div className="payment_area">
+                                <div className="payment_area hidden">
                                     <h2>Pagamento</h2>
                                     <div className="payment_method" method={paymentMethod}>
                                         <div>
