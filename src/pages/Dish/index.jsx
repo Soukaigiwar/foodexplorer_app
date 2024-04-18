@@ -17,11 +17,18 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { handleZeros } from "../../utils/string";
 import { useCart } from "../../hooks/cart.jsx";
+import { useRole } from "../../hooks/role";
+import { useNavigate } from "react-router-dom";
 
 export function Dish() {
     const params = useParams();
     const { addItemToCart } = useCart();
 
+    const [isAdminRole, setIsAdminRole] = useState(false);
+
+    const navigate = useNavigate();
+    
+    const { isAdmin } = useRole();
     const [data, setData] = useState({});
     const [ingredients, setIngredients] = useState([]);
     const [search, setSearch] = useState("");
@@ -65,6 +72,10 @@ export function Dish() {
         addItemToCart(item);
     }
 
+    const handleEditItem = (id) => {
+        navigate(`/edit_dish/${id}`);
+    };
+
     useEffect(() => {
         async function fetchDish() {
 
@@ -82,6 +93,15 @@ export function Dish() {
 
         fetchDish();
     }, [search]);
+
+    useEffect(() => {
+        const checkIfUserRoleIsAdmin = async () => {
+            const result = await isAdmin();
+            setIsAdminRole(result);
+        };
+    
+        checkIfUserRoleIsAdmin();
+    }, []);
 
     return (
         <Container>
@@ -108,31 +128,45 @@ export function Dish() {
                             }
                         </div>
                         <div className="actions">
-                            <div>
-                                <TextButton
-                                    tabIndex="0"
-                                    icon={minus}
-                                    alt="Diminuir quantidade."
-                                    onKeyDown={handleKeyDown}
-                                    onClick={ handleDecrement }
+                        {!isAdminRole ? (
+                            <>
+                                <div>
+                                    <TextButton
+                                        tabIndex="0"
+                                        icon={minus}
+                                        alt="Diminuir quantidade."
+                                        onKeyDown={handleKeyDown}
+                                        onClick={ handleDecrement }
+                                    />
+                                    <span>
+                                        {quantity}
+                                    </span>
+                                    <TextButton
+                                        tabIndex="1"
+                                        icon={plus}
+                                        alt="Aumentar quantidade."
+                                        onKeyDown={handleKeyDown}
+                                        onClick={ handleIncrement }
+                                    />
+                                </div>
+                                <Button
+                                    icon={orderBag}
+                                    $bgcolor="TOMATO_100"
+                                    title={`pedir ∙ R$ ${handleZeros(String(data.price * quantity))}`}
+                                    onClick={ addItem }
                                 />
-                                <span>
-                                    {quantity}
-                                </span>
-                                <TextButton
-                                    tabIndex="1"
-                                    icon={plus}
-                                    alt="Aumentar quantidade."
-                                    onKeyDown={handleKeyDown}
-                                    onClick={ handleIncrement }
+                            </>
+                        ) : (
+                            <div>
+                                <Button
+                                    className="button"
+                                    $bgcolor="TOMATO_100"
+                                    icon={""}
+                                    title="Editar prato"
+                                    onClick={() => handleEditItem(data.id) }
                                 />
                             </div>
-                            <Button
-                                icon={orderBag}
-                                $bgcolor="TOMATO_100"
-                                title={`pedir ∙ R$ ${handleZeros(String(data.price * quantity))}`}
-                                onClick={ addItem }
-                            />
+                        )}
                         </div>
                     </div>
                 </div>

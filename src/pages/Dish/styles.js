@@ -135,6 +135,11 @@ export const Container = styled.div`
 
         .actions {
             justify-content: flex-start;
+
+            > div > button {
+                width: 15.4rem;
+                height: 3.8rem;
+            }
         }
     }
 `;
@@ -144,7 +149,7 @@ export const Content = styled.div`
     margin: 0 auto;
 
     @media (${devices.desktop}) {
-        width: 121rem;
+        width: 112rem;
     }
 `;
 

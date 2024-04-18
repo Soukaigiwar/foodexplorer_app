@@ -35,7 +35,7 @@ export const Container = styled.div`
     }
 
 @media (${devices.desktop}) {
-    
+
 }
 `;
 
@@ -212,4 +212,9 @@ export const Tags = styled.div`
 
 export const BackTextButtonArea = styled.div`
     grid-area: back_text_button;
+
+    @media (${devices.desktop}) {
+        margin: 0 auto;
+        width: 112rem;
+    }
 `;

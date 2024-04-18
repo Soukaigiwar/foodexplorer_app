@@ -70,6 +70,7 @@ export function NewDish() {
         });
 
         updateDishImage(data.dishId, dishImage);
+        alert("Item inserido com sucesso.");
         navigate("/");
     };
 

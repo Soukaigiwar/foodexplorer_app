@@ -21,12 +21,13 @@ export const Container = styled.div`
     @media (${devices.desktop}) {
         width: 100%;
         display: flex;
+        margin: 0 auto;
         justify-content: space-evenly;
         
-
         .content {
-            justify-content: space-evenly;
-            width: 130rem;
+            width: 112rem;
+            padding: 5.6rem 0 2.4rem;
+            justify-content: space-between;
 
         > :nth-child(2) {
             width: unset;

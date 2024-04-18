@@ -1,5 +1,4 @@
 import { Container } from "./styles";
-//import { useState } from "react";
 
 export function Button({ title, bgcolor, icon: Icon, ...rest }) {
 
